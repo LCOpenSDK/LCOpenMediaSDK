@@ -1,0 +1,1493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0334DBDB29C0B063007A1204 /* LCApWifiHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0334DBDA29C0B063007A1204 /* LCApWifiHeaderView.xib */; };
+		0334DBDD29C19D95007A1204 /* LCAPWifiPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334DBDC29C19D95007A1204 /* LCAPWifiPasswordViewController.swift */; };
+		034C980929D6893A001C64B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034C980B29D6893A001C64B1 /* Localizable.strings */; };
+		035A280F290A5F7D003EABBA /* AddIOTDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3472A428FD744600DB9EB5 /* AddIOTDevice.storyboard */; };
+		03636CCF28DEF98500FE1B59 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03636CCE28DEF98500FE1B59 /* MJRefresh.framework */; };
+		03987E1E27E9BDFF00E1FFAF /* LCNetSDKSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03987E1D27E9BDFF00E1FFAF /* LCNetSDKSearchManager.m */; };
+		03B215DC29AD9C7C000E1659 /* asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B215DB29AD9C7C000E1659 /* asset.xcassets */; };
+		04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D8BAFF24E53EC0002F3076 /* DHScanner.framework */; };
+		0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0419D4632508C0F400CE4528 /* LCNetworkModule.framework */; };
+		0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419D4672508C51500CE4528 /* AddDevice.storyboard */; };
+		04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */; };
+		10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 10026F4E23056F0000F95836 /* LCAddDeviceModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F34728B28FD36B300DB9EB5 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */; };
+		3F34728F28FD382600DB9EB5 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F34728E28FD382600DB9EB5 /* SDWebImage.framework */; };
+		3F34729D28FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34729628FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift */; };
+		3F3472A328FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3472A228FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift */; };
+		3F3472B228FD962B00DB9EB5 /* LCIotWiFiUnSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3472B128FD962A00DB9EB5 /* LCIotWiFiUnSupportView.swift */; };
+		3FB4BE3D28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4BE3C28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift */; };
+		4E17234D243438E3004F68FC /* LCDeviceUnsupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E17234C243438E3004F68FC /* LCDeviceUnsupportViewController.swift */; };
+		4E4510F5242B75F000AF8AF6 /* LCNetSDKInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103B242B75ED00AF8AF6 /* LCNetSDKInterface.mm */; };
+		4E4510F6242B75F000AF8AF6 /* LCDeviceInfoLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103C242B75ED00AF8AF6 /* LCDeviceInfoLogModel.m */; };
+		4E4510F7242B75F000AF8AF6 /* LCSmartConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */; };
+		4E4510F9242B75F000AF8AF6 /* LCDeviceNetInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E45103F242B75ED00AF8AF6 /* LCDeviceNetInfo.mm */; };
+		4E4510FA242B75F000AF8AF6 /* LCNetSDKInitialManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451040242B75ED00AF8AF6 /* LCNetSDKInitialManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FD242B75F000AF8AF6 /* LCNetSDKHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451043242B75ED00AF8AF6 /* LCNetSDKHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FE242B75F000AF8AF6 /* LCNetSDKSearchManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451044242B75ED00AF8AF6 /* LCNetSDKSearchManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E4510FF242B75F000AF8AF6 /* LCDeviceInfoLogModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451045242B75ED00AF8AF6 /* LCDeviceInfoLogModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451101242B75F000AF8AF6 /* LCNetSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451047242B75ED00AF8AF6 /* LCNetSDKHelper.m */; };
+		4E451103242B75F000AF8AF6 /* LCNetSDKInitialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E451049242B75ED00AF8AF6 /* LCNetSDKInitialManager.m */; };
+		4E451104242B75F000AF8AF6 /* ISearchDeviceNetInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451106242B75F000AF8AF6 /* LCSmartConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451107242B75F000AF8AF6 /* LCDeviceNetInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104D242B75ED00AF8AF6 /* LCDeviceNetInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451108242B75F000AF8AF6 /* LCNetSDKInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E45104E242B75ED00AF8AF6 /* LCNetSDKInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E451111242B75F000AF8AF6 /* LCIdentifyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45105D242B75ED00AF8AF6 /* LCIdentifyPresenter.swift */; };
+		4E451112242B75F000AF8AF6 /* LCSelectModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45105F242B75ED00AF8AF6 /* LCSelectModelViewController.swift */; };
+		4E451113242B75F000AF8AF6 /* LCBindByOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451060242B75ED00AF8AF6 /* LCBindByOtherViewController.swift */; };
+		4E451114242B75F000AF8AF6 /* LCInputSNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451061242B75ED00AF8AF6 /* LCInputSNViewController.swift */; };
+		4E451115242B75F000AF8AF6 /* LCQRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451062242B75ED00AF8AF6 /* LCQRScanViewController.swift */; };
+		4E451116242B75F000AF8AF6 /* LCScanMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451064242B75ED00AF8AF6 /* LCScanMenuCell.swift */; };
+		4E451117242B75F000AF8AF6 /* LCQRScanMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451065242B75ED00AF8AF6 /* LCQRScanMenuView.swift */; };
+		4E45111D242B75F000AF8AF6 /* LCBindPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451070242B75EE00AF8AF6 /* LCBindPresenter.swift */; };
+		4E451122242B75F000AF8AF6 /* LCBindSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451076242B75EE00AF8AF6 /* LCBindSuccessViewController.swift */; };
+		4E451127242B75F000AF8AF6 /* LCAuthPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45107E242B75EE00AF8AF6 /* LCAuthPasswordPresenter.swift */; };
+		4E451128242B75F000AF8AF6 /* LCAuthPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451080242B75EE00AF8AF6 /* LCAuthPasswordViewController.swift */; };
+		4E451129242B75F000AF8AF6 /* LCDeviceLockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451081242B75EE00AF8AF6 /* LCDeviceLockViewController.swift */; };
+		4E45112A242B75F000AF8AF6 /* LCAuthRegCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451082242B75EE00AF8AF6 /* LCAuthRegCodeViewController.swift */; };
+		4E45112B242B75F000AF8AF6 /* LCInitializeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451085242B75EE00AF8AF6 /* LCInitializeSearchViewController.swift */; };
+		4E45112C242B75F000AF8AF6 /* LCInitializePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451086242B75EE00AF8AF6 /* LCInitializePasswordViewController.swift */; };
+		4E45112E242B75F000AF8AF6 /* LCAddDeviceModule-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E45112F242B75F000AF8AF6 /* LCAddDeviceModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */; };
+		4E451130242B75F000AF8AF6 /* LCAddDeviceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */; };
+		4E451132242B75F000AF8AF6 /* LCAddByQRCodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45108F242B75EE00AF8AF6 /* LCAddByQRCodePresenter.swift */; };
+		4E451133242B75F000AF8AF6 /* LCAddByQRCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451091242B75EE00AF8AF6 /* LCAddByQRCodeProtocol.swift */; };
+		4E451134242B75F000AF8AF6 /* LCAddByQRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451093242B75EE00AF8AF6 /* LCAddByQRCodeVC.swift */; };
+		4E451136242B75F000AF8AF6 /* LCApAuthPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451098242B75EE00AF8AF6 /* LCApAuthPasswordPresenter.swift */; };
+		4E451137242B75F000AF8AF6 /* LCApWifiPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E451099242B75EE00AF8AF6 /* LCApWifiPasswordPresenter.swift */; };
+		4E451138242B75F000AF8AF6 /* LCApWifiSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109B242B75EE00AF8AF6 /* LCApWifiSelectViewController.swift */; };
+		4E451139242B75F000AF8AF6 /* LCApGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109C242B75EE00AF8AF6 /* LCApGuideViewController.swift */; };
+		4E45113A242B75F000AF8AF6 /* LCApWifiCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45109D242B75EE00AF8AF6 /* LCApWifiCheckViewController.swift */; };
+		4E451140242B75F000AF8AF6 /* LCApWifiHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */; };
+		4E451141242B75F000AF8AF6 /* LCWifiPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510A8242B75EF00AF8AF6 /* LCWifiPasswordPresenter.swift */; };
+		4E451142242B75F000AF8AF6 /* LCWifiPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AA242B75EF00AF8AF6 /* LCWifiPasswordViewController.swift */; };
+		4E451143242B75F000AF8AF6 /* LCLightDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AB242B75EF00AF8AF6 /* LCLightDetailViewController.swift */; };
+		4E451144242B75F000AF8AF6 /* LCWiFiUnsupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AC242B75EF00AF8AF6 /* LCWiFiUnsupportVC.swift */; };
+		4E451145242B75F000AF8AF6 /* LCWifiConnectFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AD242B75EF00AF8AF6 /* LCWifiConnectFailureViewController.swift */; };
+		4E451146242B75F000AF8AF6 /* LCPhoneVolumeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AE242B75EF00AF8AF6 /* LCPhoneVolumeCheckViewController.swift */; };
+		4E451147242B75F000AF8AF6 /* LCDeviceLightCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510AF242B75EF00AF8AF6 /* LCDeviceLightCheckViewController.swift */; };
+		4E451148242B75F000AF8AF6 /* LCWifiInfoExplainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */; };
+		4E451149242B75F000AF8AF6 /* LCWifiConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B1242B75EF00AF8AF6 /* LCWifiConnectViewController.swift */; };
+		4E45114B242B75F000AF8AF6 /* LCWifiUnsupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B3242B75EF00AF8AF6 /* LCWifiUnsupportViewController.swift */; };
+		4E45114C242B75F000AF8AF6 /* LCResetDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B4242B75EF00AF8AF6 /* LCResetDeviceViewController.swift */; };
+		4E45114D242B75F000AF8AF6 /* LC5GWifiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B6242B75EF00AF8AF6 /* LC5GWifiDetailView.swift */; };
+		4E45114E242B75F000AF8AF6 /* LCBlurViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510B7242B75EF00AF8AF6 /* LCBlurViewContainer.swift */; };
+		4E451150242B75F000AF8AF6 /* LCBindFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BB242B75EF00AF8AF6 /* LCBindFailureViewController.swift */; };
+		4E451151242B75F000AF8AF6 /* LCConnectCloudTimeoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BC242B75EF00AF8AF6 /* LCConnectCloudTimeoutViewController.swift */; };
+		4E451152242B75F000AF8AF6 /* LCConnectCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BD242B75EF00AF8AF6 /* LCConnectCloudViewController.swift */; };
+		4E451153242B75F000AF8AF6 /* LCAuthPassworHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510BF242B75EF00AF8AF6 /* LCAuthPassworHelper.swift */; };
+		4E451154242B75F000AF8AF6 /* LCHotSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C1242B75EF00AF8AF6 /* LCHotSpotViewController.swift */; };
+		4E451155242B75F000AF8AF6 /* LCAddFAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510C2242B75EF00AF8AF6 /* LCAddFAQViewController.swift */; };
+		4E45115A242B75F000AF8AF6 /* LCSameNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CB242B75EF00AF8AF6 /* LCSameNetworkViewController.swift */; };
+		4E45115C242B75F000AF8AF6 /* LCPowerGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CD242B75EF00AF8AF6 /* LCPowerGuideViewController.swift */; };
+		4E45115D242B75F000AF8AF6 /* LCWiredOrSIMGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510CE242B75EF00AF8AF6 /* LCWiredOrSIMGuideViewController.swift */; };
+		4E45115E242B75F000AF8AF6 /* LCGuideBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D2242B75F000AF8AF6 /* LCGuideBaseVCProtocol.swift */; };
+		4E45115F242B75F000AF8AF6 /* LCAddBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D3242B75F000AF8AF6 /* LCAddBaseVCProtocol.swift */; };
+		4E451160242B75F000AF8AF6 /* LCErrorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D4242B75F000AF8AF6 /* LCErrorBaseViewController.swift */; };
+		4E451161242B75F000AF8AF6 /* LCErrorBaseVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D5242B75F000AF8AF6 /* LCErrorBaseVCProtocol.swift */; };
+		4E451162242B75F000AF8AF6 /* LCAddBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D6242B75F000AF8AF6 /* LCAddBaseViewController.swift */; };
+		4E451163242B75F000AF8AF6 /* LCGuideBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510D7242B75F000AF8AF6 /* LCGuideBaseViewController.swift */; };
+		4E451165242B75F000AF8AF6 /* LCAddDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DA242B75F000AF8AF6 /* LCAddDeviceManager.swift */; };
+		4E451167242B75F000AF8AF6 /* LCIntroductionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DD242B75F000AF8AF6 /* LCIntroductionDefaults.swift */; };
+		4E451168242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */; };
+		4E45116C242B75F000AF8AF6 /* LCConnectFailureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E2242B75F000AF8AF6 /* LCConnectFailureType.swift */; };
+		4E45116E242B75F000AF8AF6 /* UILabel+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */; };
+		4E451170242B75F000AF8AF6 /* LCCycleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510E7242B75F000AF8AF6 /* LCCycleTimerView.swift */; };
+		4E451173242B75F000AF8AF6 /* LCLightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EA242B75F000AF8AF6 /* LCLightButton.swift */; };
+		4E451174242B75F000AF8AF6 /* LCAutoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EB242B75F000AF8AF6 /* LCAutoKeyboardView.swift */; };
+		4E451175242B75F000AF8AF6 /* LCAddGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510EC242B75F000AF8AF6 /* LCAddGuideView.swift */; };
+		4E451176242B75F000AF8AF6 /* UITextView+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */; };
+		4E451179242B75F000AF8AF6 /* LCCommonErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F0242B75F000AF8AF6 /* LCCommonErrorView.swift */; };
+		4E45117A242B75F000AF8AF6 /* LCNetConnectFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4510F1242B75F000AF8AF6 /* LCNetConnectFailureView.swift */; };
+		4E45119C242B7F9500AF8AF6 /* LCAddDeviceLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45119B242B7F9500AF8AF6 /* LCAddDeviceLogManager.swift */; };
+		4E45119E242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45119D242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift */; };
+		4E4511CC242C460D00AF8AF6 /* Bundle+AddDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */; };
+		4E4511E2242C577200AF8AF6 /* LCNetConnectFailureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510E4242B75F000AF8AF6 /* LCNetConnectFailureView.xib */; };
+		4E4511E4242C577600AF8AF6 /* LCAddGuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510EF242B75F000AF8AF6 /* LCAddGuideView.xib */; };
+		4E4511E6242C577900AF8AF6 /* LC5GWifiDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4510B8242B75EF00AF8AF6 /* LC5GWifiDetailView.xib */; };
+		4E4511ED242C7CE800AF8AF6 /* LCAutoKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4511EB242C7CB700AF8AF6 /* LCAutoKeyboardView.xib */; };
+		8F6B004F244D677400EAE734 /* LCWiFiConfigPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0042244D677400EAE734 /* LCWiFiConfigPresenter.swift */; };
+		8F6B0050244D677400EAE734 /* LCWiFiConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0044244D677400EAE734 /* LCWiFiConfigProtocol.swift */; };
+		8F6B0051244D677400EAE734 /* LCWiFiConfigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0046244D677400EAE734 /* LCWiFiConfigVC.swift */; };
+		8F6B0052244D677400EAE734 /* LCWiFiConfigListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0047244D677400EAE734 /* LCWiFiConfigListCell.swift */; };
+		8F6B0053244D677400EAE734 /* LCWiFiConfigHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0048244D677400EAE734 /* LCWiFiConfigHeader.swift */; };
+		8F6B0054244D677400EAE734 /* LCAddOtherWifiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */; };
+		8F6B0066244DA2CE00EAE734 /* LCWiFiConnectOnlinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0060244DA2CD00EAE734 /* LCWiFiConnectOnlinePresenter.swift */; };
+		8F6B0067244DA2CE00EAE734 /* LCWiFiConnectOnlineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0062244DA2CD00EAE734 /* LCWiFiConnectOnlineProtocol.swift */; };
+		8F6B0068244DA2CE00EAE734 /* LCWifiConnectOnlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B0064244DA2CD00EAE734 /* LCWifiConnectOnlineVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E8464D32474D8F300758260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10026F4223056F0000F95836 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10A6613B2306B803004DCB22;
+			remoteInfo = DHAddDeviceModuleBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0334DBDA29C0B063007A1204 /* LCApWifiHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCApWifiHeaderView.xib; sourceTree = "<group>"; };
+		0334DBDC29C19D95007A1204 /* LCAPWifiPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAPWifiPasswordViewController.swift; sourceTree = "<group>"; };
+		034C980A29D6893A001C64B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		034C980C29D6894B001C64B1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		03636CCE28DEF98500FE1B59 /* MJRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MJRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03987E1D27E9BDFF00E1FFAF /* LCNetSDKSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetSDKSearchManager.m; sourceTree = "<group>"; };
+		03B215DB29AD9C7C000E1659 /* asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = asset.xcassets; sourceTree = "<group>"; };
+		0419D4632508C0F400CE4528 /* LCNetworkModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCNetworkModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0419D4652508C10900CE4528 /* LCBaseModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LCBaseModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0419D4672508C51500CE4528 /* AddDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddDevice.storyboard; sourceTree = "<group>"; };
+		04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = LCAddDeviceModule.xcconfig; sourceTree = "<group>"; };
+		04D8BAFF24E53EC0002F3076 /* DHScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DHScanner.framework; path = ../Frameworks/iOS/DHScanner.framework; sourceTree = "<group>"; };
+		10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCAddDeviceModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10026F4E23056F0000F95836 /* LCAddDeviceModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAddDeviceModule.h; sourceTree = "<group>"; };
+		10026F4F23056F0000F95836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCAddDeviceModuleBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A6613E2306B804004DCB22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F34728E28FD382600DB9EB5 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F34729628FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceAddGuideCell.swift; sourceTree = "<group>"; };
+		3F3472A228FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCIoTWifiConfigViewController.swift; sourceTree = "<group>"; };
+		3F3472A428FD744600DB9EB5 /* AddIOTDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddIOTDevice.storyboard; sourceTree = "<group>"; };
+		3F3472B128FD962A00DB9EB5 /* LCIotWiFiUnSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCIotWiFiUnSupportView.swift; sourceTree = "<group>"; };
+		3FB4BE3C28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceAddGuideViewController.swift; sourceTree = "<group>"; };
+		4E17234C243438E3004F68FC /* LCDeviceUnsupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDeviceUnsupportViewController.swift; sourceTree = "<group>"; };
+		4E45103B242B75ED00AF8AF6 /* LCNetSDKInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LCNetSDKInterface.mm; sourceTree = "<group>"; };
+		4E45103C242B75ED00AF8AF6 /* LCDeviceInfoLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDeviceInfoLogModel.m; sourceTree = "<group>"; };
+		4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSmartConfig.m; sourceTree = "<group>"; };
+		4E45103F242B75ED00AF8AF6 /* LCDeviceNetInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LCDeviceNetInfo.mm; sourceTree = "<group>"; };
+		4E451040242B75ED00AF8AF6 /* LCNetSDKInitialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetSDKInitialManager.h; sourceTree = "<group>"; };
+		4E451043242B75ED00AF8AF6 /* LCNetSDKHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetSDKHelper.h; sourceTree = "<group>"; };
+		4E451044242B75ED00AF8AF6 /* LCNetSDKSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetSDKSearchManager.h; sourceTree = "<group>"; };
+		4E451045242B75ED00AF8AF6 /* LCDeviceInfoLogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceInfoLogModel.h; sourceTree = "<group>"; };
+		4E451047242B75ED00AF8AF6 /* LCNetSDKHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetSDKHelper.m; sourceTree = "<group>"; };
+		4E451049242B75ED00AF8AF6 /* LCNetSDKInitialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetSDKInitialManager.m; sourceTree = "<group>"; };
+		4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISearchDeviceNetInfo.h; sourceTree = "<group>"; };
+		4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSmartConfig.h; sourceTree = "<group>"; };
+		4E45104D242B75ED00AF8AF6 /* LCDeviceNetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDeviceNetInfo.h; sourceTree = "<group>"; };
+		4E45104E242B75ED00AF8AF6 /* LCNetSDKInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetSDKInterface.h; sourceTree = "<group>"; };
+		4E45105D242B75ED00AF8AF6 /* LCIdentifyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCIdentifyPresenter.swift; sourceTree = "<group>"; };
+		4E45105F242B75ED00AF8AF6 /* LCSelectModelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSelectModelViewController.swift; sourceTree = "<group>"; };
+		4E451060242B75ED00AF8AF6 /* LCBindByOtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCBindByOtherViewController.swift; sourceTree = "<group>"; };
+		4E451061242B75ED00AF8AF6 /* LCInputSNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCInputSNViewController.swift; sourceTree = "<group>"; };
+		4E451062242B75ED00AF8AF6 /* LCQRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCQRScanViewController.swift; sourceTree = "<group>"; };
+		4E451064242B75ED00AF8AF6 /* LCScanMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCScanMenuCell.swift; sourceTree = "<group>"; };
+		4E451065242B75ED00AF8AF6 /* LCQRScanMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCQRScanMenuView.swift; sourceTree = "<group>"; };
+		4E451070242B75EE00AF8AF6 /* LCBindPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCBindPresenter.swift; sourceTree = "<group>"; };
+		4E451076242B75EE00AF8AF6 /* LCBindSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCBindSuccessViewController.swift; sourceTree = "<group>"; };
+		4E45107E242B75EE00AF8AF6 /* LCAuthPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAuthPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E451080242B75EE00AF8AF6 /* LCAuthPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAuthPasswordViewController.swift; sourceTree = "<group>"; };
+		4E451081242B75EE00AF8AF6 /* LCDeviceLockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceLockViewController.swift; sourceTree = "<group>"; };
+		4E451082242B75EE00AF8AF6 /* LCAuthRegCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAuthRegCodeViewController.swift; sourceTree = "<group>"; };
+		4E451085242B75EE00AF8AF6 /* LCInitializeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCInitializeSearchViewController.swift; sourceTree = "<group>"; };
+		4E451086242B75EE00AF8AF6 /* LCInitializePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCInitializePasswordViewController.swift; sourceTree = "<group>"; };
+		4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCAddDeviceModule-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceModuleProtocol.swift; sourceTree = "<group>"; };
+		4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceModule.swift; sourceTree = "<group>"; };
+		4E45108F242B75EE00AF8AF6 /* LCAddByQRCodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddByQRCodePresenter.swift; sourceTree = "<group>"; };
+		4E451091242B75EE00AF8AF6 /* LCAddByQRCodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddByQRCodeProtocol.swift; sourceTree = "<group>"; };
+		4E451093242B75EE00AF8AF6 /* LCAddByQRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddByQRCodeVC.swift; sourceTree = "<group>"; };
+		4E451098242B75EE00AF8AF6 /* LCApAuthPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApAuthPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E451099242B75EE00AF8AF6 /* LCApWifiPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApWifiPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E45109B242B75EE00AF8AF6 /* LCApWifiSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApWifiSelectViewController.swift; sourceTree = "<group>"; };
+		4E45109C242B75EE00AF8AF6 /* LCApGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApGuideViewController.swift; sourceTree = "<group>"; };
+		4E45109D242B75EE00AF8AF6 /* LCApWifiCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApWifiCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCApWifiHeaderView.swift; sourceTree = "<group>"; };
+		4E4510A8242B75EF00AF8AF6 /* LCWifiPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiPasswordPresenter.swift; sourceTree = "<group>"; };
+		4E4510AA242B75EF00AF8AF6 /* LCWifiPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiPasswordViewController.swift; sourceTree = "<group>"; };
+		4E4510AB242B75EF00AF8AF6 /* LCLightDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCLightDetailViewController.swift; sourceTree = "<group>"; };
+		4E4510AC242B75EF00AF8AF6 /* LCWiFiUnsupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiUnsupportVC.swift; sourceTree = "<group>"; };
+		4E4510AD242B75EF00AF8AF6 /* LCWifiConnectFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiConnectFailureViewController.swift; sourceTree = "<group>"; };
+		4E4510AE242B75EF00AF8AF6 /* LCPhoneVolumeCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCPhoneVolumeCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510AF242B75EF00AF8AF6 /* LCDeviceLightCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCDeviceLightCheckViewController.swift; sourceTree = "<group>"; };
+		4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiInfoExplainController.swift; sourceTree = "<group>"; };
+		4E4510B1242B75EF00AF8AF6 /* LCWifiConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiConnectViewController.swift; sourceTree = "<group>"; };
+		4E4510B3242B75EF00AF8AF6 /* LCWifiUnsupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiUnsupportViewController.swift; sourceTree = "<group>"; };
+		4E4510B4242B75EF00AF8AF6 /* LCResetDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCResetDeviceViewController.swift; sourceTree = "<group>"; };
+		4E4510B6242B75EF00AF8AF6 /* LC5GWifiDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LC5GWifiDetailView.swift; sourceTree = "<group>"; };
+		4E4510B7242B75EF00AF8AF6 /* LCBlurViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCBlurViewContainer.swift; sourceTree = "<group>"; };
+		4E4510B8242B75EF00AF8AF6 /* LC5GWifiDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LC5GWifiDetailView.xib; sourceTree = "<group>"; };
+		4E4510BB242B75EF00AF8AF6 /* LCBindFailureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCBindFailureViewController.swift; sourceTree = "<group>"; };
+		4E4510BC242B75EF00AF8AF6 /* LCConnectCloudTimeoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCConnectCloudTimeoutViewController.swift; sourceTree = "<group>"; };
+		4E4510BD242B75EF00AF8AF6 /* LCConnectCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCConnectCloudViewController.swift; sourceTree = "<group>"; };
+		4E4510BF242B75EF00AF8AF6 /* LCAuthPassworHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAuthPassworHelper.swift; sourceTree = "<group>"; };
+		4E4510C1242B75EF00AF8AF6 /* LCHotSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCHotSpotViewController.swift; sourceTree = "<group>"; };
+		4E4510C2242B75EF00AF8AF6 /* LCAddFAQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddFAQViewController.swift; sourceTree = "<group>"; };
+		4E4510CB242B75EF00AF8AF6 /* LCSameNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCSameNetworkViewController.swift; sourceTree = "<group>"; };
+		4E4510CD242B75EF00AF8AF6 /* LCPowerGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCPowerGuideViewController.swift; sourceTree = "<group>"; };
+		4E4510CE242B75EF00AF8AF6 /* LCWiredOrSIMGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiredOrSIMGuideViewController.swift; sourceTree = "<group>"; };
+		4E4510D2242B75F000AF8AF6 /* LCGuideBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCGuideBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D3242B75F000AF8AF6 /* LCAddBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D4242B75F000AF8AF6 /* LCErrorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCErrorBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510D5242B75F000AF8AF6 /* LCErrorBaseVCProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCErrorBaseVCProtocol.swift; sourceTree = "<group>"; };
+		4E4510D6242B75F000AF8AF6 /* LCAddBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510D7242B75F000AF8AF6 /* LCGuideBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCGuideBaseViewController.swift; sourceTree = "<group>"; };
+		4E4510DA242B75F000AF8AF6 /* LCAddDeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceManager.swift; sourceTree = "<group>"; };
+		4E4510DD242B75F000AF8AF6 /* LCIntroductionDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCIntroductionDefaults.swift; sourceTree = "<group>"; };
+		4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LCUserDeviceBindInfo+Extesion.swift"; sourceTree = "<group>"; };
+		4E4510E2242B75F000AF8AF6 /* LCConnectFailureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCConnectFailureType.swift; sourceTree = "<group>"; };
+		4E4510E4242B75F000AF8AF6 /* LCNetConnectFailureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCNetConnectFailureView.xib; sourceTree = "<group>"; };
+		4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Multiline.swift"; sourceTree = "<group>"; };
+		4E4510E7242B75F000AF8AF6 /* LCCycleTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCCycleTimerView.swift; sourceTree = "<group>"; };
+		4E4510EA242B75F000AF8AF6 /* LCLightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCLightButton.swift; sourceTree = "<group>"; };
+		4E4510EB242B75F000AF8AF6 /* LCAutoKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAutoKeyboardView.swift; sourceTree = "<group>"; };
+		4E4510EC242B75F000AF8AF6 /* LCAddGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddGuideView.swift; sourceTree = "<group>"; };
+		4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Multiline.swift"; sourceTree = "<group>"; };
+		4E4510EF242B75F000AF8AF6 /* LCAddGuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LCAddGuideView.xib; sourceTree = "<group>"; };
+		4E4510F0242B75F000AF8AF6 /* LCCommonErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCCommonErrorView.swift; sourceTree = "<group>"; };
+		4E4510F1242B75F000AF8AF6 /* LCNetConnectFailureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCNetConnectFailureView.swift; sourceTree = "<group>"; };
+		4E45119B242B7F9500AF8AF6 /* LCAddDeviceLogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceLogManager.swift; sourceTree = "<group>"; };
+		4E45119D242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddDeviceLogModel.swift; sourceTree = "<group>"; };
+		4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AddDevice.swift"; sourceTree = "<group>"; };
+		4E4511EB242C7CB700AF8AF6 /* LCAutoKeyboardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCAutoKeyboardView.xib; sourceTree = "<group>"; };
+		8F6B0042244D677400EAE734 /* LCWiFiConfigPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConfigPresenter.swift; sourceTree = "<group>"; };
+		8F6B0044244D677400EAE734 /* LCWiFiConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConfigProtocol.swift; sourceTree = "<group>"; };
+		8F6B0046244D677400EAE734 /* LCWiFiConfigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConfigVC.swift; sourceTree = "<group>"; };
+		8F6B0047244D677400EAE734 /* LCWiFiConfigListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConfigListCell.swift; sourceTree = "<group>"; };
+		8F6B0048244D677400EAE734 /* LCWiFiConfigHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConfigHeader.swift; sourceTree = "<group>"; };
+		8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCAddOtherWifiController.swift; sourceTree = "<group>"; };
+		8F6B0060244DA2CD00EAE734 /* LCWiFiConnectOnlinePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConnectOnlinePresenter.swift; sourceTree = "<group>"; };
+		8F6B0062244DA2CD00EAE734 /* LCWiFiConnectOnlineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWiFiConnectOnlineProtocol.swift; sourceTree = "<group>"; };
+		8F6B0064244DA2CD00EAE734 /* LCWifiConnectOnlineVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LCWifiConnectOnlineVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10026F4823056F0000F95836 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F34728F28FD382600DB9EB5 /* SDWebImage.framework in Frameworks */,
+				0419D4642508C0F400CE4528 /* LCNetworkModule.framework in Frameworks */,
+				03636CCF28DEF98500FE1B59 /* MJRefresh.framework in Frameworks */,
+				3F34728B28FD36B300DB9EB5 /* ObjectMapper.framework in Frameworks */,
+				04078A8224E53F0E00C28C08 /* DHScanner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A661392306B803004DCB22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		033D8D2B2834E9F3004FA5C0 /* iot */ = {
+			isa = PBXGroup;
+			children = (
+				3F34729828FD72A600DB9EB5 /* Controller */,
+				3F34729528FD72A600DB9EB5 /* View */,
+			);
+			path = iot;
+			sourceTree = "<group>";
+		};
+		0368317A29D575C500AC8741 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4E4511CB242C460D00AF8AF6 /* Bundle+AddDevice.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		10026F4123056F0000F95836 = {
+			isa = PBXGroup;
+			children = (
+				10026F4D23056F0000F95836 /* LCAddDeviceModule */,
+				10A6613D2306B803004DCB22 /* LCAddDeviceModuleBundle */,
+				10026F4C23056F0000F95836 /* Products */,
+				10026F7123056FD800F95836 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10026F4C23056F0000F95836 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */,
+				10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10026F4D23056F0000F95836 /* LCAddDeviceModule */ = {
+			isa = PBXGroup;
+			children = (
+				4E451183242B781500AF8AF6 /* AddDevice */,
+				4E451087242B75EE00AF8AF6 /* Module */,
+				10545D0A230583030082E367 /* Support Files */,
+				04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */,
+			);
+			path = LCAddDeviceModule;
+			sourceTree = "<group>";
+		};
+		10026F7123056FD800F95836 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F34728E28FD382600DB9EB5 /* SDWebImage.framework */,
+				3F34728A28FD36B300DB9EB5 /* ObjectMapper.framework */,
+				03636CCE28DEF98500FE1B59 /* MJRefresh.framework */,
+				0419D4652508C10900CE4528 /* LCBaseModule.framework */,
+				0419D4632508C0F400CE4528 /* LCNetworkModule.framework */,
+				04D8BAFF24E53EC0002F3076 /* DHScanner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		10545D0A230583030082E367 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				10026F4E23056F0000F95836 /* LCAddDeviceModule.h */,
+				4E451089242B75EE00AF8AF6 /* LCAddDeviceModule-Bridging-Header.h */,
+				10026F4F23056F0000F95836 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		10A6613D2306B803004DCB22 /* LCAddDeviceModuleBundle */ = {
+			isa = PBXGroup;
+			children = (
+				034C980B29D6893A001C64B1 /* Localizable.strings */,
+				0334DBDA29C0B063007A1204 /* LCApWifiHeaderView.xib */,
+				4E4510E4242B75F000AF8AF6 /* LCNetConnectFailureView.xib */,
+				4E4511EB242C7CB700AF8AF6 /* LCAutoKeyboardView.xib */,
+				4E4510B8242B75EF00AF8AF6 /* LC5GWifiDetailView.xib */,
+				4E4510EF242B75F000AF8AF6 /* LCAddGuideView.xib */,
+				0419D4672508C51500CE4528 /* AddDevice.storyboard */,
+				3F3472A428FD744600DB9EB5 /* AddIOTDevice.storyboard */,
+				10A6613E2306B804004DCB22 /* Info.plist */,
+				03B215DB29AD9C7C000E1659 /* asset.xcassets */,
+			);
+			path = LCAddDeviceModuleBundle;
+			sourceTree = "<group>";
+		};
+		3F34729528FD72A600DB9EB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3F34729628FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift */,
+				3F3472B128FD962A00DB9EB5 /* LCIotWiFiUnSupportView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3F34729828FD72A600DB9EB5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3F3472A228FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift */,
+				3FB4BE3C28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E45103A242B75ED00AF8AF6 /* NetSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4E451045242B75ED00AF8AF6 /* LCDeviceInfoLogModel.h */,
+				4E45103C242B75ED00AF8AF6 /* LCDeviceInfoLogModel.m */,
+				4E45104C242B75ED00AF8AF6 /* LCSmartConfig.h */,
+				4E45103D242B75ED00AF8AF6 /* LCSmartConfig.m */,
+				4E451043242B75ED00AF8AF6 /* LCNetSDKHelper.h */,
+				4E451047242B75ED00AF8AF6 /* LCNetSDKHelper.m */,
+				4E451040242B75ED00AF8AF6 /* LCNetSDKInitialManager.h */,
+				4E451049242B75ED00AF8AF6 /* LCNetSDKInitialManager.m */,
+				4E45104A242B75ED00AF8AF6 /* ISearchDeviceNetInfo.h */,
+				4E45104D242B75ED00AF8AF6 /* LCDeviceNetInfo.h */,
+				4E45103F242B75ED00AF8AF6 /* LCDeviceNetInfo.mm */,
+				4E45104E242B75ED00AF8AF6 /* LCNetSDKInterface.h */,
+				4E45103B242B75ED00AF8AF6 /* LCNetSDKInterface.mm */,
+				4E451044242B75ED00AF8AF6 /* LCNetSDKSearchManager.h */,
+				03987E1D27E9BDFF00E1FFAF /* LCNetSDKSearchManager.m */,
+			);
+			path = NetSDK;
+			sourceTree = "<group>";
+		};
+		4E45105B242B75ED00AF8AF6 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105E242B75ED00AF8AF6 /* Controller */,
+				4E45105C242B75ED00AF8AF6 /* Presenter */,
+				4E451063242B75ED00AF8AF6 /* View */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		4E45105C242B75ED00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105D242B75ED00AF8AF6 /* LCIdentifyPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E45105E242B75ED00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E45105F242B75ED00AF8AF6 /* LCSelectModelViewController.swift */,
+				4E451060242B75ED00AF8AF6 /* LCBindByOtherViewController.swift */,
+				4E451061242B75ED00AF8AF6 /* LCInputSNViewController.swift */,
+				4E451062242B75ED00AF8AF6 /* LCQRScanViewController.swift */,
+				4E17234C243438E3004F68FC /* LCDeviceUnsupportViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451063242B75ED00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E451064242B75ED00AF8AF6 /* LCScanMenuCell.swift */,
+				4E451065242B75ED00AF8AF6 /* LCQRScanMenuView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E45106E242B75EE00AF8AF6 /* Bind */ = {
+			isa = PBXGroup;
+			children = (
+				4E45106F242B75EE00AF8AF6 /* Presenter */,
+				4E451071242B75EE00AF8AF6 /* Controller */,
+			);
+			path = Bind;
+			sourceTree = "<group>";
+		};
+		4E45106F242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E451070242B75EE00AF8AF6 /* LCBindPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E451071242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451076242B75EE00AF8AF6 /* LCBindSuccessViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E45107C242B75EE00AF8AF6 /* AuthDevicePassword */ = {
+			isa = PBXGroup;
+			children = (
+				4E45107D242B75EE00AF8AF6 /* Preseneter */,
+				4E45107F242B75EE00AF8AF6 /* Controller */,
+			);
+			path = AuthDevicePassword;
+			sourceTree = "<group>";
+		};
+		4E45107D242B75EE00AF8AF6 /* Preseneter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45107E242B75EE00AF8AF6 /* LCAuthPasswordPresenter.swift */,
+			);
+			path = Preseneter;
+			sourceTree = "<group>";
+		};
+		4E45107F242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451080242B75EE00AF8AF6 /* LCAuthPasswordViewController.swift */,
+				4E451081242B75EE00AF8AF6 /* LCDeviceLockViewController.swift */,
+				4E451082242B75EE00AF8AF6 /* LCAuthRegCodeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451083242B75EE00AF8AF6 /* Initialize */ = {
+			isa = PBXGroup;
+			children = (
+				4E451084242B75EE00AF8AF6 /* Controller */,
+			);
+			path = Initialize;
+			sourceTree = "<group>";
+		};
+		4E451084242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451085242B75EE00AF8AF6 /* LCInitializeSearchViewController.swift */,
+				4E451086242B75EE00AF8AF6 /* LCInitializePasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451087242B75EE00AF8AF6 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				4E45108A242B75EE00AF8AF6 /* LCAddDeviceModuleProtocol.swift */,
+				4E45108B242B75EE00AF8AF6 /* LCAddDeviceModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		4E45108D242B75EE00AF8AF6 /* QRCodeWay */ = {
+			isa = PBXGroup;
+			children = (
+				4E45108E242B75EE00AF8AF6 /* Presenter */,
+				4E451090242B75EE00AF8AF6 /* Protocol */,
+				4E451092242B75EE00AF8AF6 /* Controller */,
+			);
+			path = QRCodeWay;
+			sourceTree = "<group>";
+		};
+		4E45108E242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E45108F242B75EE00AF8AF6 /* LCAddByQRCodePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E451090242B75EE00AF8AF6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4E451091242B75EE00AF8AF6 /* LCAddByQRCodeProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4E451092242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E451093242B75EE00AF8AF6 /* LCAddByQRCodeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E451096242B75EE00AF8AF6 /* SoftAp */ = {
+			isa = PBXGroup;
+			children = (
+				4E451097242B75EE00AF8AF6 /* Presenter */,
+				4E45109A242B75EE00AF8AF6 /* Controller */,
+				4E4510A2242B75EE00AF8AF6 /* View */,
+			);
+			path = SoftAp;
+			sourceTree = "<group>";
+		};
+		4E451097242B75EE00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E451098242B75EE00AF8AF6 /* LCApAuthPasswordPresenter.swift */,
+				4E451099242B75EE00AF8AF6 /* LCApWifiPasswordPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E45109A242B75EE00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E45109B242B75EE00AF8AF6 /* LCApWifiSelectViewController.swift */,
+				4E45109C242B75EE00AF8AF6 /* LCApGuideViewController.swift */,
+				4E45109D242B75EE00AF8AF6 /* LCApWifiCheckViewController.swift */,
+				0334DBDC29C19D95007A1204 /* LCAPWifiPasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510A2242B75EE00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A5242B75EE00AF8AF6 /* LCApWifiHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E4510A6242B75EF00AF8AF6 /* Wifi */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A7242B75EF00AF8AF6 /* Presenter */,
+				4E4510A9242B75EF00AF8AF6 /* Controller */,
+				4E4510B5242B75EF00AF8AF6 /* View */,
+			);
+			path = Wifi;
+			sourceTree = "<group>";
+		};
+		4E4510A7242B75EF00AF8AF6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510A8242B75EF00AF8AF6 /* LCWifiPasswordPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4E4510A9242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510AA242B75EF00AF8AF6 /* LCWifiPasswordViewController.swift */,
+				4E4510AB242B75EF00AF8AF6 /* LCLightDetailViewController.swift */,
+				4E4510AC242B75EF00AF8AF6 /* LCWiFiUnsupportVC.swift */,
+				4E4510AD242B75EF00AF8AF6 /* LCWifiConnectFailureViewController.swift */,
+				4E4510AE242B75EF00AF8AF6 /* LCPhoneVolumeCheckViewController.swift */,
+				4E4510AF242B75EF00AF8AF6 /* LCDeviceLightCheckViewController.swift */,
+				4E4510B0242B75EF00AF8AF6 /* LCWifiInfoExplainController.swift */,
+				4E4510B1242B75EF00AF8AF6 /* LCWifiConnectViewController.swift */,
+				4E4510B3242B75EF00AF8AF6 /* LCWifiUnsupportViewController.swift */,
+				4E4510B4242B75EF00AF8AF6 /* LCResetDeviceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510B5242B75EF00AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510B6242B75EF00AF8AF6 /* LC5GWifiDetailView.swift */,
+				4E4510B7242B75EF00AF8AF6 /* LCBlurViewContainer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E4510B9242B75EF00AF8AF6 /* ConnectCloud */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BA242B75EF00AF8AF6 /* Controller */,
+				4E4510BE242B75EF00AF8AF6 /* Manager */,
+			);
+			path = ConnectCloud;
+			sourceTree = "<group>";
+		};
+		4E4510BA242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BB242B75EF00AF8AF6 /* LCBindFailureViewController.swift */,
+				4E4510BC242B75EF00AF8AF6 /* LCConnectCloudTimeoutViewController.swift */,
+				4E4510BD242B75EF00AF8AF6 /* LCConnectCloudViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510BE242B75EF00AF8AF6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510BF242B75EF00AF8AF6 /* LCAuthPassworHelper.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		4E4510C0242B75EF00AF8AF6 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510C1242B75EF00AF8AF6 /* LCHotSpotViewController.swift */,
+				4E4510C2242B75EF00AF8AF6 /* LCAddFAQViewController.swift */,
+			);
+			path = FAQ;
+			sourceTree = "<group>";
+		};
+		4E4510C9242B75EF00AF8AF6 /* WiredAndSim */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510CA242B75EF00AF8AF6 /* Controller */,
+			);
+			path = WiredAndSim;
+			sourceTree = "<group>";
+		};
+		4E4510CA242B75EF00AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510CB242B75EF00AF8AF6 /* LCSameNetworkViewController.swift */,
+				4E4510CD242B75EF00AF8AF6 /* LCPowerGuideViewController.swift */,
+				4E4510CE242B75EF00AF8AF6 /* LCWiredOrSIMGuideViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510CF242B75F000AF8AF6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0368317A29D575C500AC8741 /* Category */,
+				4E4510D1242B75F000AF8AF6 /* Controller */,
+				4E4510D8242B75F000AF8AF6 /* Manager */,
+				4E4510DC242B75F000AF8AF6 /* Model */,
+				4E4510E3242B75F000AF8AF6 /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4E4510D1242B75F000AF8AF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510D3242B75F000AF8AF6 /* LCAddBaseVCProtocol.swift */,
+				4E4510D6242B75F000AF8AF6 /* LCAddBaseViewController.swift */,
+				4E4510D5242B75F000AF8AF6 /* LCErrorBaseVCProtocol.swift */,
+				4E4510D4242B75F000AF8AF6 /* LCErrorBaseViewController.swift */,
+				4E4510D2242B75F000AF8AF6 /* LCGuideBaseVCProtocol.swift */,
+				4E4510D7242B75F000AF8AF6 /* LCGuideBaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4E4510D8242B75F000AF8AF6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4E45119B242B7F9500AF8AF6 /* LCAddDeviceLogManager.swift */,
+				4E4510DA242B75F000AF8AF6 /* LCAddDeviceManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		4E4510DC242B75F000AF8AF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E45119D242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift */,
+				4E4510DD242B75F000AF8AF6 /* LCIntroductionDefaults.swift */,
+				4E4510DE242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift */,
+				4E4510E2242B75F000AF8AF6 /* LCConnectFailureType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4E4510E3242B75F000AF8AF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4E4510E5242B75F000AF8AF6 /* UILabel+Multiline.swift */,
+				4E4510E7242B75F000AF8AF6 /* LCCycleTimerView.swift */,
+				4E4510EA242B75F000AF8AF6 /* LCLightButton.swift */,
+				4E4510EB242B75F000AF8AF6 /* LCAutoKeyboardView.swift */,
+				4E4510EC242B75F000AF8AF6 /* LCAddGuideView.swift */,
+				4E4510ED242B75F000AF8AF6 /* UITextView+Multiline.swift */,
+				4E4510F0242B75F000AF8AF6 /* LCCommonErrorView.swift */,
+				4E4510F1242B75F000AF8AF6 /* LCNetConnectFailureView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4E451183242B781500AF8AF6 /* AddDevice */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0036244D677400EAE734 /* WifiConfig */,
+				4E45107C242B75EE00AF8AF6 /* AuthDevicePassword */,
+				4E4510CF242B75F000AF8AF6 /* Base */,
+				4E45106E242B75EE00AF8AF6 /* Bind */,
+				4E4510B9242B75EF00AF8AF6 /* ConnectCloud */,
+				4E4510C0242B75EF00AF8AF6 /* FAQ */,
+				4E451083242B75EE00AF8AF6 /* Initialize */,
+				4E45103A242B75ED00AF8AF6 /* NetSDK */,
+				4E45108D242B75EE00AF8AF6 /* QRCodeWay */,
+				4E45105B242B75ED00AF8AF6 /* Scan */,
+				4E451096242B75EE00AF8AF6 /* SoftAp */,
+				4E4510A6242B75EF00AF8AF6 /* Wifi */,
+				4E4510C9242B75EF00AF8AF6 /* WiredAndSim */,
+				033D8D2B2834E9F3004FA5C0 /* iot */,
+			);
+			path = AddDevice;
+			sourceTree = "<group>";
+		};
+		8F6B0036244D677400EAE734 /* WifiConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B005E244DA2CD00EAE734 /* WiFiConnect */,
+				8F6B0040244D677400EAE734 /* WiFiList */,
+			);
+			path = WifiConfig;
+			sourceTree = "<group>";
+		};
+		8F6B0040244D677400EAE734 /* WiFiList */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0041244D677400EAE734 /* Presenter */,
+				8F6B0043244D677400EAE734 /* Protocol */,
+				8F6B0045244D677400EAE734 /* View */,
+			);
+			path = WiFiList;
+			sourceTree = "<group>";
+		};
+		8F6B0041244D677400EAE734 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0042244D677400EAE734 /* LCWiFiConfigPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8F6B0043244D677400EAE734 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0044244D677400EAE734 /* LCWiFiConfigProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8F6B0045244D677400EAE734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0046244D677400EAE734 /* LCWiFiConfigVC.swift */,
+				8F6B0047244D677400EAE734 /* LCWiFiConfigListCell.swift */,
+				8F6B0048244D677400EAE734 /* LCWiFiConfigHeader.swift */,
+				8F6B0049244D677400EAE734 /* LCAddOtherWifiController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F6B005E244DA2CD00EAE734 /* WiFiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B005F244DA2CD00EAE734 /* Presenter */,
+				8F6B0061244DA2CD00EAE734 /* Protocol */,
+				8F6B0063244DA2CD00EAE734 /* View */,
+			);
+			path = WiFiConnect;
+			sourceTree = "<group>";
+		};
+		8F6B005F244DA2CD00EAE734 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0060244DA2CD00EAE734 /* LCWiFiConnectOnlinePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8F6B0061244DA2CD00EAE734 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0062244DA2CD00EAE734 /* LCWiFiConnectOnlineProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8F6B0063244DA2CD00EAE734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F6B0064244DA2CD00EAE734 /* LCWifiConnectOnlineVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		10026F4623056F0000F95836 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10026F5023056F0000F95836 /* LCAddDeviceModule.h in Headers */,
+				4E4510FA242B75F000AF8AF6 /* LCNetSDKInitialManager.h in Headers */,
+				4E4510FD242B75F000AF8AF6 /* LCNetSDKHelper.h in Headers */,
+				4E451106242B75F000AF8AF6 /* LCSmartConfig.h in Headers */,
+				4E451104242B75F000AF8AF6 /* ISearchDeviceNetInfo.h in Headers */,
+				4E45112E242B75F000AF8AF6 /* LCAddDeviceModule-Bridging-Header.h in Headers */,
+				4E451108242B75F000AF8AF6 /* LCNetSDKInterface.h in Headers */,
+				4E451107242B75F000AF8AF6 /* LCDeviceNetInfo.h in Headers */,
+				4E4510FE242B75F000AF8AF6 /* LCNetSDKSearchManager.h in Headers */,
+				4E4510FF242B75F000AF8AF6 /* LCDeviceInfoLogModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		10026F4A23056F0000F95836 /* LCAddDeviceModule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10026F5323056F0000F95836 /* Build configuration list for PBXNativeTarget "LCAddDeviceModule" */;
+			buildPhases = (
+				10026F4623056F0000F95836 /* Headers */,
+				10026F4723056F0000F95836 /* Sources */,
+				10026F4823056F0000F95836 /* Frameworks */,
+				10026F4923056F0000F95836 /* Resources */,
+				4EAB406A242CA0D0005A0768 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E8464D42474D8F300758260 /* PBXTargetDependency */,
+			);
+			name = LCAddDeviceModule;
+			productName = DHOEMModule;
+			productReference = 10026F4B23056F0000F95836 /* LCAddDeviceModule.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10A661412306B804004DCB22 /* Build configuration list for PBXNativeTarget "LCAddDeviceModuleBundle" */;
+			buildPhases = (
+				10A661382306B803004DCB22 /* Sources */,
+				10A661392306B803004DCB22 /* Frameworks */,
+				10A6613A2306B803004DCB22 /* Resources */,
+				10A6615A230A46F6004DCB22 /* Remove Executable File */,
+				4EAB406B242CA152005A0768 /* Copy Production To Destination */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LCAddDeviceModuleBundle;
+			productName = DHOEMModuleBundle;
+			productReference = 10A6613C2306B803004DCB22 /* LCAddDeviceModuleBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10026F4223056F0000F95836 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = dahua;
+				TargetAttributes = {
+					10026F4A23056F0000F95836 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					10A6613B2306B803004DCB22 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 10026F4523056F0000F95836 /* Build configuration list for PBXProject "LCAddDeviceModule" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 10026F4123056F0000F95836;
+			productRefGroup = 10026F4C23056F0000F95836 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10026F4A23056F0000F95836 /* LCAddDeviceModule */,
+				10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10026F4923056F0000F95836 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04C4661D2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A6613A2306B803004DCB22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				035A280F290A5F7D003EABBA /* AddIOTDevice.storyboard in Resources */,
+				0419D4C22509D78500CE4528 /* AddDevice.storyboard in Resources */,
+				0334DBDB29C0B063007A1204 /* LCApWifiHeaderView.xib in Resources */,
+				4E4511ED242C7CE800AF8AF6 /* LCAutoKeyboardView.xib in Resources */,
+				034C980929D6893A001C64B1 /* Localizable.strings in Resources */,
+				4E4511E6242C577900AF8AF6 /* LC5GWifiDetailView.xib in Resources */,
+				4E4511E2242C577200AF8AF6 /* LCNetConnectFailureView.xib in Resources */,
+				4E4511E4242C577600AF8AF6 /* LCAddGuideView.xib in Resources */,
+				03B215DC29AD9C7C000E1659 /* asset.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10A6615A230A46F6004DCB22 /* Remove Executable File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Executable File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Remove execute file in bundle: ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/$PRODUCT_NAME\"\nrm -rf ${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}/${PRODUCT_NAME}.bundle/${PRODUCT_NAME}\n";
+		};
+		4EAB406A242CA0D0005A0768 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n\techo \"Copy ${PRODUCT_NAME}.framework to\" ${TARGET_PATH}\ncp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+		4EAB406B242CA152005A0768 /* Copy Production To Destination */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Production To Destination";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_PATH=${SRCROOT}/../Frameworks/iOS\nPRODUCT_PATH=${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.bundle\n\necho TARGET_PATH ${TARGET_PATH}\n\nif [ -d $TARGET_PATH ]\nthen\n\t#先删除旧的\n\trm -rf $TARGET_PATH/${PRODUCT_NAME}.bundle\n\techo \"Copy ${PRODUCT_NAME}.bundle to\" ${TARGET_PATH}\n\tcp -r $PRODUCT_PATH ${TARGET_PATH}/\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10026F4723056F0000F95836 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E451144242B75F000AF8AF6 /* LCWiFiUnsupportVC.swift in Sources */,
+				4E451136242B75F000AF8AF6 /* LCApAuthPasswordPresenter.swift in Sources */,
+				4E451115242B75F000AF8AF6 /* LCQRScanViewController.swift in Sources */,
+				4E17234D243438E3004F68FC /* LCDeviceUnsupportViewController.swift in Sources */,
+				8F6B0053244D677400EAE734 /* LCWiFiConfigHeader.swift in Sources */,
+				4E451129242B75F000AF8AF6 /* LCDeviceLockViewController.swift in Sources */,
+				4E45115F242B75F000AF8AF6 /* LCAddBaseVCProtocol.swift in Sources */,
+				4E451112242B75F000AF8AF6 /* LCSelectModelViewController.swift in Sources */,
+				8F6B0066244DA2CE00EAE734 /* LCWiFiConnectOnlinePresenter.swift in Sources */,
+				4E451151242B75F000AF8AF6 /* LCConnectCloudTimeoutViewController.swift in Sources */,
+				3FB4BE3D28FFA6B500B84ABD /* LCDeviceAddGuideViewController.swift in Sources */,
+				4E451165242B75F000AF8AF6 /* LCAddDeviceManager.swift in Sources */,
+				4E45114B242B75F000AF8AF6 /* LCWifiUnsupportViewController.swift in Sources */,
+				3F3472A328FD72D100DB9EB5 /* LCIoTWifiConfigViewController.swift in Sources */,
+				4E45119E242B7FB000AF8AF6 /* LCAddDeviceLogModel.swift in Sources */,
+				4E451149242B75F000AF8AF6 /* LCWifiConnectViewController.swift in Sources */,
+				8F6B0054244D677400EAE734 /* LCAddOtherWifiController.swift in Sources */,
+				4E451134242B75F000AF8AF6 /* LCAddByQRCodeVC.swift in Sources */,
+				8F6B0068244DA2CE00EAE734 /* LCWifiConnectOnlineVC.swift in Sources */,
+				4E451122242B75F000AF8AF6 /* LCBindSuccessViewController.swift in Sources */,
+				4E451127242B75F000AF8AF6 /* LCAuthPasswordPresenter.swift in Sources */,
+				4E4510F7242B75F000AF8AF6 /* LCSmartConfig.m in Sources */,
+				4E451163242B75F000AF8AF6 /* LCGuideBaseViewController.swift in Sources */,
+				4E451155242B75F000AF8AF6 /* LCAddFAQViewController.swift in Sources */,
+				3F34729D28FD72A600DB9EB5 /* LCDeviceAddGuideCell.swift in Sources */,
+				4E451117242B75F000AF8AF6 /* LCQRScanMenuView.swift in Sources */,
+				8F6B0050244D677400EAE734 /* LCWiFiConfigProtocol.swift in Sources */,
+				4E451176242B75F000AF8AF6 /* UITextView+Multiline.swift in Sources */,
+				4E451179242B75F000AF8AF6 /* LCCommonErrorView.swift in Sources */,
+				4E451152242B75F000AF8AF6 /* LCConnectCloudViewController.swift in Sources */,
+				8F6B0051244D677400EAE734 /* LCWiFiConfigVC.swift in Sources */,
+				4E451128242B75F000AF8AF6 /* LCAuthPasswordViewController.swift in Sources */,
+				8F6B0067244DA2CE00EAE734 /* LCWiFiConnectOnlineProtocol.swift in Sources */,
+				4E4510F9242B75F000AF8AF6 /* LCDeviceNetInfo.mm in Sources */,
+				4E451167242B75F000AF8AF6 /* LCIntroductionDefaults.swift in Sources */,
+				4E451146242B75F000AF8AF6 /* LCPhoneVolumeCheckViewController.swift in Sources */,
+				4E45114D242B75F000AF8AF6 /* LC5GWifiDetailView.swift in Sources */,
+				4E451161242B75F000AF8AF6 /* LCErrorBaseVCProtocol.swift in Sources */,
+				4E451143242B75F000AF8AF6 /* LCLightDetailViewController.swift in Sources */,
+				4E45114E242B75F000AF8AF6 /* LCBlurViewContainer.swift in Sources */,
+				4E451114242B75F000AF8AF6 /* LCInputSNViewController.swift in Sources */,
+				8F6B0052244D677400EAE734 /* LCWiFiConfigListCell.swift in Sources */,
+				4E451145242B75F000AF8AF6 /* LCWifiConnectFailureViewController.swift in Sources */,
+				4E45112F242B75F000AF8AF6 /* LCAddDeviceModuleProtocol.swift in Sources */,
+				4E45112B242B75F000AF8AF6 /* LCInitializeSearchViewController.swift in Sources */,
+				4E451141242B75F000AF8AF6 /* LCWifiPasswordPresenter.swift in Sources */,
+				4E451113242B75F000AF8AF6 /* LCBindByOtherViewController.swift in Sources */,
+				4E451154242B75F000AF8AF6 /* LCHotSpotViewController.swift in Sources */,
+				4E451174242B75F000AF8AF6 /* LCAutoKeyboardView.swift in Sources */,
+				4E45113A242B75F000AF8AF6 /* LCApWifiCheckViewController.swift in Sources */,
+				4E451142242B75F000AF8AF6 /* LCWifiPasswordViewController.swift in Sources */,
+				4E451175242B75F000AF8AF6 /* LCAddGuideView.swift in Sources */,
+				4E45117A242B75F000AF8AF6 /* LCNetConnectFailureView.swift in Sources */,
+				4E451153242B75F000AF8AF6 /* LCAuthPassworHelper.swift in Sources */,
+				4E451111242B75F000AF8AF6 /* LCIdentifyPresenter.swift in Sources */,
+				4E451140242B75F000AF8AF6 /* LCApWifiHeaderView.swift in Sources */,
+				4E451139242B75F000AF8AF6 /* LCApGuideViewController.swift in Sources */,
+				4E4510F6242B75F000AF8AF6 /* LCDeviceInfoLogModel.m in Sources */,
+				8F6B004F244D677400EAE734 /* LCWiFiConfigPresenter.swift in Sources */,
+				4E451173242B75F000AF8AF6 /* LCLightButton.swift in Sources */,
+				4E451168242B75F000AF8AF6 /* LCUserDeviceBindInfo+Extesion.swift in Sources */,
+				4E451138242B75F000AF8AF6 /* LCApWifiSelectViewController.swift in Sources */,
+				4E45112C242B75F000AF8AF6 /* LCInitializePasswordViewController.swift in Sources */,
+				4E45115A242B75F000AF8AF6 /* LCSameNetworkViewController.swift in Sources */,
+				4E45111D242B75F000AF8AF6 /* LCBindPresenter.swift in Sources */,
+				4E45115D242B75F000AF8AF6 /* LCWiredOrSIMGuideViewController.swift in Sources */,
+				4E451116242B75F000AF8AF6 /* LCScanMenuCell.swift in Sources */,
+				4E45115E242B75F000AF8AF6 /* LCGuideBaseVCProtocol.swift in Sources */,
+				4E451150242B75F000AF8AF6 /* LCBindFailureViewController.swift in Sources */,
+				4E451130242B75F000AF8AF6 /* LCAddDeviceModule.swift in Sources */,
+				4E451147242B75F000AF8AF6 /* LCDeviceLightCheckViewController.swift in Sources */,
+				4E4510F5242B75F000AF8AF6 /* LCNetSDKInterface.mm in Sources */,
+				4E451132242B75F000AF8AF6 /* LCAddByQRCodePresenter.swift in Sources */,
+				4E45116E242B75F000AF8AF6 /* UILabel+Multiline.swift in Sources */,
+				4E451170242B75F000AF8AF6 /* LCCycleTimerView.swift in Sources */,
+				4E4511CC242C460D00AF8AF6 /* Bundle+AddDevice.swift in Sources */,
+				4E451103242B75F000AF8AF6 /* LCNetSDKInitialManager.m in Sources */,
+				4E45115C242B75F000AF8AF6 /* LCPowerGuideViewController.swift in Sources */,
+				4E45114C242B75F000AF8AF6 /* LCResetDeviceViewController.swift in Sources */,
+				4E451137242B75F000AF8AF6 /* LCApWifiPasswordPresenter.swift in Sources */,
+				4E451148242B75F000AF8AF6 /* LCWifiInfoExplainController.swift in Sources */,
+				3F3472B228FD962B00DB9EB5 /* LCIotWiFiUnSupportView.swift in Sources */,
+				4E451101242B75F000AF8AF6 /* LCNetSDKHelper.m in Sources */,
+				0334DBDD29C19D95007A1204 /* LCAPWifiPasswordViewController.swift in Sources */,
+				4E45116C242B75F000AF8AF6 /* LCConnectFailureType.swift in Sources */,
+				4E451133242B75F000AF8AF6 /* LCAddByQRCodeProtocol.swift in Sources */,
+				4E45112A242B75F000AF8AF6 /* LCAuthRegCodeViewController.swift in Sources */,
+				03987E1E27E9BDFF00E1FFAF /* LCNetSDKSearchManager.m in Sources */,
+				4E45119C242B7F9500AF8AF6 /* LCAddDeviceLogManager.swift in Sources */,
+				4E451162242B75F000AF8AF6 /* LCAddBaseViewController.swift in Sources */,
+				4E451160242B75F000AF8AF6 /* LCErrorBaseViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10A661382306B803004DCB22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E8464D42474D8F300758260 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10A6613B2306B803004DCB22 /* LCAddDeviceModuleBundle */;
+			targetProxy = 4E8464D32474D8F300758260 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		034C980B29D6893A001C64B1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				034C980A29D6893A001C64B1 /* en */,
+				034C980C29D6894B001C64B1 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10026F5123056F0000F95836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		10026F5223056F0000F95836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		10026F5423056F0000F95836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(SRCROOT)/../Frameworks/iOS",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Include",
+					"$(SRCROOT)/../LCAddDeviceModule/LCAddDeviceModule/AddDevice/Depend/header",
+					"\"$(SRCROOT)/Depend/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+				);
+				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Lib",
+					"$(PROJECT_DIR)/LCAddDeviceModule/AddDevice/Depend/DHSmartConfig",
+				);
+				MACH_O_TYPE = staticlib;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "\"-D\" \"DEBUG\"";
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lechange-LCAddDeviceModule";
+				PRODUCT_NAME = LCAddDeviceModule;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
+			};
+			name = Debug;
+		};
+		10026F5523056F0000F95836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04C4661C2CC65A1F004E35AB /* LCAddDeviceModule.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SRCROOT}/../../Pods/LCOpenSDK/Framework",
+					"$(SRCROOT)/../Frameworks/iOS",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Include",
+					"$(SRCROOT)/../LCAddDeviceModule/LCAddDeviceModule/AddDevice/Depend/header",
+					"\"$(SRCROOT)/Depend/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+					"\"$(SRCROOT)/Depend/Frameworks/iOS/LCOpenSDKDynamic.framework/Headers/LCOpenSDK\"",
+				);
+				INFOPLIST_FILE = LCAddDeviceModule/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Lib",
+					"$(PROJECT_DIR)/LCAddDeviceModule/AddDevice/Depend/DHSmartConfig",
+				);
+				MACH_O_TYPE = staticlib;
+				NEW_SETTING = "";
+				OTHER_LDFLAGS = "";
+				POD_SEARCH_FRAMEWORK_PATH = "${BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lechange-LCAddDeviceModule";
+				PRODUCT_NAME = LCAddDeviceModule;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wno-objc-protocol-method-implementation";
+			};
+			name = Release;
+		};
+		10A6613F2306B804004DCB22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = LCAddDeviceModuleBundle/Info.plist;
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCAddDeviceModuleBundle;
+				PRODUCT_MODULE_NAME = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		10A661402306B804004DCB22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = LCAddDeviceModuleBundle/Info.plist;
+				INSTALL_PATH = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lechange.LCAddDeviceModuleBundle;
+				PRODUCT_MODULE_NAME = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10026F4523056F0000F95836 /* Build configuration list for PBXProject "LCAddDeviceModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10026F5123056F0000F95836 /* Debug */,
+				10026F5223056F0000F95836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10026F5323056F0000F95836 /* Build configuration list for PBXNativeTarget "LCAddDeviceModule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10026F5423056F0000F95836 /* Debug */,
+				10026F5523056F0000F95836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10A661412306B804004DCB22 /* Build configuration list for PBXNativeTarget "LCAddDeviceModuleBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10A6613F2306B804004DCB22 /* Debug */,
+				10A661402306B804004DCB22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10026F4223056F0000F95836 /* Project object */;
+}

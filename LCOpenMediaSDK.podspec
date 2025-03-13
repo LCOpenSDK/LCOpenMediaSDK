@@ -1,0 +1,17 @@
+
+Pod::Spec.new do |spec|
+
+  spec.name         = "LCOpenMediaSDK"
+  spec.version      = "5.0.0"
+  spec.summary      = "乐橙云开放平台SDK"
+  spec.description  = "乐橙云开放平台SDK,开发者可以用SDK开发APP"
+  spec.homepage     = "https://github.com/LCOpenSDK/LCOpenSDK"
+  spec.license      = { :type => "MIT", :file => "LICENSE" } 
+  spec.author       = { "OpenImoulife" => "OpenImoulife@163.com" }
+  spec.platform     = :ios, "9.0"  
+  spec.source       = { :git => "https://github.com/LCOpenSDK/LCOpenMediaSDK.git", :tag => spec.version.to_s }
+  spec.frameworks   = 'CoreLocation', 'CoreAudio', 'CoreVideo', 'CoreMedia', 'CFNetwork', 'VideoToolbox', 'AudioToolbox', 'AVFoundation','OpenGLES','MediaAccessibility','MediaPlayer'
+  spec.libraries    = "z"
+  spec.vendored_frameworks = 'Framework/LCOpenMediaSDK.framework'
+  spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'armv7 arm64' }
+end
