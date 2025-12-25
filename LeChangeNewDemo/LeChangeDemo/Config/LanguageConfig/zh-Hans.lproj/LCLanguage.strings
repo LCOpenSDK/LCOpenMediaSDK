@@ -72,6 +72,7 @@
 "play_history_show_more" = "查看更多";
 "play_module_cloud_record" = "云录像";
 "play_module_device_record" = "本地录像";
+"play_module_snap_shot" = "云图";
 "play_module_none_record" = "今日暂无录像，查看更多>";
 "video_module_none_record" = "今日暂无录像";
 "no_message" = "暂无消息";

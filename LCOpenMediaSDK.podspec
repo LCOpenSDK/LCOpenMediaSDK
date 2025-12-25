@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LCOpenMediaSDK"
-  spec.version      = "5.0.0"
+  spec.version      = "5.1.0"
   spec.summary      = "乐橙云开放平台SDK"
   spec.description  = "乐橙云开放平台SDK,开发者可以用SDK开发APP"
   spec.homepage     = "https://github.com/LCOpenSDK/LCOpenSDK"
@@ -14,4 +14,5 @@ Pod::Spec.new do |spec|
   spec.libraries    = "z"
   spec.vendored_frameworks = 'Framework/LCOpenMediaSDK.framework'
   spec.pod_target_xcconfig = { 'VALID_ARCHS' => 'armv7 arm64' }
-end
+  spec.dependency 'LCOpenSDK'
+  end

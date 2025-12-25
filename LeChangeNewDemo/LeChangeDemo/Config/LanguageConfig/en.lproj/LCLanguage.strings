@@ -72,6 +72,7 @@
 "play_history_show_more" = "more";
 "play_module_device_record" = "Equipment";
 "play_module_cloud_record" = "Cloud";
+"play_module_snap_shot" = "snapshot";
 "SelectNone" = "Select none";
 "SelectAll" = "All";
 "videotape_download" = "Download the recording";

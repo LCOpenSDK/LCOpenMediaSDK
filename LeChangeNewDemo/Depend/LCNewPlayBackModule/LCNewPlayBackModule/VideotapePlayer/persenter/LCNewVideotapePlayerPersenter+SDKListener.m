@@ -182,6 +182,7 @@
 
 - (void)onPlaySuccess:(LCBaseVideoItem * _Nonnull)videoItem { 
     //播放成功回调
+    weakSelf(self);
     if ([LCNewDeviceVideotapePlayManager shareInstance].isSoundOn) {
         //开启声音
         [self.recordPlugin playAudioWithIsCallback:YES];
@@ -189,11 +190,14 @@
         //关闭声音
         [self.recordPlugin stopAudioWithIsCallback:YES];
     }
-    [self hideVideoLoadImage];
-    [self hideErrorBtn];
-    [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
-    [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
-    [self setVideoType];
+    // 修复：确保UI操作在主线程执行
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself hideVideoLoadImage];
+        [weakself hideErrorBtn];
+        [LCNewDeviceVideotapePlayManager shareInstance].isPlay = YES; //暂停时直接拖动进度条也会触发播放
+        [LCNewDeviceVideotapePlayManager shareInstance].playStatus = 1001;
+        [weakself setVideoType];
+    });
 }
 
 - (void)onPlayerTime:(NSTimeInterval)playTime videoItem:(LCBaseVideoItem * _Nonnull)videoItem { 
