@@ -53,6 +53,8 @@ class LCBindSuccessViewController: LCAddBaseViewController, UITextFieldDelegate,
 		imageView.image = UIImage(lc_named: "adddevice_sucess")
         nameInputView.textField.lc_setInputRule(withRegEx: "^[A-Za-z0-9\u{4e00}-\u{9fa5}\\-@_ ]+$", andInputLength: UInt32(20))
         nameInputView.textField.delegate = self
+        // LCInputView 默认可为 ASCIICapable，会阻碍中文/拼音等输入法；设备名称需支持中文
+        nameInputView.textField.keyboardType = .default
         nameInputView.textField.returnKeyType = .done
         nameInputView.textField.text = deviceName
         nameInputView.textField.isSecureTextEntry = false
@@ -167,10 +169,6 @@ extension LCBindSuccessViewController {
 	}
 	
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if string != "" && !string.isVaildDeviceName() {
-            return false;
-        }
         
 		//不允许输入以空格开头的
 		if textField.text == nil || textField.text!.count == 0 {

@@ -11,22 +11,22 @@
 #ifndef INCLUDE_LIBYUV_H_
 #define INCLUDE_LIBYUV_H_
 
-#include <LCOpenMediaSDK/basic_types.h>
-#include <LCOpenMediaSDK/compare.h>
-#include <LCOpenMediaSDK/convert.h>
-#include <LCOpenMediaSDK/convert_argb.h>
-#include <LCOpenMediaSDK/convert_from.h>
-#include <LCOpenMediaSDK/convert_from_argb.h>
-#include <LCOpenMediaSDK/cpu_id.h>
-#include <LCOpenMediaSDK/mjpeg_decoder.h>
-#include <LCOpenMediaSDK/planar_functions.h>
-#include <LCOpenMediaSDK/rotate.h>
-#include <LCOpenMediaSDK/rotate_argb.h>
-#include <LCOpenMediaSDK/row.h>
-#include <LCOpenMediaSDK/scale.h>
-#include <LCOpenMediaSDK/scale_argb.h>
-#include <LCOpenMediaSDK/scale_row.h>
-#include <LCOpenMediaSDK/version.h>
-#include <LCOpenMediaSDK/video_common.h>
+#include "basic_types.h"
+#include "compare.h"
+#include "convert.h"
+#include "convert_argb.h"
+#include "convert_from.h"
+#include "convert_from_argb.h"
+#include "cpu_id.h"
+#include "mjpeg_decoder.h"
+#include "planar_functions.h"
+#include "rotate.h"
+#include "rotate_argb.h"
+#include "row.h"
+#include "scale.h"
+#include "scale_argb.h"
+#include "scale_row.h"
+#include "version.h"
+#include "video_common.h"
 
 #endif  // INCLUDE_LIBYUV_H_

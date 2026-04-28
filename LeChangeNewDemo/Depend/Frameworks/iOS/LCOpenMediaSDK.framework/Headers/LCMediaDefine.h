@@ -229,6 +229,7 @@ typedef NS_ENUM(NSInteger, OC_DHHTTP_STATE)
     OC_STATE_DHHTTP_STREAM_MODIFY_ERROR      =    602017,   //码流加解密失败
     OC_STATE_DHHTTP_LIVE_FINISH              =    16390,    //live结束消息
     OC_STATE_DHHTTP_LIVE_COUNT_DOWN          =    16392,    //休眠倒计时通知消息code
+    OC_STATE_DHHTTP_INSUFFICIENT_QUOTA       =    16403     //卡录像免费下载额度不足
 };
 
 typedef NS_ENUM(NSInteger, OC_HTTP_STATE)

@@ -5,8 +5,8 @@
 //  Created by lei on 2021/1/14.
 //
 
-#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
-#import <UIKit/UIKit.h>
+#import "LCMediaBaseVideoItem.h"
+//#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,6 +43,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *expireTime; // 过期时间，录像查询时平台返回的字段
 
 @property (nonatomic, copy, nullable) NSString *m3uLocalPath; // m3u本地文件路径
+
+@property (nonatomic, assign)BOOL preciseSeek; //YES：精准seek  NO：非精准seek（与以前效果一致）;默认NO
+
+@property (nonatomic, strong)NSArray<NSString *> *pswArray; //密码组字段(当前仅影集播放使用)
+@property (nonatomic, assign)NSInteger businessType; //业务类型: 1-降本影集(当前仅影集播放使用)
+
+/// pswArray Json字符串
+-(NSString *)pswArrayJsonString;
 
 @end
 

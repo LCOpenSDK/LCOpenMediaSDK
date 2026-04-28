@@ -450,6 +450,7 @@
 }
 
 - (void)configFullScreenUI {
+    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = YES;
     [self setupNavigationBarIsBlack:NO];
     self.persenter.displayStyle = LCPlayWindowDisplayStyleFullScreen;
     self.landscapeControlView.hidden = NO;
@@ -496,6 +497,7 @@
 }
 
 - (void)configPortraitScreenUI {
+    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
     [self setupNavigationBarIsBlack:NO];
     self.persenter.displayStyle = LCPlayWindowDisplayStylePictureInScreen;
     self.landscapeControlView.hidden = YES;
@@ -547,6 +549,7 @@
 }
 
 - (void)configUpDownScreenUI {
+    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
     [self setupNavigationBarIsBlack:YES];
     self.persenter.displayStyle = LCPlayWindowDisplayStyleUpDownScreen;
     self.navigationController.navigationBar.hidden = NO;
@@ -648,6 +651,7 @@
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     if (size.width > size.height) {
         [self configFullScreenUI];
     } else {

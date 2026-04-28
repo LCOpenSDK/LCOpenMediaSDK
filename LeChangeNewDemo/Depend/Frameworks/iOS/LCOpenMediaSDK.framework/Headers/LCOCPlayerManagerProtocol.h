@@ -7,11 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LCVideoPlayerDefines.h"
-#ifdef LECHANGE_MEDIA
-#import "CommonSDKoc/LCCommonSDK/PlayerComponent/OCPlayerManager.h"
-#else
-#import <LCOpenSDKDynamic/CommonSDK_Include/PlayerComponent/OCPlayerManager.h>
-#endif
+
+@class OCPlayerManager;
 
 @protocol LCOCPlayerManagerProtocol <NSObject>
 

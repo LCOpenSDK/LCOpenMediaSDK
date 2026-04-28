@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
+#import "LCVideoPlayerDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -359,6 +359,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 配置云录像播放优化类型
 /// @param type “cloudplay_conntype”，0 - 短连接，1-长连接，2-quic
 - (void)configCloudplayConntype:(NSInteger)type;
+
+/// metal灰度
+/// @param enable true:iOS15以上走metal渲染; false:使用openGL
+- (void)configMetalEnabled:(BOOL)enable;
 
 @end
 

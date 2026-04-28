@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2000042E2A55B0062C0F1 /* LCAICloudStorageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2000022E2A55B0062C0F1 /* LCAICloudStorageBannerView.m */; };
+		AE2000032E2A55B0062C0F1 /* LCAICloudStorageBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2000012E2A55B0062C0F1 /* LCAICloudStorageBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		032664872902DCF90082EAC9 /* LCDeviceDetailModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032664862902DCF90082EAC9 /* LCDeviceDetailModule.framework */; };
 		04257C1828E2A55B0062C0F1 /* LCNewLivePreviewModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04257C1728E2A55B0062C0F1 /* LCNewLivePreviewModule.docc */; };
 		04257C1928E2A55B0062C0F1 /* LCNewLivePreviewModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 04257C1628E2A55B0062C0F1 /* LCNewLivePreviewModule.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 		04257C4928E2A7ED0062C0F1 /* LCNewPTZPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewPTZPanel.m; sourceTree = "<group>"; };
 		04257C4A28E2A7ED0062C0F1 /* LCNewPTZPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewPTZPanel.h; sourceTree = "<group>"; };
 		04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideotapeHistoryCell.h; sourceTree = "<group>"; };
+		AE2000012E2A55B0062C0F1 /* LCAICloudStorageBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudStorageBannerView.h; sourceTree = "<group>"; };
+		AE2000022E2A55B0062C0F1 /* LCAICloudStorageBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudStorageBannerView.m; sourceTree = "<group>"; };
 		04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewVideoHistoryView.h; sourceTree = "<group>"; };
 		04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapeHistoryCell.m; sourceTree = "<group>"; };
 		04257C5028E2A7ED0062C0F1 /* LCNewVideoHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideoHistoryView.m; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 		04257C4C28E2A7ED0062C0F1 /* LCVideoHistoryList */ = {
 			isa = PBXGroup;
 			children = (
+				AE2000012E2A55B0062C0F1 /* LCAICloudStorageBannerView.h */,
+				AE2000022E2A55B0062C0F1 /* LCAICloudStorageBannerView.m */,
 				04257C4D28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.h */,
 				04257C4F28E2A7ED0062C0F1 /* LCNewVideotapeHistoryCell.m */,
 				04257C4E28E2A7ED0062C0F1 /* LCNewVideoHistoryView.h */,
@@ -311,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C466312CC65E74004E35AB /* LCVisualTalkPreviewView.h in Headers */,
+				AE2000032E2A55B0062C0F1 /* LCAICloudStorageBannerView.h in Headers */,
 				04257C7E28E2A7ED0062C0F1 /* LCNewLivePreviewViewController.h in Headers */,
 				04257C5E28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.h in Headers */,
 				04257C6D28E2A7ED0062C0F1 /* LCNewVideoControlView.h in Headers */,
@@ -488,6 +495,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2000042E2A55B0062C0F1 /* LCAICloudStorageBannerView.m in Sources */,
 				04257C5C28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+LandscapeControlView.m in Sources */,
 				04257C7428E2A7ED0062C0F1 /* LCNewPTZPanel.m in Sources */,
 				04257C5F28E2A7ED0062C0F1 /* LCNewLivePreviewPresenter+VideotapeList.m in Sources */,

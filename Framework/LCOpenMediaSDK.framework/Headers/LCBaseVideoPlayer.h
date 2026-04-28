@@ -7,8 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <LCOpenMediaSDK/LCBaseVideoItem.h>
-#import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
+#import "LCBaseVideoItem.h"
+#import "LCVideoPlayerDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

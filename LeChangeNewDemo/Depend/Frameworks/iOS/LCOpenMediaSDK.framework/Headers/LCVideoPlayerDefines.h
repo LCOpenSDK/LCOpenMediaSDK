@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, LCMediaPlayerType) {
     LCMediaPlayerTypeDoubleIPC, //双目
     LCMediaPlayerTypeAssistWindow, //单IPC+辅助窗口
     LCMediaPlayerTypeThreeIPC, //三目
-    LCMediaPlayerTypeFishEye //鱼眼(暂不支持,预留)
+    LCMediaPlayerTypeFishEye //鱼眼
 };
 
 //播放器播放状态
@@ -530,7 +530,8 @@ typedef NS_ENUM(NSInteger, AVAudioTYPE)
 // 绑定设备类型
 typedef NS_ENUM(NSInteger, LCMediaBindDeviceType) {
     LCMediaBindDeviceTypeMainSubDevice = 0, //主子设备:天地宽视,门铃基站...
-    LCMediaBindDeviceTypeBindDevice //绑定设备: iot类NVR
+    LCMediaBindDeviceTypeBindDevice, //绑定设备: 主出流子加密
+    LCMediaBindDeviceTypeMainDevice //绑定设备: 主出流主加密
 };
 //降噪等级
 typedef NS_ENUM(NSInteger, LCMediaPlayNoiseAbility) {

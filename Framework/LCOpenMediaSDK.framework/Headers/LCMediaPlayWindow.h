@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "LCMediaDefine.h"
 #import "LCMediaStreamParam.h"
-#import <LCOpenMediaSDK/LCMediaServerParameter.h>
+#import "LCMediaServerParameter.h"
 
 #pragma mark - LCSDK_PlayWindow
 @protocol LCMediaPlayerListener;

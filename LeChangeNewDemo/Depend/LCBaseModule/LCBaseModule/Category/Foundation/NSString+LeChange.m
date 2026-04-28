@@ -8,8 +8,8 @@
 #import "NSData+Base64.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
-#import <SystemConfiguration/CaptiveNetwork.h>
 #import "UIDevice+LeChange.h"
+#import <LCBaseModule/LCNetWorkHelper.h>
 
 @implementation  NSString(LeChange)
 
@@ -319,15 +319,7 @@
 }
 
 + (NSString *)getCurreWiFiSsid {
-    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-    NSLog(@"Supported interfaces: %@", ifs);
-    id info = nil;
-    for (NSString *ifnam in ifs) {
-        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-        NSLog(@"%@ => %@", ifnam, info);
-        if (info && [info count]) { break; }
-    }
-    return [(NSDictionary*)info objectForKey:@"SSID"];
+    return [[LCNetWorkHelper sharedInstance] fetchSSIDInfo];
 }
 
 + (NSString *)lc_currentLanguageCode

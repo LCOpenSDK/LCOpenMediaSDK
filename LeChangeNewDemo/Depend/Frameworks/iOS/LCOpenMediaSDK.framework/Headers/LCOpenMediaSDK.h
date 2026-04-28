@@ -69,3 +69,4 @@ FOUNDATION_EXPORT const unsigned char LCMediaComponentsVersionString[];
 #import <LCOpenMediaSDK/LCOpenTalkPlugin.h>
 #import <LCOpenMediaSDK/LCBindDeviceInfo.h>
 #import <LCOpenMediaSDK/LCOpenMediaBaseVideoItem.h>
+#import <LCOpenMediaSDK/LCCloudExtraInfo.h>

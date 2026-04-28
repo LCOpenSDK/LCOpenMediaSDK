@@ -14,6 +14,7 @@
 @class LCMediaServerParameter;
 @class LCMediaVideoSampleConfigParam;
 @class LCBindDeviceInfo;
+@class LCCloudExtraInfo;
 
 /* 拉流参数基类 */
 @interface LCMediaStreamParam : NSObject
@@ -67,6 +68,8 @@
 
 /* 云录像播放参数 */
 @interface LCMediaStreamCloudParam : LCMediaStreamParam
+//云录像下载优化参数,不传或传nil代表走非下载优化
+@property(nonatomic, strong)LCCloudExtraInfo *extraInfo;
 
 @end
 

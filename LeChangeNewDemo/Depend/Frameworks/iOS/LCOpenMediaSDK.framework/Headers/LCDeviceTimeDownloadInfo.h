@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
+#import "LCVideoPlayerDefines.h"
 #import "LCMediaDefine.h"
+#import "LCBindDeviceInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -49,6 +50,14 @@ NS_ASSUME_NONNULL_BEGIN
 //走MQTT拉流优化域名和端口
 @property (nonatomic, copy) NSString *mqttHost;
 @property (nonatomic, assign) NSInteger mqttPort;
+
+//文件类型，1为视频，2为图片, 3为图片JPEG流（封装dhav头尾, 5为非AOV和非AOR录像(默认传1)
+@property(nonatomic, assign)NSInteger fileType;
+
+//文件时长
+@property (nonatomic, assign)NSInteger fileDuration;
+
+@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice; //绑定设备信息
 
 @end
 

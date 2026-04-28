@@ -5,8 +5,8 @@
 //  Created by lei on 2023/9/15.
 //
 
-#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import "LCMediaBaseVideoItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

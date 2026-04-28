@@ -48,6 +48,11 @@
 -(NSString *)getHost;
 
 #pragma mark - 开放平台未适配接口
+//卡录像按文件下载获取下载地址
+- (NSInteger)getDownloadStreamUrlByFile:(NSString *)deviceID Parmamter:(NSMutableDictionary*)paramter isTLS:(BOOL)isTLS outUrl:(NSString**)outUrl SslCost:(NSInteger*)sslCost ApiCost:(NSInteger*)apiCost ServerParam:(LCMediaServerParameter*) serverParam;
+//卡录像按时间下载获取下载地址
+- (NSInteger)getDownloadStreamUrlByTime:(NSString *)deviceID Parmamter:(NSMutableDictionary*)paramter isTLS:(BOOL)isTLS outUrl:(NSString**)outUrl SslCost:(NSInteger*)sslCost ApiCost:(NSInteger*)apiCost ServerParam:(LCMediaServerParameter*) serverParam;
+
 //按文件回放获取拉流地址协议
 - (NSInteger)getPlayBackByFileStreamURL:(NSString *)deviceID Parmamter:(NSMutableDictionary*)paramter isTLS:(BOOL)isTLS outUrl:(NSString**)outUrl quicUrl:(NSString**)quicUrl SslCost:(NSInteger*)sslCost ApiCost:(NSInteger*)apiCost ServerParam:(LCMediaServerParameter*) serverParam;
 

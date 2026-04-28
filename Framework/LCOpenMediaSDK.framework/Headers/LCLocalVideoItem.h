@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
+#import "LCVideoPlayerDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

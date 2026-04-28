@@ -13,7 +13,7 @@
 
 #include <stdlib.h>  // For malloc.
 
-#include <LCOpenMediaSDK/basic_types.h>
+#include "basic_types.h"
 
 #ifdef __cplusplus
 namespace libyuv {

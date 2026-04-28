@@ -5,7 +5,7 @@
 #import <LCBaseModule/UIDevice+IPhoneModel.h>
 #import <sys/utsname.h>
 #import <NetworkExtension/NetworkExtension.h>
-#import <SystemConfiguration/CaptiveNetwork.h>
+#import <LCBaseModule/LCNetWorkHelper.h>
 
 
 NSString *const Device_Type_Simulator = @"iPhone Simulator";
@@ -222,15 +222,9 @@ NSString *const Device_Type_Unrecognized = @"?unrecognized?";
 }
 
 + (NSString *)lc_getMacAddress {
-    NSArray *array = CFBridgingRelease(CNCopySupportedInterfaces());
-    NSDictionary *info = nil;
-    for (NSString *interface in array) {
-        info = CFBridgingRelease(CNCopyCurrentNetworkInfo((CFStringRef)interface));
-        if (info &&[info count]) {
-            break;
-        }
-    }
-    return info[@"BSSID"];
+    NSDictionary *info = [[LCNetWorkHelper sharedInstance] currentWiFiInfoSync];
+    NSString *b = info[@"BSSID"];
+    return [b isKindOfClass:[NSString class]] ? b : nil;
 }
 
 

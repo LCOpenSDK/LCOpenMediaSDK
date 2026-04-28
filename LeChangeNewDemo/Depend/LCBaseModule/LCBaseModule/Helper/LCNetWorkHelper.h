@@ -100,8 +100,13 @@ typedef NS_ENUM(NSUInteger, LCNetWorkStatus) {
  */
 - (NSString *)fetchSSIDInfo;
 
+/**
+ 当前 WiFi 信息（iOS 14+ 先 NEHotspot，再走 CaptiveNetwork 兜底，供需要 SSID/BSSID 字典的场景）
+ */
+- (nullable NSDictionary<NSString *, id> *)currentWiFiInfoSync;
+
 /// 获取当前的WiFi的SSID，异步操作
 /// @param callBack 回调
-///【*】（iOS 14以上）只有当前App有精确定位权限或者使用NEHotspotConfiguration API配置过当前WiFi才会返回正确的SSID
+///【*】（iOS 14以上）优先 `fetchCurrentWithCompletionHandler`，无结果时异步再读 CaptiveNetwork
 - (void)fetchCurrentWiFiSSID:(void (^)(NSString * __nullable ssid))callBack;
 @end

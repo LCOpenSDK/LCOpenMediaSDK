@@ -5,8 +5,8 @@
 //  Created by lei on 2021/1/14.
 //
 
-#import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
-#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
+#import "LCBaseVideoPlayer.h"
+#import "LCMediaRecordFileInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -109,6 +109,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///  获取当前倍速
 - (CGFloat)gainPlaySpeed;
+
+#pragma mark - seek缩略图快照
+
+/// 开始展示缩略图
+/// - Parameter view: 缩略图展示图层
+- (void)showThumbFrameBegin:(UIView *)view;
+
+/// 展示滑动偏移时间对应缩略图
+/// - Parameter frameTime: 偏移时间
+- (BOOL)showThumbFrameByTime:(long)frameTime;
+
+/// 结束展示缩略图
+- (BOOL)showThumbFrameEnd;
+
+/// 获取缓存时间段
+- (void)getThumbFrameDuation:(long*)start End:(long*)end;
 
 @end
 

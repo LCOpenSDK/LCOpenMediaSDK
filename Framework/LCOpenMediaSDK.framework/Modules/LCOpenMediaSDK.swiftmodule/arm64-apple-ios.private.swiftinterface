@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name LCOpenMediaSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LCOpenMediaSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import CoreMedia
 import CoreMotion
 import Foundation
@@ -22,12 +22,18 @@ import _SwiftConcurrencyShims
   @objc func onRecordStart(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onRecordFinish(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, paths: [Swift.Int : Swift.String])
   @objc func onPlayFailure(videoError: Swift.String, type: Swift.String, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func onStreamInfo(videoError: Swift.String, type: Swift.String, streamInfo: Swift.String?, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #endif
   @objc func onReceiveData(byteRate byte: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onPlayerTime(_ playTime: Foundation.TimeInterval, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onPlaySpeedChange(_ speed: CoreFoundation.CGFloat, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func viewForStateLayer(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func viewForToolLayer(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> UIKit.UIView?
+  #endif
   @objc func onEZoomChanged(_ scale: CoreFoundation.CGFloat, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onAssistFrameInfo(jsonDic: [Swift.String : Any])
   @objc func onSoundChanged(_ isAudioOpen: Swift.Bool)
@@ -40,19 +46,33 @@ import _SwiftConcurrencyShims
   @objc func processPanEnd(_ channelId: Swift.Int)
 }
 @objc public protocol LCRecordDoubleCamWindowDelegate : ObjectiveC.NSObjectProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  #endif
   @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode, littleWindow channelId: Swift.Int)
   @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, subWindow location: LCOpenMediaSDK.LCCastQuadrant)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordPlugin(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func videoWindowSpaceConfig(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> LCOpenMediaSDK.LCMediaDoubleCameraSpaceConfig?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordPlugin(_ livePlugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  #endif
 }
 @objc public protocol LCRecordThreeCamWindowDelegate : ObjectiveC.NSObjectProtocol {
   @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindow isMainWindow: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  #endif
   @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  #endif
   @objc func mainWindowIsLargeScreen(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin) -> Swift.Bool
 }
 @objc public protocol LCRecordPluginGestureDelegate : ObjectiveC.NSObjectProtocol {
@@ -65,17 +85,29 @@ import _SwiftConcurrencyShims
   @objc func onLongPress(_ gesture: UIKit.UILongPressGestureRecognizer, cid: Swift.Int)
 }
 @objc public protocol LCRecordPluginLogReportDelegate : ObjectiveC.NSObjectProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordCombinLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordCombinLogReport(onStreamLogInfo message: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func recordCombinLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+  #endif
 }
 @objc public protocol LCRecordCombinFishEyeDelegate : ObjectiveC.NSObjectProtocol {
   @objc func fishEye(_ plugin: LCOpenMediaSDK.LCOpenMediaRecordPlugin, osdTime: Swift.String)
 }
 public protocol LCFishEyeCamRecordLogReportDelegate : AnyObject {
+  #if compiler(>=5.3) && $NonescapableTypes
   func fishEyeCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func fishEyeCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func fishEyeCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+  #endif
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class LCMediaDoubleCameraSpaceConfig : ObjectiveC.NSObject {
   @objc public var backgroundColor: UIKit.UIColor?
@@ -107,7 +139,9 @@ public protocol LCFishEyeCamRecordLogReportDelegate : AnyObject {
 @objc public enum LCRecordVideoType : Swift.Int {
   case cloud
   case device
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -116,7 +150,9 @@ public protocol LCFishEyeCamRecordLogReportDelegate : AnyObject {
 @objc public enum LCFilePathType : Swift.Int {
   case snapShot
   case record
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -195,13 +231,19 @@ extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
   @objc func onPlayLoading(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onPlayStop(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, saveLastFrame: Swift.Bool)
   @objc func onPlayFailure(videoError: Swift.String, type: Swift.String, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc optional func onStreamInfo(videoError: Swift.String, type: Swift.String, streamInfo: Swift.String?, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #endif
   @objc optional func onRecordStart(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc optional func onRecordFinish(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, paths: [Swift.Int : Swift.String])
   @objc optional func onRecordFail(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc optional func onReceiveData(byteRate byte: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc optional func viewForStateLayer(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc optional func viewForToolLayer(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> UIKit.UIView?
+  #endif
   @objc optional func onIVSInfo(_ videoItem: LCOpenMediaSDK.LCBaseVideoItem, direh lDireh: LCOpenMediaSDK.DHPtzDirection, dires lDires: LCOpenMediaSDK.DHPtzDirection)
   @objc optional func onEZoomChanged(_ scale: CoreFoundation.CGFloat, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc optional func onPtzAngleChanged(rotationDirection: Swift.Int, horizontalAngle: CoreFoundation.CGFloat, verticalAngle: CoreFoundation.CGFloat)
@@ -227,34 +269,60 @@ extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doRightSwipe gesture: UIKit.UISwipeGestureRecognizer)
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doUpSwipe isMainWindow: Swift.Bool)
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, doDownSwipe isMainWindow: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  #endif
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isAssistWindowPip: Swift.Bool)
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow location: LCOpenMediaSDK.LCCastQuadrant)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func assistWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isMainWindow: Swift.Bool) -> UIKit.UIView?
+  #endif
 }
 @objc public protocol LCOpenMediaLiveMultiviewDelegate : ObjectiveC.NSObjectProtocol {
   @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode, littleWindowId: Swift.Int)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  #endif
   @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, bgViewWith isMainWindow: Swift.Bool) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func multiviewWindowSpaceConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> LCOpenMediaSDK.LCMediaDoubleCameraSpaceConfig?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func multiviewWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  #endif
 }
 @objc public protocol LCOpenMediaLiveThreeCameraDelegate : ObjectiveC.NSObjectProtocol {
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, changed screenMode: LCOpenMediaSDK.LCScreenMode)
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, isMainWindowPip: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, littleWindowBorderColor: Any?) -> UIKit.UIColor?
+  #endif
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, subWindow changedLocation: LCOpenMediaSDK.LCCastQuadrant)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, bgViewWith channelId: Swift.Int) -> UIKit.UIView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func threeCameraWindow(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, windowConfigWith channelId: Swift.Int) -> LCOpenMediaSDK.LCMediaDoubleCamWindowConfig?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func watchPointConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> LCOpenMediaSDK.LCMediaWatchPointConfig?
+  #endif
   @objc func watchPointConfig(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin, watchPoint touchPoint: CoreFoundation.CGPoint, channelId: Swift.Int)
   @objc func mainWindowIsLargeScreen(_ livePlugin: LCOpenMediaSDK.LCOpenMediaLivePlugin) -> Swift.Bool
 }
 @objc public protocol LCOpenMediaLiveLogReportDelegate : ObjectiveC.NSObjectProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func openMediaLiveLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func openMediaLiveLogReport(onStreamLogInfo message: Swift.String?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func openMediaLiveLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
+  #endif
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class LCOpenMediaRecordPlugin : UIKit.UIView {
   @_Concurrency.MainActor @preconcurrency public var playStatus: LCOpenMediaSDK.LCPlayStatus {
@@ -287,12 +355,20 @@ extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
 }
 extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func configFishEyeWindowMode(_ showMode: LCOpenMediaSDK.LCMediaFishEyeWindowShowMode)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func configFishEyeMaskColor(_ color: UIKit.UIColor?)
+  #endif
 }
 extension LCOpenMediaSDK.LCOpenMediaRecordPlugin : LCOpenMediaSDK.LCFishEyeCamRecordLogReportDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func fishEyeCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func fishEyeCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func fishEyeCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+  #endif
 }
 extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func setPlayerListener(_ listener: any LCOpenMediaSDK.LCRecordPluginDelegate)
@@ -334,14 +410,26 @@ extension LCOpenMediaSDK.LCOpenMediaRecordPlugin {
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func resetSubPlayWindowMode()
 }
 extension LCOpenMediaSDK.LCOpenMediaRecordPlugin : LCOpenMediaSDK.LCSingleCamRecordLogReportDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func singleCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func singleCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func singleCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+  #endif
 }
 public protocol LCSingleCamRecordLogReportDelegate : AnyObject {
+  #if compiler(>=5.3) && $NonescapableTypes
   func singleCamPlayLogReport(onDataAnalysis realStreamData: [Swift.AnyHashable : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func singleCamPlayLogReport(onStreamLogInfo message: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func singleCamPlayLogReport(onProgressStatus requestID: Swift.String?, status: Swift.String?, time: Swift.String?)
+  #endif
 }
 @objc public protocol LCVisualTalkPlayerDelegate : ObjectiveC.NSObjectProtocol {
   @objc func onTalkSuccess(_ source: LCOpenMediaSDK.LCOpenTalkSource)

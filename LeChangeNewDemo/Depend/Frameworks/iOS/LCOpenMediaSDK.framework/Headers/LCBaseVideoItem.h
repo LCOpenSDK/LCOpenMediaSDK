@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LCOpenMediaSDK/LCVideoPlayerDefines.h>
+#import "LCVideoPlayerDefines.h"
 #import "LCBindDeviceInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable)NSArray<LCBaseVideoItem *> *associcatChannels; //多目关联
 
 @property(nonatomic, assign)LCMediaPlayNoiseAbility noiseLevel;
+
+@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice; //绑定设备信息
+
+@property(nonatomic, strong)NSDictionary *exLogMessage; // 业务层埋点数据
 
 //目标pid
 -(NSString *__nullable)targetPid;

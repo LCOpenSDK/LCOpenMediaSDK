@@ -7,7 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LCMediaDefine.h"
-#import <LCOpenMediaSDK/LCMediaServerParameter.h>
+#import "LCMediaServerParameter.h"
+#import "LCBindDeviceInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,11 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isQuic;
 //录像下载的结束位置
 @property (nonatomic, assign)NSInteger endPos;
+//文件时长
+@property (nonatomic, assign)NSInteger fileDuration;
 
 /// 绑定设备信息
-@property(nonatomic, nullable, copy)NSString *bindProductId;
-@property(nonatomic, nullable, copy)NSString *bindDeviceId;
-@property(nonatomic, nullable, copy)NSString *bindChannelId;
+@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice; //绑定设备信息
 
 @end
 

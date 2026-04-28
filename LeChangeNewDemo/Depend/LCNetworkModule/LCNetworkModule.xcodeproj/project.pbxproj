@@ -15,6 +15,8 @@
 		0420901228F6966200800D39 /* LCMessageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420901028F6966200800D39 /* LCMessageInfo.m */; };
 		0420901528F6A10700800D39 /* LCMessageInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0420901328F6A10700800D39 /* LCMessageInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0420901628F6A10700800D39 /* LCMessageInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420901428F6A10700800D39 /* LCMessageInterface.m */; };
+		AE30020324E5010100A422EA /* LCCondensedRecordInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = AE30020124E5010100A422EA /* LCCondensedRecordInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE30020424E5010100A422EA /* LCCondensedRecordInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = AE30020224E5010100A422EA /* LCCondensedRecordInterface.m */; };
 		045FE35424E3845300A422EA /* LCAccountInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 045FE32024E3845200A422EA /* LCAccountInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		045FE35524E3845300A422EA /* LCDeviceHandleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE32124E3845200A422EA /* LCDeviceHandleInterface.m */; };
 		045FE35624E3845300A422EA /* LCAddDeviceInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FE32224E3845200A422EA /* LCAddDeviceInterface.m */; };
@@ -90,6 +92,8 @@
 		0420901028F6966200800D39 /* LCMessageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageInfo.m; sourceTree = "<group>"; };
 		0420901328F6A10700800D39 /* LCMessageInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMessageInterface.h; sourceTree = "<group>"; };
 		0420901428F6A10700800D39 /* LCMessageInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCMessageInterface.m; sourceTree = "<group>"; };
+		AE30020124E5010100A422EA /* LCCondensedRecordInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCCondensedRecordInterface.h; sourceTree = "<group>"; };
+		AE30020224E5010100A422EA /* LCCondensedRecordInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCCondensedRecordInterface.m; sourceTree = "<group>"; };
 		045FE31024E380C900A422EA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045FE31324E3831C00A422EA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045FE32024E3845200A422EA /* LCAccountInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAccountInterface.h; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 				045FE32924E3845200A422EA /* LCVideotapeInterface.m */,
 				0420901328F6A10700800D39 /* LCMessageInterface.h */,
 				0420901428F6A10700800D39 /* LCMessageInterface.m */,
+				AE30020124E5010100A422EA /* LCCondensedRecordInterface.h */,
+				AE30020224E5010100A422EA /* LCCondensedRecordInterface.m */,
 			);
 			path = LCNetworkRequestInterface;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0420901528F6A10700800D39 /* LCMessageInterface.h in Headers */,
+				AE30020324E5010100A422EA /* LCCondensedRecordInterface.h in Headers */,
 				0420901128F6966200800D39 /* LCMessageInfo.h in Headers */,
 				045FE35424E3845300A422EA /* LCAccountInterface.h in Headers */,
 				045FE36924E3845300A422EA /* LCDeviceInfo.h in Headers */,
@@ -618,6 +625,7 @@
 				045FE36624E3845300A422EA /* LCCheckDeviceBindOrNotInfo.m in Sources */,
 				045FE37724E3845300A422EA /* LCResponseModel.m in Sources */,
 				0420901628F6A10700800D39 /* LCMessageInterface.m in Sources */,
+				AE30020424E5010100A422EA /* LCCondensedRecordInterface.m in Sources */,
 				045FE37924E3845300A422EA /* LCRequestModel.m in Sources */,
 				0491868E24E403F900651E0F /* LCDevice.m in Sources */,
 				0491869124E403F900651E0F /* LCWiFiConfigInfo.m in Sources */,

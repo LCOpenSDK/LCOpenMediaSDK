@@ -32,6 +32,7 @@
 
 //MARK: - Message
 #import <LCNetworkModule/LCMessageInterface.h>
+#import <LCNetworkModule/LCCondensedRecordInterface.h>
 #import <LCNetworkModule/LCMessageInfo.h>
 
 //MARK: Data

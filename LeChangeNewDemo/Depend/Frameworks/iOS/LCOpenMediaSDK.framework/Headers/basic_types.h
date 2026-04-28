@@ -60,7 +60,7 @@ typedef int int32;
 typedef unsigned short uint16;  // NOLINT
 typedef short int16;            // NOLINT
 typedef unsigned char uint8;
-typedef signed char int8;
+typedef char int8;
 #endif  // INT_TYPES_DEFINED
 #endif  // GG_LONGLONG
 

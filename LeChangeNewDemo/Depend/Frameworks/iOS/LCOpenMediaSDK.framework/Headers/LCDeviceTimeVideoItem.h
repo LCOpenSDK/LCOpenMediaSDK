@@ -4,8 +4,8 @@
 //
 //  Created by lei on 2021/1/28.
 //
-#import <UIKit/UIKit.h>
-#import <LCOpenMediaSDK/LCMediaBaseVideoItem.h>
+//#import <UIKit/UIKit.h>
+#import "LCMediaBaseVideoItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 主加密模式
 @property(nonatomic, assign)int encrypt;
-//是否开启了安恒加密
-@property(nonatomic, assign)BOOL isOpenAHEncrypt;
 
 @property(nonatomic, assign)NSInteger beginTime;
 

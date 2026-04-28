@@ -16,18 +16,24 @@
 @implementation LCNewVideotapePlayerPersenter (Control)
 
 - (void)onUpDownScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
-    [self.container configUpDownScreenUI];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
+        [self.container configUpDownScreenUI];
+    });
 }
 
 - (void)onPortraitScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
-    [self.container configPortraitScreenUI];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = NO;
+        [self.container configPortraitScreenUI];
+    });
 }
 
 - (void)onFullScreen:(LCButton *)btn {
-    [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
-    [UIDevice lc_setRotateToSatusBarOrientation:self.container.navigationController];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isFullScreen = ![LCNewDeviceVideotapePlayManager shareInstance].isFullScreen;
+        [UIDevice lc_setRotateToSatusBarOrientation:self.container.navigationController];
+    });
 }
 
 - (void)onAudio:(LCButton *)btn {
@@ -263,7 +269,9 @@ NSString *rSavePath2 = nil;
     } else {
         [self.recordPlugin stopRecord];
     }
-    [LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding = ![LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding = ![LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding;
+    });
 }
 
 - (void)loadPlaySpeed {

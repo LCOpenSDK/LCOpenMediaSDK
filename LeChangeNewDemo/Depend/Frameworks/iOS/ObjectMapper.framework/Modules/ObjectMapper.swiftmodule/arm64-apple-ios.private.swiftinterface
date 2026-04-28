@@ -1,0 +1,648 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name ObjectMapper
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import Foundation
+@_exported import ObjectMapper
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+open class CodableTransform<T> : ObjectMapper.TransformType where T : Swift.Decodable, T : Swift.Encodable {
+  public typealias Object = T
+  public typealias JSON = Any
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> ObjectMapper.CodableTransform<T>.Object?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: T?) -> Any?
+  #endif
+  @objc deinit
+}
+open class CustomDateFormatTransform : ObjectMapper.DateFormatterTransform {
+  public init(formatString: Swift.String)
+  @objc deinit
+}
+open class DataTransform : ObjectMapper.TransformType {
+  public typealias Object = Foundation.Data
+  public typealias JSON = Swift.String
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: Foundation.Data?) -> Swift.String?
+  #endif
+  @objc deinit
+}
+open class DateFormatterTransform : ObjectMapper.TransformType {
+  public typealias Object = Foundation.Date
+  public typealias JSON = Swift.String
+  final public let dateFormatter: Foundation.DateFormatter
+  public init(dateFormatter: Foundation.DateFormatter)
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> Foundation.Date?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: Foundation.Date?) -> Swift.String?
+  #endif
+  @objc deinit
+}
+open class DateTransform : ObjectMapper.TransformType {
+  public typealias Object = Foundation.Date
+  public typealias JSON = Swift.Double
+  public enum Unit : Foundation.TimeInterval {
+    case seconds
+    case milliseconds
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Foundation.TimeInterval)
+    #endif
+    public typealias RawValue = Foundation.TimeInterval
+    public var rawValue: Foundation.TimeInterval {
+      get
+    }
+  }
+  public init(unit: ObjectMapper.DateTransform.Unit = .seconds)
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> Foundation.Date?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: Foundation.Date?) -> Swift.Double?
+  #endif
+  @objc deinit
+}
+public struct DictionaryTransform<Key, Value> : ObjectMapper.TransformType where Key : Swift.Hashable, Key : Swift.RawRepresentable, Value : ObjectMapper.Mappable, Key.RawValue == Swift.String {
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func transformFromJSON(_ value: Any?) -> [Key : Value]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func transformToJSON(_ value: [Key : Value]?) -> Any?
+  #endif
+  public typealias JSON = Any
+  public typealias Object = [Key : Value]
+}
+public func <- <T>(left: inout T, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+public func >>> <T>(left: T, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout T?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: T?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+public func <- <T>(left: inout [T], right: ObjectMapper.Map) where T : Swift.RawRepresentable
+public func >>> <T>(left: [T], right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout [T]?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: [T]?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+public func <- <T>(left: inout [Swift.String : T], right: ObjectMapper.Map) where T : Swift.RawRepresentable
+public func >>> <T>(left: [Swift.String : T], right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout [Swift.String : T]?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: [Swift.String : T]?, right: ObjectMapper.Map) where T : Swift.RawRepresentable
+#endif
+open class EnumTransform<T> : ObjectMapper.TransformType where T : Swift.RawRepresentable {
+  public typealias Object = T
+  public typealias JSON = T.RawValue
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> T?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: T?) -> T.RawValue?
+  #endif
+  @objc deinit
+}
+open class HexColorTransform : ObjectMapper.TransformType {
+  public typealias Object = UIKit.UIColor
+  public typealias JSON = Swift.String
+  public init(prefixToJSON: Swift.Bool = false, alphaToJSON: Swift.Bool = false)
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> ObjectMapper.HexColorTransform.Object?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: ObjectMapper.HexColorTransform.Object?) -> ObjectMapper.HexColorTransform.JSON?
+  #endif
+  @objc deinit
+}
+public protocol ImmutableMappable : ObjectMapper.BaseMappable {
+  init(map: ObjectMapper.Map) throws
+}
+extension ObjectMapper.ImmutableMappable {
+  public func mapping(map: ObjectMapper.Map)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(JSONString: Swift.String, context: (any ObjectMapper.MapContext)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(JSON: [Swift.String : Any], context: (any ObjectMapper.MapContext)? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(JSONObject: Any, context: (any ObjectMapper.MapContext)? = nil) throws
+  #endif
+}
+extension ObjectMapper.Map {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> T
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<Transform>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", using transform: Transform, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> Transform.Object where Transform : ObjectMapper.TransformType
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> T where T : Swift.RawRepresentable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> T? where T : Swift.RawRepresentable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [T] where T : Swift.RawRepresentable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [T]? where T : Swift.RawRepresentable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> T where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> T? where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [T] where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [T]? where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<Transform>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", using transform: Transform, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [Transform.Object] where Transform : ObjectMapper.TransformType
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [Swift.String : T] where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [Swift.String : T]? where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<Transform>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", using transform: Transform, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [Swift.String : Transform.Object] where Transform : ObjectMapper.TransformType
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [[T]]? where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [[T]] where T : ObjectMapper.BaseMappable
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<Transform>(_ key: Swift.String, nested: Swift.Bool? = nil, delimiter: Swift.String = ".", using transform: Transform, file: Swift.StaticString = #file, function: Swift.StaticString = #function, line: Swift.UInt = #line) throws -> [[Transform.Object]] where Transform : ObjectMapper.TransformType
+  #endif
+}
+extension ObjectMapper.Mapper where N : ObjectMapper.ImmutableMappable {
+  final public func map(JSON: [Swift.String : Any]) throws -> N
+  final public func map(JSONString: Swift.String) throws -> N
+  final public func map(JSONObject: Any) throws -> N
+  final public func mapArray(JSONArray: [[Swift.String : Any]]) throws -> [N]
+  final public func mapArray(JSONString: Swift.String) throws -> [N]
+  final public func mapArray(JSONObject: Any) throws -> [N]
+  final public func mapDictionary(JSONString: Swift.String) throws -> [Swift.String : N]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionary(JSONObject: Any?) throws -> [Swift.String : N]
+  #endif
+  final public func mapDictionary(JSON: [Swift.String : [Swift.String : Any]]) throws -> [Swift.String : N]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionaryOfArrays(JSONObject: Any?) throws -> [Swift.String : [N]]
+  #endif
+  final public func mapDictionaryOfArrays(JSON: [Swift.String : [[Swift.String : Any]]]) throws -> [Swift.String : [N]]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapArrayOfArrays(JSONObject: Any?) throws -> [[N]]
+  #endif
+}
+public func <- <T>(left: inout T, right: ObjectMapper.Map) where T : Swift.SignedInteger
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout T?, right: ObjectMapper.Map) where T : Swift.SignedInteger
+#endif
+public func <- <T>(left: inout T, right: ObjectMapper.Map) where T : Swift.UnsignedInteger
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout T?, right: ObjectMapper.Map) where T : Swift.UnsignedInteger
+#endif
+extension Foundation.DateFormatter {
+  convenience public init(withFormat format: Swift.String, locale: Swift.String)
+}
+open class ISO8601DateTransform : ObjectMapper.DateFormatterTransform {
+  public init()
+  @objc deinit
+}
+public protocol MapContext {
+}
+final public class Map {
+  final public let mappingType: ObjectMapper.MappingType
+  final public var JSON: [Swift.String : Any] {
+    get
+  }
+  final public var isKeyPresent: Swift.Bool {
+    get
+  }
+  final public var currentValue: Any? {
+    get
+  }
+  final public var currentKey: Swift.String? {
+    get
+  }
+  final public var nestedKeyDelimiter: Swift.String {
+    get
+  }
+  final public var context: (any ObjectMapper.MapContext)?
+  final public var shouldIncludeNilValues: Swift.Bool
+  final public let toObject: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(mappingType: ObjectMapper.MappingType, JSON: [Swift.String : Any], toObject: Swift.Bool = false, context: (any ObjectMapper.MapContext)? = nil, shouldIncludeNilValues: Swift.Bool = false)
+  #endif
+  final public subscript(key: Swift.String) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, delimiter delimiter: Swift.String) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, nested nested: Swift.Bool) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, nested nested: Swift.Bool, delimiter delimiter: Swift.String) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, ignoreNil ignoreNil: Swift.Bool) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, delimiter delimiter: Swift.String, ignoreNil ignoreNil: Swift.Bool) -> ObjectMapper.Map {
+    get
+  }
+  final public subscript(key: Swift.String, nested nested: Swift.Bool, ignoreNil ignoreNil: Swift.Bool) -> ObjectMapper.Map {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public subscript(key: Swift.String, nested nested: Swift.Bool?, delimiter delimiter: Swift.String, ignoreNil ignoreNil: Swift.Bool) -> ObjectMapper.Map {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func value<T>() -> T?
+  #endif
+  @objc deinit
+}
+public struct MapError : Swift.Error {
+  public var key: Swift.String?
+  public var currentValue: Any?
+  public var reason: Swift.String?
+  public var file: Swift.StaticString?
+  public var function: Swift.StaticString?
+  public var line: Swift.UInt?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(key: Swift.String?, currentValue: Any?, reason: Swift.String?, file: Swift.StaticString? = nil, function: Swift.StaticString? = nil, line: Swift.UInt? = nil)
+  #endif
+}
+extension ObjectMapper.MapError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol BaseMappable {
+  mutating func mapping(map: ObjectMapper.Map)
+}
+public protocol Mappable : ObjectMapper.BaseMappable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  init?(map: ObjectMapper.Map)
+  #endif
+}
+public protocol StaticMappable : ObjectMapper.BaseMappable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  static func objectForMapping(map: ObjectMapper.Map) -> (any ObjectMapper.BaseMappable)?
+  #endif
+}
+extension ObjectMapper.Mappable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(JSONString: Swift.String, context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(JSON: [Swift.String : Any], context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+}
+extension ObjectMapper.BaseMappable {
+  public func toJSON() -> [Swift.String : Any]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func toJSONString(prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+}
+extension Swift.Array where Element : ObjectMapper.BaseMappable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(JSONString: Swift.String, context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(JSONArray: [[Swift.String : Any]], context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+  public func toJSON() -> [[Swift.String : Any]]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func toJSONString(prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+}
+extension Swift.Set where Element : ObjectMapper.BaseMappable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(JSONString: Swift.String, context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(JSONArray: [[Swift.String : Any]], context: (any ObjectMapper.MapContext)? = nil)
+  #endif
+  public func toJSON() -> [[Swift.String : Any]]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func toJSONString(prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+}
+public enum MappingType {
+  case fromJSON
+  case toJSON
+  public static func == (a: ObjectMapper.MappingType, b: ObjectMapper.MappingType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class Mapper<N> where N : ObjectMapper.BaseMappable {
+  final public var context: (any ObjectMapper.MapContext)?
+  final public var shouldIncludeNilValues: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(context: (any ObjectMapper.MapContext)? = nil, shouldIncludeNilValues: Swift.Bool = false)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func map(JSONObject: Any?, toObject object: N) -> N
+  #endif
+  final public func map(JSONString: Swift.String, toObject object: N) -> N
+  final public func map(JSON: [Swift.String : Any], toObject object: N) -> N
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func map(JSONString: Swift.String) -> N?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func map(JSONObject: Any?) -> N?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func map(JSON: [Swift.String : Any]) -> N?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapArray(JSONString: Swift.String) -> [N]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapArray(JSONObject: Any?) -> [N]?
+  #endif
+  final public func mapArray(JSONArray: [[Swift.String : Any]]) -> [N]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionary(JSONString: Swift.String) -> [Swift.String : N]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionary(JSONObject: Any?) -> [Swift.String : N]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionary(JSON: [Swift.String : [Swift.String : Any]]) -> [Swift.String : N]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionary(JSONObject: Any?, toDictionary dictionary: [Swift.String : N]) -> [Swift.String : N]
+  #endif
+  final public func mapDictionary(JSON: [Swift.String : [Swift.String : Any]], toDictionary dictionary: [Swift.String : N]) -> [Swift.String : N]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionaryOfArrays(JSONObject: Any?) -> [Swift.String : [N]]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapDictionaryOfArrays(JSON: [Swift.String : [[Swift.String : Any]]]) -> [Swift.String : [N]]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapArrayOfArrays(JSONObject: Any?) -> [[N]]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func parseJSONStringIntoDictionary(JSONString: Swift.String) -> [Swift.String : Any]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func parseJSONString(JSONString: Swift.String) -> Any?
+  #endif
+  @objc deinit
+}
+extension ObjectMapper.Mapper {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func map(JSONfile: Swift.String) -> N?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapArray(JSONfile: Swift.String) -> [N]?
+  #endif
+}
+extension ObjectMapper.Mapper {
+  final public func toJSON(_ object: N) -> [Swift.String : Any]
+  final public func toJSONArray(_ array: [N]) -> [[Swift.String : Any]]
+  final public func toJSONDictionary(_ dictionary: [Swift.String : N]) -> [Swift.String : [Swift.String : Any]]
+  final public func toJSONDictionaryOfArrays(_ dictionary: [Swift.String : [N]]) -> [Swift.String : [[Swift.String : Any]]]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func toJSONString(_ object: N, prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func toJSONString(_ array: [N], prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func toJSONString(_ JSONObject: Any, prettyPrint: Swift.Bool) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func toJSONData(_ JSONObject: Any, options: Foundation.JSONSerialization.WritingOptions) -> Foundation.Data?
+  #endif
+}
+extension ObjectMapper.Mapper where N : Swift.Hashable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapSet(JSONString: Swift.String) -> Swift.Set<N>?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func mapSet(JSONObject: Any?) -> Swift.Set<N>?
+  #endif
+  final public func mapSet(JSONArray: [[Swift.String : Any]]) -> Swift.Set<N>
+  final public func toJSONSet(_ set: Swift.Set<N>) -> [[Swift.String : Any]]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func toJSONString(_ set: Swift.Set<N>, prettyPrint: Swift.Bool = false) -> Swift.String?
+  #endif
+}
+open class NSDecimalNumberTransform : ObjectMapper.TransformType {
+  public typealias Object = Foundation.NSDecimalNumber
+  public typealias JSON = Swift.String
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> Foundation.NSDecimalNumber?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: Foundation.NSDecimalNumber?) -> Swift.String?
+  #endif
+  @objc deinit
+}
+infix operator <- : DefaultPrecedence
+infix operator >>> : DefaultPrecedence
+public func <- <T>(left: inout T, right: ObjectMapper.Map)
+public func >>> <T>(left: T, right: ObjectMapper.Map)
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout T?, right: ObjectMapper.Map)
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: T?, right: ObjectMapper.Map)
+#endif
+public func <- <T>(left: inout T, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+public func >>> <T>(left: T, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout T?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: T?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+public func <- <T>(left: inout Swift.Dictionary<Swift.String, T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+public func >>> <T>(left: Swift.Dictionary<Swift.String, T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout Swift.Dictionary<Swift.String, T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: Swift.Dictionary<Swift.String, T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+public func <- <T>(left: inout Swift.Dictionary<Swift.String, [T]>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+public func >>> <T>(left: Swift.Dictionary<Swift.String, [T]>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout Swift.Dictionary<Swift.String, [T]>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: Swift.Dictionary<Swift.String, [T]>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+public func <- <T>(left: inout Swift.Array<T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+public func >>> <T>(left: Swift.Array<T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout Swift.Array<T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: Swift.Array<T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+public func <- <T>(left: inout Swift.Array<Swift.Array<T>>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+public func >>> <T>(left: Swift.Array<Swift.Array<T>>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout Swift.Array<Swift.Array<T>>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: Swift.Array<Swift.Array<T>>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable
+#endif
+public func <- <T>(left: inout Swift.Set<T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable, T : Swift.Hashable
+public func >>> <T>(left: Swift.Set<T>, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable, T : Swift.Hashable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <T>(left: inout Swift.Set<T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable, T : Swift.Hashable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <T>(left: Swift.Set<T>?, right: ObjectMapper.Map) where T : ObjectMapper.BaseMappable, T : Swift.Hashable
+#endif
+open class TransformOf<ObjectType, JSONType> : ObjectMapper.TransformType {
+  public typealias Object = ObjectType
+  public typealias JSON = JSONType
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(fromJSON: @escaping (JSONType?) -> ObjectType?, toJSON: @escaping (ObjectType?) -> JSONType?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> ObjectType?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: ObjectType?) -> JSONType?
+  #endif
+  @objc deinit
+}
+public func <- <Transform>(left: inout Transform.Object, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+public func >>> <Transform>(left: Transform.Object, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Transform.Object?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Transform.Object?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+public func <- <Transform>(left: inout [Transform.Object], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+public func >>> <Transform>(left: [Transform.Object], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout [Transform.Object]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: [Transform.Object]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+public func <- <Transform>(left: inout [Swift.String : Transform.Object], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+public func >>> <Transform>(left: [Swift.String : Transform.Object], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout [Swift.String : Transform.Object]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: [Swift.String : Transform.Object]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+public func <- <Transform>(left: inout Transform.Object, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+public func >>> <Transform>(left: Transform.Object, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Transform.Object?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Transform.Object?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+public func <- <Transform>(left: inout Swift.Dictionary<Swift.String, Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+public func >>> <Transform>(left: Swift.Dictionary<Swift.String, Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Swift.Dictionary<Swift.String, Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Swift.Dictionary<Swift.String, Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+public func <- <Transform>(left: inout Swift.Dictionary<Swift.String, [Transform.Object]>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+public func >>> <Transform>(left: Swift.Dictionary<Swift.String, [Transform.Object]>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Swift.Dictionary<Swift.String, [Transform.Object]>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Swift.Dictionary<Swift.String, [Transform.Object]>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+public func <- <Transform>(left: inout Swift.Array<Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+public func >>> <Transform>(left: Swift.Array<Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Swift.Array<Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Swift.Array<Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable
+#endif
+public func <- <Transform>(left: inout [[Transform.Object]], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+public func >>> <Transform>(left: [[Transform.Object]], right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout [[Transform.Object]]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: [[Transform.Object]]?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType
+#endif
+public func <- <Transform>(left: inout Swift.Set<Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable, Transform.Object : Swift.Hashable
+public func >>> <Transform>(left: Swift.Set<Transform.Object>, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable, Transform.Object : Swift.Hashable
+#if compiler(>=5.3) && $NonescapableTypes
+public func <- <Transform>(left: inout Swift.Set<Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable, Transform.Object : Swift.Hashable
+#endif
+#if compiler(>=5.3) && $NonescapableTypes
+public func >>> <Transform>(left: Swift.Set<Transform.Object>?, right: (ObjectMapper.Map, Transform)) where Transform : ObjectMapper.TransformType, Transform.Object : ObjectMapper.BaseMappable, Transform.Object : Swift.Hashable
+#endif
+public protocol TransformType {
+  associatedtype Object
+  associatedtype JSON
+  #if compiler(>=5.3) && $NonescapableTypes
+  func transformFromJSON(_ value: Any?) -> Self.Object?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  func transformToJSON(_ value: Self.Object?) -> Self.JSON?
+  #endif
+}
+open class URLTransform : ObjectMapper.TransformType {
+  public typealias Object = Foundation.URL
+  public typealias JSON = Swift.String
+  public init(shouldEncodeURLString: Swift.Bool = false, allowedCharacterSet: Foundation.CharacterSet = .urlQueryAllowed)
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformFromJSON(_ value: Any?) -> Foundation.URL?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func transformToJSON(_ value: Foundation.URL?) -> Swift.String?
+  #endif
+  @objc deinit
+}
+extension ObjectMapper.DateTransform.Unit : Swift.Equatable {}
+extension ObjectMapper.DateTransform.Unit : Swift.Hashable {}
+extension ObjectMapper.DateTransform.Unit : Swift.RawRepresentable {}
+extension ObjectMapper.MappingType : Swift.Equatable {}
+extension ObjectMapper.MappingType : Swift.Hashable {}

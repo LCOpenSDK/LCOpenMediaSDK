@@ -11,8 +11,8 @@
 #ifndef INCLUDE_LIBYUV_CONVERT_FROM_H_
 #define INCLUDE_LIBYUV_CONVERT_FROM_H_
 
-#include <LCOpenMediaSDK/basic_types.h>
-#include <LCOpenMediaSDK/rotate.h>
+#include "basic_types.h"
+#include "rotate.h"
 
 #ifdef __cplusplus
 namespace libyuv {

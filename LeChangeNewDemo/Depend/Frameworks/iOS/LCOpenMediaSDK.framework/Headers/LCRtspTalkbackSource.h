@@ -5,7 +5,7 @@
 //  Created by lei on 2021/10/11.
 //
 
-#import <LCOpenMediaSDK/LCBaseTalkbackSource.h>
+#import "LCBaseTalkbackSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,10 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy)NSString *psk;
 
-//设备名称(未加密)
-@property(nonatomic, copy)NSString *username;
-//设备密码
-@property(nonatomic, copy)NSString *password;
+////设备名称(未加密)
+//@property(nonatomic, copy)NSString *username;
+////设备密码
+//@property(nonatomic, copy)NSString *password;
 
 // 是否强制MTS
 @property(nonatomic, assign)BOOL isForceMts;

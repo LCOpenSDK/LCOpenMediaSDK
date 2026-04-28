@@ -4,8 +4,8 @@
 
 #import <LCBaseModule/LCMobileInfo.h>
 #include <sys/sysctl.h>
-#import <SystemConfiguration/CaptiveNetwork.h>
 #import <LCBaseModule/LCUDIDTool.h>
+#import <LCBaseModule/LCNetWorkHelper.h>
 
 @implementation LCMobileInfo
 
@@ -50,25 +50,14 @@
 
 - (NSDictionary *)getWIFIDic
 {
-    NSArray *ifs;
     @try {
-        ifs = (id)CFBridgingRelease(CNCopySupportedInterfaces());
-    } @catch (NSException *exception) {
-        ifs = @[];
-    } @finally {
-        NSLog(@"%s: Supported interfaces: %@", __func__, ifs);
-    }
-    NSDictionary *info = nil;
-    for (NSString *ifnam in ifs)
-    {
-        info = CFBridgingRelease(CNCopyCurrentNetworkInfo((CFStringRef)ifnam));
-        if ([info count])
-        {
-            break;
+        NSDictionary *d = [[LCNetWorkHelper sharedInstance] currentWiFiInfoSync];
+        if (d && d.count) {
+            return d;
         }
+    } @catch (NSException *exception) {
     }
-    
-    return info;
+    return nil;
 }
 
 - (NSString *)WIFISSID

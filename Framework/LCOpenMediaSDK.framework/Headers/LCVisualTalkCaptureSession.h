@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, LCCaptureDevicePosition) {
 
 @end
 @interface LCVisualTalkCaptureSession : NSObject
-@property (nonatomic ,strong) id<LCVisualTalkCaptureSessionDelegate>delegate;
+@property (nonatomic ,weak) id<LCVisualTalkCaptureSessionDelegate>delegate;
 @property (nonatomic ,strong) AVCaptureSession *session; //管理对象
 @property (nonatomic, assign) LCCaptureDevicePosition devicePosition; //摄像头方向
 

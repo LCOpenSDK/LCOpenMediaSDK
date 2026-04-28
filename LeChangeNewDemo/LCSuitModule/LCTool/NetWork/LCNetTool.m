@@ -3,9 +3,9 @@
 //
 
 #import "LCNetTool.h"
-#import <SystemConfiguration/CaptiveNetwork.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <AFNetworking/AFNetworking.h>
+#import <LCBaseModule/LCNetWorkHelper.h>
 
 @interface LCNetTool ()
 
@@ -60,18 +60,17 @@ static LCNetTool *tool = nil;
 }
 
 - (void)getSSID {
-    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-    id info = nil;
-    for (NSString *ifnam in ifs) {
-        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-
-        if (info && [info count]) {
-            break;
-        }
+    if (@available(iOS 14.0, *)) {
+        __weak typeof(self) weakSelf = self;
+        [[LCNetWorkHelper sharedInstance] fetchCurrentWiFiSSID:^(NSString * _Nullable ssid) {
+            if (!weakSelf.netToolSSID) { return; }
+            weakSelf.netToolSSID(ssid.length ? ssid : @"");
+        }];
+        return;
     }
-    NSString * ssid = info[@"SSID"];
+    NSString *ssid = [[LCNetWorkHelper sharedInstance] fetchSSIDInfo] ?: @"";
     if (self.netToolSSID) {
-        self.netToolSSID(ssid ? ssid : @"");
+        self.netToolSSID(ssid);
     }
 }
 

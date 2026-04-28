@@ -6,12 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#ifdef LECHANGE_MEDIA
-#import <CommonSDKoc/LCCommonSDK/CryptComponent/CryptComponent.h>
-#else
-#import <LCOpenSDKDynamic/CommonSDK_Include/CryptComponent/CryptComponent.h>
-#endif
+#import "LCMediaDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)lc_MD5String;
 
-- (NSString *)hlsDecodeWith:(RULE_VERSION)ruleVersion;
+- (NSString *)hlsDecodeWith:(E_RULE_VERSION)ruleVersion;
 /// json转字段
 - (NSDictionary *)openMedia_jsonDictionary;
 

@@ -6,6 +6,8 @@
 #import "LCNewLivePreviewPresenter+Control.h"
 #import "LCNewPTZPanel.h"
 #import "LCNewVideoHistoryView.h"
+#import "LCAICloudStorageBannerView.h"
+#import <LCBaseModule/LCRouter.h>
 #import "LCNewLivePreviewPresenter+VideotapeList.h"
 #import "LCNewLandscapeControlView.h"
 #import <LCBaseModule/LCPermissionHelper.h>
@@ -614,12 +616,35 @@
     [videoHistoryView.KVOController observe:self keyPath:@"videotapeList" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         [weakHistoryView reloadData:change[@"new"]];
     }];
-    
+
+    UIView *wrapper = [[UIView alloc] init];
+    LCAICloudStorageBannerView *aiBanner = [[LCAICloudStorageBannerView alloc] init];
+    // 蓝湖：AI每日快看 / 每日帧选 入口在「录像栏」（Tab + 横向缩略图）下方，而非上方
+    [wrapper addSubview:videoHistoryView];
+    [wrapper addSubview:aiBanner];
+    [videoHistoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.trailing.equalTo(wrapper);
+    }];
+    [aiBanner mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(videoHistoryView.mas_bottom).offset(4);
+        make.leading.trailing.bottom.equalTo(wrapper);
+    }];
+    aiBanner.entryTapHandler = ^(LCAICloudStorageBannerEntry entry) {
+        NSString *r = (entry == LCAICloudStorageBannerEntrySilhouetteAlbum) ? @"LCNewPlayBackRouter_AICloudEventList" : @"LCNewPlayBackRouter_AIFrameSelectEventList";
+        UIViewController *vc = [LCRouter objectForURL:r withUserInfo:nil];
+        if (vc != nil) {
+            [weakself.liveContainer.navigationController pushViewController:vc animated:YES];
+        }
+    };
+
+    __weak typeof(LCAICloudStorageBannerView) *weakBanner = aiBanner;
     [videoHistoryView.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        weakHistoryView.hidden = [change[@"new"] boolValue];
+        BOOL hide = [change[@"new"] boolValue];
+        weakHistoryView.hidden = hide;
+        weakBanner.hidden = hide;
     }];
 
-    return videoHistoryView;
+    return wrapper;
 }
 
 //MARK: - Private Methods

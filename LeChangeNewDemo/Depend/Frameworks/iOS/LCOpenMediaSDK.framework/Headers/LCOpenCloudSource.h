@@ -5,7 +5,7 @@
 //  Created by lei on 2024/10/14.
 //
 
-#import <LCOpenMediaSDK/LCOpenMediaBaseVideoItem.h>
+#import "LCOpenMediaBaseVideoItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,10 +39,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nullable) NSString *m3uLocalPath; // m3u本地文件路径
 
+@property (nonatomic, strong)NSArray<NSString *> *pswArray; //密码组字段(当前仅影集播放使用)
+@property (nonatomic, assign)NSInteger businessType; //业务类型: 1-降本影集(当前仅影集播放使用)
+
 /*云图播放参数*/
 @property(nonatomic, assign)NSInteger playframeRate; //播放码流帧率;云图播放使用(云录像播放可不传)
 
 @property(nonatomic, assign)NSInteger hlsType;  //hls类型(云图播放:6; 云录像播放可不传,默认0)
+
+/// pswArray Json字符串
+-(NSString *)pswArrayJsonString;
 
 @end
 

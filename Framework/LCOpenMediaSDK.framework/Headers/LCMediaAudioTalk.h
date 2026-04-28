@@ -14,7 +14,7 @@
 #import "LCMediaDefine.h"
 #import "LCMediaStreamParam.h"
 #import "LCMediaSampleConfigParam.h"
-#import <LCOpenMediaSDK/LCMediaServerParameter.h>
+#import "LCMediaServerParameter.h"
 
 @class LCRtspTalkbackSource;
 @interface LCMediaAudioTalk: NSObject

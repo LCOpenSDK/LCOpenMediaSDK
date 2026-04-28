@@ -11,14 +11,14 @@
 #ifndef INCLUDE_LIBYUV_CONVERT_H_
 #define INCLUDE_LIBYUV_CONVERT_H_
 
-#include <LCOpenMediaSDK/basic_types.h>
+#include "basic_types.h"
 
-#include <LCOpenMediaSDK/rotate.h>  // For enum RotationMode.
+#include "rotate.h"  // For enum RotationMode.
 
 // TODO(fbarchard): fix WebRTC source to include following libyuv headers:
-#include <LCOpenMediaSDK/convert_argb.h>      // For WebRTC I420ToARGB. b/620
-#include <LCOpenMediaSDK/convert_from.h>      // For WebRTC ConvertFromI420. b/620
-#include <LCOpenMediaSDK/planar_functions.h>  // For WebRTC I420Rect, CopyPlane. b/618
+#include "convert_argb.h"      // For WebRTC I420ToARGB. b/620
+#include "convert_from.h"      // For WebRTC ConvertFromI420. b/620
+#include "planar_functions.h"  // For WebRTC I420Rect, CopyPlane. b/618
 
 #ifdef __cplusplus
 namespace libyuv {

@@ -10,6 +10,14 @@
 #endif
 #endif
 
+#import "LCOpenMediaDevice.h"
+#import "LCOpenMediaNetManager.h"
+#import "LCOpenMediaRecord.h"
+#import "LCOpenMediaSDK.h"
+#import "LCOpenMediaStream.h"
+#import "LCOpenMediaStreamInfo.h"
+#import "LCOpenMedia_ApiManager.h"
+#import "LCOpenTalkPlugin.h"
 #import "LCMediaAudioTalk.h"
 #import "LCMediaCallTagLog.h"
 #import "LCMediaCommonLoginManager.h"
@@ -54,10 +62,13 @@
 #import "LCDhTalkbackSource.h"
 #import "LCOpenTalkSource.h"
 #import "LCRtspTalkbackSource.h"
+#import "LCBaseDownloadInfo.h"
+#import "LCCloudExtraInfo.h"
 #import "LCCloudImageInfo.h"
 #import "LCDownloadCloudImageInfo.h"
 #import "LCDownloadMultiInfo.h"
 #import "LCRecorderDeviceDownloadInfo.h"
+#import "LCRecordThumbsDownloadInfo.h"
 #import "LCMediaRecordFileInfo.h"
 #import "LCMediaSampleConfigParam.h"
 #import "LCBaseVideoItem.h"
@@ -104,14 +115,6 @@
 #import "scale_row.h"
 #import "version.h"
 #import "video_common.h"
-#import "LCOpenMediaDevice.h"
-#import "LCOpenMediaNetManager.h"
-#import "LCOpenMediaRecord.h"
-#import "LCOpenMediaSDK.h"
-#import "LCOpenMediaStream.h"
-#import "LCOpenMediaStreamInfo.h"
-#import "LCOpenMedia_ApiManager.h"
-#import "LCOpenTalkPlugin.h"
 
 FOUNDATION_EXPORT double LCOpenMediaSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char LCOpenMediaSDKVersionString[];

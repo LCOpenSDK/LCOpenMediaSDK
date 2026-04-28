@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
+#import "LCBaseVideoPlayer.h"
 #import "LCRecorderLiveVideoItem.h"
-#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
+#import "LCMediaRecordFileInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

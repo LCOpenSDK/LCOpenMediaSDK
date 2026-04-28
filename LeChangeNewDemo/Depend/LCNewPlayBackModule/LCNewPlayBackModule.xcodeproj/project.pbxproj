@@ -7,6 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2001042E2A55B0062C0F1 /* LCAICloudEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001022E2A55B0062C0F1 /* LCAICloudEventListViewController.m */; };
+		AE2001032E2A55B0062C0F1 /* LCAICloudEventListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2001012E2A55B0062C0F1 /* LCAICloudEventListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2A002002E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A002022E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.h */; settings = {ATTRIBUTES = (); }; };
+		B2A002012E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A002032E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.m */; };
+		AE2001202E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001232E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.m */; };
+		AE20012A2E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001292E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.m */; };
+		AE2001322E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001312E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.m */; };
+		AE2001462E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001492E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.m */; };
+		AE2001472E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2001482E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.h */; settings = {ATTRIBUTES = (); }; };
+		AE2001A02E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001A32E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.m */; };
+		AE2001A12E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2001A22E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.h */; settings = {ATTRIBUTES = (); }; };
+		AE2001A42E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2001A72E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.m */; };
+		AE2001A52E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2001A62E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.h */; settings = {ATTRIBUTES = (); }; };
+		AE2002E22E2A55B0062C0F1 /* LCAICloudDayItem.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2002E02E2A55B0062C0F1 /* LCAICloudDayItem.h */; settings = {ATTRIBUTES = (); }; };
+		AE2002E32E2A55B0062C0F1 /* LCAICloudEventPersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2002E52E2A55B0062C0F1 /* LCAICloudEventPersenter.h */; settings = {ATTRIBUTES = (); }; };
+		AE2002E42E2A55B0062C0F1 /* LCAICloudDayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2002E12E2A55B0062C0F1 /* LCAICloudDayItem.m */; };
+		AE2002E62E2A55B0062C0F1 /* LCAICloudEventPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE2002E72E2A55B0062C0F1 /* LCAICloudEventPersenter.m */; };
+		C1A0B1012E4100120062C0F1 /* LCAIQuickLookPlaybackTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A0B1112E4100120062C0F1 /* LCAIQuickLookPlaybackTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1A0B1022E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A0B1122E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.h */; settings = {ATTRIBUTES = (); }; };
+		C1A0B1032E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A0B1132E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.m */; };
+		C1A0B1042E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A0B1142E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.h */; settings = {ATTRIBUTES = (); }; };
+		C1A0B1052E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A0B1152E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.m */; };
+		F1A0E1002E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E0102E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h */; settings = {ATTRIBUTES = (); }; };
+		F1A0E1102E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E0112E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m */; };
+		F1A0E1012E2A55B0062C0F1 /* LCAIFrameSelectListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E0122E2A55B0062C0F1 /* LCAIFrameSelectListCell.h */; settings = {ATTRIBUTES = (); }; };
+		F1A0E1112E2A55B0062C0F1 /* LCAIFrameSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E0132E2A55B0062C0F1 /* LCAIFrameSelectListCell.m */; };
+		F1A0E1022E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E0142E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A0E1122E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E0152E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m */; };
+		F1A0E1032E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E0162E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h */; settings = {ATTRIBUTES = (); }; };
+		F1A0E1132E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E0172E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m */; };
+		F1B0D0122E3200120062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B0D0132E3200130062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.m */; };
+		AE2001212E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AE2001222E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.h */; settings = {ATTRIBUTES = (); }; };
 		03ABE06828F568AE00BCE307 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE06728F568AE00BCE307 /* Masonry.framework */; };
 		03ABE0F628F6535E00BCE307 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */; };
 		04871B3E28F262BF009E0540 /* LCNewPlayBackModule.docc in Sources */ = {isa = PBXBuildFile; fileRef = 04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */; };
@@ -50,6 +82,14 @@
 		04871BE228F2BA64009E0540 /* LCNewPlayBackRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871BE028F2BA64009E0540 /* LCNewPlayBackRouter.m */; };
 		04871BE328F2BA64009E0540 /* LCNewPlayBackRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04871BE128F2BA64009E0540 /* LCNewPlayBackRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04C466232CC65AC5004E35AB /* LCNewPlayBackModule.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04C466222CC65AC4004E35AB /* LCNewPlayBackModule.xcconfig */; };
+		F1A0E10C2E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E10A2E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A0E12A2E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E10B2E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m */; };
+		F1A0E12B2E2A55B0062C0F1 /* LCAIFrameSelectListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E10E2E2A55B0062C0F1 /* LCAIFrameSelectListCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A0E12C2E2A55B0062C0F1 /* LCAIFrameSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E10F2E2A55B0062C0F1 /* LCAIFrameSelectListCell.m */; };
+		F1A0E12D2E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E1222E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A0E12E2E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E1232E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m */; };
+		F1A0E12F2E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A0E1262E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A0E1302E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A0E1272E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +107,42 @@
 		03ABE0F528F6535E00BCE307 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FC1AF32B10C36B00B02794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04871B3928F262BF009E0540 /* LCNewPlayBackModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LCNewPlayBackModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2002E02E2A55B0062C0F1 /* LCAICloudDayItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudDayItem.h; sourceTree = "<group>"; };
+		AE2002E12E2A55B0062C0F1 /* LCAICloudDayItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudDayItem.m; sourceTree = "<group>"; };
+		AE2002E52E2A55B0062C0F1 /* LCAICloudEventPersenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudEventPersenter.h; sourceTree = "<group>"; };
+		AE2002E72E2A55B0062C0F1 /* LCAICloudEventPersenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudEventPersenter.m; sourceTree = "<group>"; };
+		C1A0B1112E4100120062C0F1 /* LCAIQuickLookPlaybackTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIQuickLookPlaybackTypes.h; sourceTree = "<group>"; };
+		C1A0B1122E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIQuickLookRecordPluginPresenter.h; sourceTree = "<group>"; };
+		C1A0B1132E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIQuickLookRecordPluginPresenter.m; sourceTree = "<group>"; };
+		C1A0B1142E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectRecordPluginPresenter.h; sourceTree = "<group>"; };
+		C1A0B1152E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectRecordPluginPresenter.m; sourceTree = "<group>"; };
+		F1A0E0102E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectEventPersenter.h; sourceTree = "<group>"; };
+		F1A0E0112E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectEventPersenter.m; sourceTree = "<group>"; };
+		F1A0E0122E2A55B0062C0F1 /* LCAIFrameSelectListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectListCell.h; sourceTree = "<group>"; };
+		F1A0E0132E2A55B0062C0F1 /* LCAIFrameSelectListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectListCell.m; sourceTree = "<group>"; };
+		F1A0E0142E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectEventListViewController.h; sourceTree = "<group>"; };
+		F1A0E0152E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectEventListViewController.m; sourceTree = "<group>"; };
+		F1A0E0162E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectPlaybackViewController.h; sourceTree = "<group>"; };
+		F1A0E0172E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectPlaybackViewController.m; sourceTree = "<group>"; };
+		F1B0D0142E3200140062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAIFrameSelectPlaybackToolbarImages.h; sourceTree = "<group>"; };
+		F1B0D0152E3200150062C0F1 /* LCAICloudAppBundleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudAppBundleImage.h; sourceTree = "<group>"; };
+		F1B0D0132E3200130062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAIFrameSelectPlaybackToolbarImages.m; sourceTree = "<group>"; };
+		AE2001012E2A55B0062C0F1 /* LCAICloudEventListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudEventListViewController.h; sourceTree = "<group>"; };
+		AE2001022E2A55B0062C0F1 /* LCAICloudEventListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudEventListViewController.m; sourceTree = "<group>"; };
+		B2A002022E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookSummaryListCell.h; sourceTree = "<group>"; };
+		B2A002032E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookSummaryListCell.m; sourceTree = "<group>"; };
+		AE2001222E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookCalendarViewController.h; sourceTree = "<group>"; };
+		AE2001232E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookCalendarViewController.m; sourceTree = "<group>"; };
+		AE2001282E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookPlayerToolbarIcons.h; sourceTree = "<group>"; };
+		AE2001292E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookPlayerToolbarIcons.m; sourceTree = "<group>"; };
+		AE2001302E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookBizPlayerIcons.h; sourceTree = "<group>"; };
+		AE2001312E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookBizPlayerIcons.m; sourceTree = "<group>"; };
+		AE2001482E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookDayProgressView.h; sourceTree = "<group>"; };
+		AE2001492E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookDayProgressView.m; sourceTree = "<group>"; };
+		AE2001A22E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookChromePassThroughView.h; sourceTree = "<group>"; };
+		AE2001A32E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookChromePassThroughView.m; sourceTree = "<group>"; };
+		AE2001A62E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCAICloudQuickLookToolDockView.h; sourceTree = "<group>"; };
+		AE2001A72E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCAICloudQuickLookToolDockView.m; sourceTree = "<group>"; };
 		04871B3C28F262BF009E0540 /* LCNewPlayBackModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCNewPlayBackModule.h; sourceTree = "<group>"; };
 		04871B3D28F262BF009E0540 /* LCNewPlayBackModule.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LCNewPlayBackModule.docc; sourceTree = "<group>"; };
 		04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewVideotapePersenter.m; sourceTree = "<group>"; };
@@ -186,6 +262,17 @@
 		04871B5728F263C6009E0540 /* persenter */ = {
 			isa = PBXGroup;
 			children = (
+				C1A0B1112E4100120062C0F1 /* LCAIQuickLookPlaybackTypes.h */,
+				C1A0B1122E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.h */,
+				C1A0B1132E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.m */,
+				C1A0B1142E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.h */,
+				C1A0B1152E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.m */,
+				AE2002E02E2A55B0062C0F1 /* LCAICloudDayItem.h */,
+				AE2002E12E2A55B0062C0F1 /* LCAICloudDayItem.m */,
+				AE2002E52E2A55B0062C0F1 /* LCAICloudEventPersenter.h */,
+				AE2002E72E2A55B0062C0F1 /* LCAICloudEventPersenter.m */,
+				F1A0E0102E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h */,
+				F1A0E0112E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m */,
 				04871B5928F263C6009E0540 /* LCNewVideotapePersenter.h */,
 				04871B5828F263C6009E0540 /* LCNewVideotapePersenter.m */,
 			);
@@ -196,6 +283,27 @@
 			isa = PBXGroup;
 			children = (
 				04871B5B28F263C6009E0540 /* dateControl */,
+				AE2001012E2A55B0062C0F1 /* LCAICloudEventListViewController.h */,
+				AE2001022E2A55B0062C0F1 /* LCAICloudEventListViewController.m */,
+				B2A002022E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.h */,
+				B2A002032E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.m */,
+				F1A0E0122E2A55B0062C0F1 /* LCAIFrameSelectListCell.h */,
+				F1A0E0132E2A55B0062C0F1 /* LCAIFrameSelectListCell.m */,
+				F1A0E0142E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h */,
+				F1A0E0152E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m */,
+				F1A0E0162E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h */,
+				F1A0E0172E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m */,
+				F1B0D0142E3200140062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.h */,
+				F1B0D0152E3200150062C0F1 /* LCAICloudAppBundleImage.h */,
+				F1B0D0132E3200130062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.m */,
+				AE2001482E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.h */,
+				AE2001492E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.m */,
+				AE2001222E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.h */,
+				AE2001232E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.m */,
+				AE2001282E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.h */,
+				AE2001292E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.m */,
+				AE2001302E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.h */,
+				AE2001312E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.m */,
 				04871B5E28F263C6009E0540 /* LCNewVideotapeListViewController.h */,
 				04871B6628F263C6009E0540 /* LCNewVideotapeListViewController.m */,
 				04871B5F28F263C6009E0540 /* HeardView */,
@@ -273,6 +381,10 @@
 			children = (
 				04871BD728F2B49C009E0540 /* LCPlayBackVideoControlView.h */,
 				04871BD628F2B49C009E0540 /* LCPlayBackVideoControlView.m */,
+				AE2001A22E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.h */,
+				AE2001A32E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.m */,
+				AE2001A62E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.h */,
+				AE2001A72E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.m */,
 				04871BCF28F2ABEF009E0540 /* LCPlayBackLandscapeControlView.h */,
 				04871BD128F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m */,
 				04871BCE28F2ABEF009E0540 /* LCPlayBackLandscapeControlView+Gesture.h */,
@@ -314,6 +426,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				04871BE328F2BA64009E0540 /* LCNewPlayBackRouter.h in Headers */,
+				C1A0B1012E4100120062C0F1 /* LCAIQuickLookPlaybackTypes.h in Headers */,
+				C1A0B1022E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.h in Headers */,
+				C1A0B1042E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.h in Headers */,
+				AE2001032E2A55B0062C0F1 /* LCAICloudEventListViewController.h in Headers */,
+				B2A002002E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.h in Headers */,
+				AE2001472E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.h in Headers */,
+				AE2001A12E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.h in Headers */,
+				AE2001A52E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.h in Headers */,
+				AE2001212E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.h in Headers */,
+				AE2002E22E2A55B0062C0F1 /* LCAICloudDayItem.h in Headers */,
+				AE2002E32E2A55B0062C0F1 /* LCAICloudEventPersenter.h in Headers */,
+				F1A0E1002E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.h in Headers */,
+				F1A0E1012E2A55B0062C0F1 /* LCAIFrameSelectListCell.h in Headers */,
+				F1A0E1022E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.h in Headers */,
+				F1A0E1032E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.h in Headers */,
 				04871B9228F263C6009E0540 /* LCNewVideotapeDownloadStatusView.h in Headers */,
 				04871B7F28F263C6009E0540 /* LCNewVideotapeListViewController.h in Headers */,
 				04871B8428F263C6009E0540 /* LCNewVideotapeListCell.h in Headers */,
@@ -493,6 +620,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2001042E2A55B0062C0F1 /* LCAICloudEventListViewController.m in Sources */,
+				B2A002012E2B55B0062C0F1 /* LCAICloudQuickLookSummaryListCell.m in Sources */,
+				AE2001462E2A55B0062C0F1 /* LCAICloudQuickLookDayProgressView.m in Sources */,
+				AE2001A02E2D55B0062C0F1 /* LCAICloudQuickLookChromePassThroughView.m in Sources */,
+				AE2001A42E2D55B0062C0F1 /* LCAICloudQuickLookToolDockView.m in Sources */,
+				AE2001202E2A55B0062C0F1 /* LCAICloudQuickLookCalendarViewController.m in Sources */,
+				AE20012A2E2A55B0062C0F1 /* LCAICloudQuickLookPlayerToolbarIcons.m in Sources */,
+				AE2001322E2A55B0062C0F1 /* LCAICloudQuickLookBizPlayerIcons.m in Sources */,
 				04871B8A28F263C6009E0540 /* LCNewVideotapePlayerPersenter+Control.m in Sources */,
 				04871BE228F2BA64009E0540 /* LCNewPlayBackRouter.m in Sources */,
 				04871B8D28F263C6009E0540 /* LCNewVideotapePlayerPersenter+LandscapeControlView.m in Sources */,
@@ -506,6 +641,15 @@
 				04871BD528F2ABEF009E0540 /* LCPlayBackLandscapeControlView.m in Sources */,
 				04871B9528F263C6009E0540 /* LCNewDeviceVideotapePlayManager.m in Sources */,
 				04871B8F28F263C6009E0540 /* LCNewVideotapePlayerViewController.m in Sources */,
+				AE2002E42E2A55B0062C0F1 /* LCAICloudDayItem.m in Sources */,
+				AE2002E62E2A55B0062C0F1 /* LCAICloudEventPersenter.m in Sources */,
+				C1A0B1032E4100120062C0F1 /* LCAIQuickLookRecordPluginPresenter.m in Sources */,
+				C1A0B1052E4100120062C0F1 /* LCAIFrameSelectRecordPluginPresenter.m in Sources */,
+				F1A0E1102E2A55B0062C0F1 /* LCAIFrameSelectEventPersenter.m in Sources */,
+				F1A0E1112E2A55B0062C0F1 /* LCAIFrameSelectListCell.m in Sources */,
+				F1A0E1122E2A55B0062C0F1 /* LCAIFrameSelectEventListViewController.m in Sources */,
+				F1A0E1132E2A55B0062C0F1 /* LCAIFrameSelectPlaybackViewController.m in Sources */,
+				F1B0D0122E3200120062C0F1 /* LCAIFrameSelectPlaybackToolbarImages.m in Sources */,
 				04871B7B28F263C6009E0540 /* LCNewVideotapePersenter.m in Sources */,
 				04871B8228F263C6009E0540 /* LCNewVideotapeListCell.m in Sources */,
 				04871B7E28F263C6009E0540 /* LCNewVideotapeListDateControl.m in Sources */,

@@ -5,7 +5,7 @@
 //  Created by lei on 2021/1/13.
 //
 
-#import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
+#import "LCBaseVideoPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

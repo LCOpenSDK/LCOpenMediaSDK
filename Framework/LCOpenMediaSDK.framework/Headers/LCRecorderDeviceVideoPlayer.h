@@ -5,9 +5,9 @@
 //  Created by lei on 2024/8/20.
 //
 
-#import <LCOpenMediaSDK/LCBaseVideoPlayer.h>
+#import "LCBaseVideoPlayer.h"
 #import "LCRecorderDeviceVideoItem.h"
-#import <LCOpenMediaSDK/LCMediaRecordFileInfo.h>
+#import "LCMediaRecordFileInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

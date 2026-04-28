@@ -15,4 +15,6 @@ FOUNDATION_EXPORT const unsigned char LCNewPlayBackModuleVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <LCNewPlayBackModule/PublicHeader.h>
 #import <LCNewPlayBackModule/LCNewPlayBackRouter.h>
+#import <LCNewPlayBackModule/LCAIQuickLookPlaybackTypes.h>
+#import <LCNewPlayBackModule/LCAICloudEventListViewController.h>
 

@@ -12,7 +12,8 @@
 #import "LCMediaStreamParam.h"
 #import "LCCloudImagesItem.h"
 #import "LCCloudVideoItem.h"
-#import <LCOpenMediaSDK/LCMediaServerParameter.h>
+#import "LCMediaServerParameter.h"
+#import "LCCloudDiskVideoItem.h"
 
 @class LCRecorderDeviceVideoItem;
 @class LCRecorderLiveVideoItem;
@@ -73,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param width  [in] 窗口宽度
  * @param height [in] 窗口高度
  */
-- (void) setViewSize:(int)width Height:(int)height;
+- (void) setViewSize:(CGFloat)width Height:(CGFloat)height;
 
 /**
  *  设置监听者，用来接收播放状态回调
@@ -244,25 +245,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 局域网并行按文件回放拉流
 - (NSInteger)playRecorderDeviceByFile:(LCRecorderDeviceVideoItem *)videoItem;
 
-#pragma mark - 云录像
-/**
- *  云录像回放
- *
- *  @param deviceSN   设备序列号
- *  @param channelId  通道号
- *  @param recordId   录像ID
- *  @param recordType 云存储录像类型(参考E_CLOUD_RECORD_TYPE)
- *  @param hlsType    hls类型(参考E_HLS_TYPE)
- *  @param startTime  起始播放时间(单位秒)
- *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
- *  @param PSK        秘钥(明文MD5, 32位小写)
- *
- *  @return 0表示成功 非0表示失败
- *  @note   该接口为异步接口
- */
-- (NSInteger) playCloudRecordStream:(NSString*)deviceSN channelId:(NSInteger)channelId recordId:(int64_t)recordId recordType:(E_CLOUD_RECORD_TYPE)recordType hlsType:(E_HLS_TYPE)hlsType startTime:(NSInteger)startTime timeout:(NSInteger)timeout isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Region:(NSString*) region RecordPath:(NSString *) recordPath Speed:(CGFloat)speed Username:(NSString*) strUserName PSW:(NSString*) strPassWord;
-
 #pragma mark - 云录像(新接口)
 /// 云录像回放
 /// @param param 播放参数
@@ -294,6 +276,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger) playCloudRecordStreamEx:(NSString*)m3u8Url hlsType:(E_HLS_TYPE)hlsType startTime:(NSInteger)startTime timeout:(NSInteger)timeout slicePrefixST:(E_SLICE_PREFIX_TYPE)slicePrefixST;
 
 #pragma mark - 云盘录像
+
+/// 云盘优化播放方法
+/// @param item 播放参数
+- (NSInteger) playCloudDiskOptRecordStream:(LCCloudDiskVideoItem *)item;
 /**
  *  云盘录像回放
  *
@@ -723,6 +709,21 @@ NS_ASSUME_NONNULL_BEGIN
 * @return true-成功  false-失败
 */
 - (BOOL)corssfileSeekPlay:(long)starttime endtime:(long)endtime;
+
+#pragma mark - seek缩略图快照
+
+/// 开始展示缩略图
+/// - Parameter view: 缩略图展示图层
+- (void)showThumbFrameBegin:(UIView *)view;
+
+/// 展示滑动偏移时间对应缩略图
+/// - Parameter frameTime: 偏移时间
+- (BOOL)showThumbFrameByTime:(long)frameTime;
+
+/// 结束展示缩略图
+- (BOOL)showThumbFrameEnd;
+/// 获取缓存时间段
+- (void)getThumbFrameDuation:(long*)start End:(long*)end;
 
 @end
 

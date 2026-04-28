@@ -5,7 +5,7 @@
 //  Created by lei on 2022/1/19.
 //
 
-#import <LCOpenMediaSDK/LCOpenMediaSDK.h>
+#import "LCMediaBaseVideoItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,13 +23,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign)NSInteger encryptMode;  //加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
 
-@property(nonatomic, copy)NSString *psk;  //秘钥(明文MD5, 32位小写)
+@property(nonatomic, copy, nullable)NSString *psk;  //秘钥(明文MD5, 32位小写)
 
-@property(nonatomic, copy)NSString *region;  //区域信息
+@property(nonatomic, copy, nullable)NSString *region;  //区域信息
 
-@property(nonatomic, copy)NSString *recordPath;  //文件路径
+@property(nonatomic, copy, nullable)NSString *recordPath;  //文件路径
 
 @property(nonatomic, assign)CGFloat speed;  //录像播放倍数
+
+/*云录像优化接口新字段*/
+@property(nonatomic, copy, nullable)NSString *streamAddr;  //下载文件的地址
+
+@property(nonatomic, copy, nullable)NSString *ak;  //鉴权相关AK
+
+@property(nonatomic, copy, nullable)NSString *fileToken;  //文件鉴权token
+
+@property (nonatomic, copy, nullable) NSString *uid; // uid为用户id
+
+@property (nonatomic, copy, nullable) NSString *expireTime; // 过期时间，录像查询时平台返回的字段
+
+@property (nonatomic, copy, nullable) NSString *m3uLocalPath; // m3u本地文件路径
+
+@property (nonatomic, assign)BOOL preciseSeek; //YES：精准seek  NO：非精准seek（与以前效果一致）;默认NO
+
+@property (nonatomic, strong, nullable)NSArray<NSString *> *pswArray; //密码组字段(当前仅影集播放使用)
+@property (nonatomic, assign)NSInteger businessType; //业务类型: 1-降本影集(当前仅影集播放使用)
+
+/// 是否可以走优化方案
+- (BOOL)isOptimizationMethod;
 
 @end
 

@@ -16,6 +16,16 @@
 #import <LCNetworkModule/LCApplicationDataManager.h>
 #import <Masonry/Masonry.h>
 
+/// 非 1 倍速时伴音不可点；拉流成功(1001)且处于播放中时可点。
+static void LCNewVideotapePortraitVoiceButtonRefreshEnabled(LCButton *btn) {
+    LCNewDeviceVideotapePlayManager *m = [LCNewDeviceVideotapePlayManager shareInstance];
+    if (m.playSpeed != 1) {
+        btn.enabled = NO;
+        return;
+    }
+    btn.enabled = (m.playStatus == 1001 && m.isPlay);
+}
+
 @interface LCNewVideotapePlayerPersenter ()<LCOpenSDK_TouchListener, LCOpenSDK_PlayBackListener>
 
 /// 中间控制能力数组
@@ -145,6 +155,7 @@
         case LCNewVideotapePlayerControlVoice: {
             //音频
             [item setImage:LC_IMAGENAMED(@"live_video_icon_sound_on") forState:UIControlStateNormal];
+            item.adjustsImageWhenDisabled = YES;
             //监听管理者状态
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isSoundOn" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -158,15 +169,18 @@
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    weakitem.enabled = NO;
+                    LCNewVideotapePortraitVoiceButtonRefreshEnabled(weakitem);
                 });
             }];
             [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-                if ([change[@"new"] integerValue] == 1001) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        weakitem.enabled = YES;
-                    });
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    LCNewVideotapePortraitVoiceButtonRefreshEnabled(weakitem);
+                });
+            }];
+            [item.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playSpeed" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    LCNewVideotapePortraitVoiceButtonRefreshEnabled(weakitem);
+                });
             }];
             item.touchUpInsideblock = ^(LCButton *_Nonnull btn) {
                 [weakself onAudio:btn];
@@ -374,14 +388,19 @@
     weakSelf(player1Default)
 
     [player1Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        weakplayer1Default.hidden = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakplayer1Default.hidden = NO;
+        });
     }];
     
     [player1Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"pausePlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-        if ([change[@"new"] boolValue]) {
-            weakplayer1Default.hidden = YES;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([change[@"new"] boolValue]) {
+                weakplayer1Default.hidden = YES;
+            }
+        });
     }];
+        
 
     [player1Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -396,13 +415,17 @@
         weakSelf(player2Default)
 
         [player2Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"isPlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-            weakplayer2Default.hidden = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakplayer2Default.hidden = NO;
+            });
         }];
         
         [player2Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"pausePlay" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
-            if ([change[@"new"] boolValue]) {
-                weakplayer2Default.hidden = YES;
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([change[@"new"] boolValue]) {
+                    weakplayer2Default.hidden = YES;
+                }
+            });
         }];
 
         [player2Default.KVOController observe:[LCNewDeviceVideotapePlayManager shareInstance] keyPath:@"playStatus" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {

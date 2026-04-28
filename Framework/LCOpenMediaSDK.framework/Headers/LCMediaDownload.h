@@ -17,7 +17,8 @@
 #import "LCDeviceTimeDownloadInfo.h"
 #import "LCCloudImageInfo.h"
 #import "LCDownloadCloudImageInfo.h"
-#import <LCOpenMediaSDK/LCMediaServerParameter.h>
+#import "LCMediaServerParameter.h"
+#import "LCRecordThumbsDownloadInfo.h"
 
 @class LCRecorderDeviceDownloadInfo;
 
@@ -101,12 +102,13 @@
  *  @param PSK         秘钥(明文MD5, 32位小写)
  *  @param Username    用户名
  *  @param PSW         密码
+ *  @param param       云录像优化字段
  *
  *  @return 0/非0 成功/失败
  *
  *  @note   该接口为异步接口
  */
-- (NSInteger) startDownloadCloudDiskRecord:(NSInteger)index deviceSn:(NSString *)deviceSn channelId:(NSInteger)channelId recordId:(int64_t)recordId recordType:(E_CLOUD_RECORD_TYPE)recordType filepath:(NSString *)filepath isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Region:(NSString*) region RecordPath:(NSString *) recordPath Username:(NSString*) strUserName PSW:(NSString*) strPassWord bindDeviceId:(NSString *)bindDeviceId;
+- (NSInteger) startDownloadCloudDiskRecord:(NSInteger)index deviceSn:(NSString *)deviceSn channelId:(NSInteger)channelId recordId:(int64_t)recordId recordType:(E_CLOUD_RECORD_TYPE)recordType filepath:(NSString *)filepath isEncrypt:(NSInteger)isEncrypt PSK:(NSString*)PSK Region:(NSString*) region RecordPath:(NSString *) recordPath Username:(NSString*) strUserName PSW:(NSString*) strPassWord bindDeviceId:(NSString *)bindDeviceId param:(LCMediaStreamCloudParam*)param;
 
 /**
  *  开始设备录像下载（RTSP协议）
@@ -142,22 +144,11 @@
 - (NSInteger) startDownLoadHttp:(NSInteger)index DeviceSn:(NSString *)deviceSn ChannelId:(NSInteger)channelId FileId:(NSString *)fileId FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord endPos:(NSInteger)endPos;
 
 /**
- *  开始设备录像下载（RTSP协议/私有协议）
- *
- * @param index       索引值，用于区分下载
- * @param deviceSn    设备序列号
- * @param protoType   协议类型(参考OC_PROTO_TYPE枚举：RTSP业务/HTTP业务)
- * @param channelId   通道号
- * @param fileId      文件名称
- * @param filePath    本地下载存储路径
- * @param encryptMode 加密模式
- * @param encryptKey  加密密钥
- * @param isTls
- * @param userName    设备用户名
- * @param passWord    设备密码
- * @param devicePid   设备pid(ProductId,用于支持IoT设备)
+ *  按文件下载设备录像（MTS远程下载）
+ *  @param downloadInfo 下载参数
+ *  @return 0表示成功 非0表示失败
  */
-- (NSInteger) startDownLoadDeviceRecord:(NSInteger)index DeviceSn:(NSString *)deviceSn ProtoType:(OC_PROTO_TYPE)protoType ChannelId:(NSInteger)channelId FileId:(NSString *)fileId FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid DownloadInfo:(LCMediaDownLoadInfo *)downloadInfo;
+- (NSInteger)startDownLoadDeviceByFile:(LCMediaDownLoadInfo *)downloadInfo;
 
 
 /**
@@ -191,10 +182,9 @@
 /// @param devicePid 设备pid(ProductId,用于支持IoT设备)
 /// @param p2pIp 下载IP
 /// @param p2pPort 端口
-/// @param bindDeviceId 绑定设备序列号
-/// @param bindChannelId 绑定设备通道号
-/// @param bindProductId 绑定设备产品Id
-- (NSInteger)startDownLoadDHDeviceRecordByTimeV2:(NSInteger)index DeviceSn:(NSString *)deviceSn ChannelId:(NSInteger)channelId startTime:(NSString *)startTime endTime:(NSString *)endTime FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid p2pIp:(NSString *)p2pIp p2pPort:(int)p2pPort bindDeviceId:(NSString *)bindDeviceId bindChannelId:(NSString *)bindChannelId bindProductId:(NSString *)bindProductId;
+/// @param fileType 文件类型，1为视频，2为图片, 3为图片JPEG流（封装dhav头尾, 5为非AOV和非AOR录像(默认传1)
+/// @param bindDevice 设备信息
+- (NSInteger)startDownLoadDHDeviceRecordByTimeV2:(NSInteger)index DeviceSn:(NSString *)deviceSn ChannelId:(NSInteger)channelId startTime:(NSString *)startTime endTime:(NSString *)endTime FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid p2pIp:(NSString *)p2pIp p2pPort:(int)p2pPort fileType:(NSInteger)fileType bindDevice:(LCBindDeviceInfo * __nullable)bindDevice;
 
 /// 设备录像下载（局域网）私有协议
 /// @param index 索引值，用于区分下载
@@ -211,10 +201,8 @@
 /// @param devicePid 设备pid(ProductId,用于支持IoT设备)
 /// @param p2pIp 下载IP
 /// @param p2pPort 端口
-/// @param bindDeviceId 绑定设备序列号
-/// @param bindChannelId 绑定设备通道号
-/// @param bindProductId 绑定设备产品Id
-- (NSInteger)startDownLoadDHDeviceRecordV2:(NSInteger)index DeviceSn:(NSString *)deviceSn ProtoType:(OC_PROTO_TYPE)protoType ChannelId:(NSInteger)channelId FileId:(NSString *)fileId FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid p2pIp:(NSString *)p2pIp p2pPort:(int)p2pPort bindDeviceId:(NSString *)bindDeviceId bindChannelId:(NSString *)bindChannelId bindProductId:(NSString *)bindProductId;
+/// @param bindDevice 绑定设备信息
+- (NSInteger)startDownLoadDHDeviceRecordV2:(NSInteger)index DeviceSn:(NSString *)deviceSn ProtoType:(OC_PROTO_TYPE)protoType ChannelId:(NSInteger)channelId FileId:(NSString *)fileId FilePath:(NSString *)FilePath EncryptMode:(NSInteger)encryptMode EncryptKey:(NSString *)encryptKey IsTls:(BOOL)isTls UserName:(NSString *)userName PassWord:(NSString *)passWord DevicePid:(NSString *)devicePid p2pIp:(NSString *)p2pIp p2pPort:(int)p2pPort bindDevice:(LCBindDeviceInfo * __nullable)bindDevice;
 
 /// 局域网并行下载接口
 /// @param downloadInfo 下载参数
@@ -260,7 +248,7 @@
 /// - Parameter cloudImageInfo: 云图参数信息,详见LCDownloadCloudImageInfo
 -(NSInteger)startDownloadCloudImages:(LCDownloadCloudImageInfo *)cloudImageInfo;
 
-/// 下载卡录像封面图
+/// 下载卡录像封面图(废弃接口,新增需求不支持使用,后续配套业务层一起移除)
 /// - Parameters:
 ///   - index: 任务编号
 ///   - startTime: 录像开始时间
@@ -273,6 +261,11 @@
 ///   - isTls: 是否使用TLS
 ///   - serverParam: serverParam
 -(NSInteger)downloadDeviceRecordThumbs:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime channelId:(NSInteger)channelId devicePid:(NSString *)devicePid userName:(NSString *)userName passWord:(NSString *)passWord deviceSn:(NSString *)deviceSn encryptMode:(NSInteger)encryptMode encryptKey:(NSString *)encryptKey isTls:(BOOL)isTls serverParam:(LCMediaServerParameter*)serverParam;
+
+
+/// 按时间下载图片新接口
+/// - Parameter downloadInfo: 下载参数类
+-(NSInteger)downloadDeviceRecordImageByTime:(LCRecordThumbsDownloadInfo *)downloadInfo;
 
 /// 通过文件下载
 /// - Parameters:
@@ -294,6 +287,10 @@
 /// 行车记录仪录像下载
 /// - Parameter downloadInfo: 下载参数
 -(NSInteger)startDownloadRecorderDeviceFile:(LCRecorderDeviceDownloadInfo *)downloadInfo;
+
+/// 获取剩余免费下载时长接口如下：在收到16403错误时调用;返回值为剩余可免费下载时长
+/// - Parameter index: 下载索引
+-(int)getQuotaExceedTime:(NSInteger)index;
 
 @end
 

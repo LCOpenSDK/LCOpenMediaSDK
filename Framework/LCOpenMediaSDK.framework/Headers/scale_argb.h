@@ -11,8 +11,8 @@
 #ifndef INCLUDE_LIBYUV_SCALE_ARGB_H_
 #define INCLUDE_LIBYUV_SCALE_ARGB_H_
 
-#include <LCOpenMediaSDK/basic_types.h>
-#include <LCOpenMediaSDK/scale.h>  // For FilterMode
+#include "basic_types.h"
+#include "scale.h"  // For FilterMode
 
 #ifdef __cplusplus
 namespace libyuv {

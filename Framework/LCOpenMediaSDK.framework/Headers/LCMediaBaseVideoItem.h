@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCMediaBaseVideoItem : LCBaseVideoItem
 
-@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice; //绑定设备信息
-
 @property (nonatomic, assign) NSInteger streamHandler; // 拉流句柄
 
 @property (nonatomic, assign) NSInteger playport; // 播放port句柄
@@ -22,9 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isSupportBoundingBox;
 
 @property(nonatomic, assign)BOOL isMixStream; //是否走混流
-
-/// 业务层埋点数据
-@property(nonatomic, strong)NSDictionary *exLogMessage;
 
 @end
 

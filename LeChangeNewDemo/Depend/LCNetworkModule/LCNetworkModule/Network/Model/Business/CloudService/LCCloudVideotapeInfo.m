@@ -57,6 +57,25 @@
 
 @implementation LCCloudVideotapeInfo
 
++ (instancetype)mj_objectWithKeyValues:(id)keyValues {
+    if (![keyValues isKindOfClass:[NSDictionary class]]) {
+        return (LCCloudVideotapeInfo *)[super mj_objectWithKeyValues:keyValues];
+    }
+    NSMutableDictionary *m = [keyValues mutableCopy];
+    id t = m[@"type"];
+    if ([t isKindOfClass:[NSString class]]) {
+        m[@"insightTypeTag"] = t;
+        [m removeObjectForKey:@"type"];
+    }
+    return (LCCloudVideotapeInfo *)[super mj_objectWithKeyValues:m];
+}
+
+- (void)mj_keyValuesDidFinishConvertingToObject {
+    if (self.beginTime.length == 0 && self.createTime.length > 0) {
+        self.beginTime = [self.createTime copy];
+    }
+}
+
 -(NSString *)durationTime{
     NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -97,6 +116,14 @@
         return nil;
     }
     return [LCCloudVideotapeInfo mj_objectWithKeyValues:dic];
+}
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{
+        @"cloudPlayMethod": @"method",
+        @"videoLength": @"length",
+        @"recordRegionId": @[ @"recordRegionId", @"region" ],
+    };
 }
 
 + (NSArray *)mj_ignoredPropertyNames

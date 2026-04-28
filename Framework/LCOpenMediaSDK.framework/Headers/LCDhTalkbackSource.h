@@ -5,7 +5,7 @@
 //  Created by lei on 2021/10/11.
 //
 
-#import <LCOpenMediaSDK/LCBaseTalkbackSource.h>
+#import "LCBaseTalkbackSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

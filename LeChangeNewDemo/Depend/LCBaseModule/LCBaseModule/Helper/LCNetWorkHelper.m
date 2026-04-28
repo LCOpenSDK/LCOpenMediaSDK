@@ -14,6 +14,62 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <NetworkExtension/NEHotspotNetwork.h>
 #import <AFNetworking/AFNetworking.h>
+#import <os/log.h>
+
+// iOS 14+ 上优先用 NEHotspotNetwork（异步 API），iOS 26 起 CaptiveNetwork 常返回空，仅作兼容兜底。
+static NSTimeInterval const kLCNetWorkHelperHotspotFetchTimeout = 0.8;
+
+static os_log_t LCNetWorkHelperLog(void) {
+    static os_log_t log;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        log = os_log_create("LCBaseModule", "LCNetWorkHelper");
+    });
+    return log;
+}
+
+static NSDictionary<NSString *, id> *LCCopyWiFiInfoCaptiveOnly(void) {
+    NSArray<NSString *> *ifs = CFBridgingRelease(CNCopySupportedInterfaces());
+    for (NSString *ifnam in ifs) {
+        NSDictionary *info = CFBridgingRelease(CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam));
+        if (info && info.count) {
+            return info;
+        }
+    }
+    return nil;
+}
+
+/// 同步：先 NEHotspot 异步 + 等待，无结果再走 CaptiveNetwork。
+/// 主线程上不能使用「等待 + 可能在主队列回调的 NE 接口」组合，否则有死锁风险，此时仅走 CaptiveNetwork。
+static NSDictionary<NSString *, id> *LCCopyCurrentWiFiInfoSynchronousNEHotspotFirst(void) {
+    if ([NSThread isMainThread]) {
+        return LCCopyWiFiInfoCaptiveOnly();
+    }
+    __block NSDictionary<NSString *, id> *result = nil;
+    if (@available(iOS 14.0, *)) {
+        dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+        [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable n) {
+            if (n) {
+                NSMutableDictionary<NSString *, id> *d = [NSMutableDictionary dictionary];
+                if (n.SSID.length) {
+                    d[@"SSID"] = n.SSID;
+                }
+                if (n.BSSID.length) {
+                    d[@"BSSID"] = n.BSSID;
+                }
+                if (d.count) {
+                    result = [d copy];
+                }
+            }
+            dispatch_semaphore_signal(sem);
+        }];
+        dispatch_semaphore_wait(sem, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kLCNetWorkHelperHotspotFetchTimeout * NSEC_PER_SEC)));
+    }
+    if (result.count) {
+        return result;
+    }
+    return LCCopyWiFiInfoCaptiveOnly();
+}
 
 @interface LCNetWorkHelper()
 @property (nonatomic, strong) LCAlertController	*alertVc;
@@ -192,83 +248,122 @@
 void systemNetworkChanged() {
 	dispatch_queue_t queue = LCNetWorkHelper.sharedInstance.interfaceQueue;
 	dispatch_async(queue, ^{
-		NSString *wifiName = @"";
-		NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-		for (NSString *ifnam in ifs) {
-			NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-			NSLog(@"systemNetworkChanged wifiInfo = %@", info);
-			if (info[@"SSID"]) {
-				wifiName = info[@"SSID"];
-			}
+		NSDictionary<NSString *, id> *info = LCCopyCurrentWiFiInfoSynchronousNEHotspotFirst();
+		NSString *wifiName = [info[@"SSID"] isKindOfClass:[NSString class]] ? info[@"SSID"] : @"";
+		if (!wifiName.length) {
+			wifiName = @"";
+		} else {
+			os_log(LCNetWorkHelperLog(), "systemNetworkChanged: wifiInfo keys=%{public}lu", (unsigned long)info.count);
 		}
-		
-		NSLog(@"28614-*-* systemNetworkChanged wifi name: %@ - %@", lastWifiName, wifiName);
-		
-		if(wifiName.length && [lastWifiName isEqualToString:wifiName]){
+
+		NSString *lastCopy = nil;
+		@synchronized ([LCNetWorkHelper class]) {
+			lastCopy = lastWifiName;
+		}
+		os_log(LCNetWorkHelperLog(), "systemNetworkChanged: last=%{public}@ new=%{public}@", lastCopy, wifiName);
+
+		if (wifiName.length && [lastCopy isEqualToString:wifiName]) {
 			return;
 		}
-		
+
 		//通知及网络切换需要放在主线程中处理，内部可能涉及UI
 		dispatch_async(dispatch_get_main_queue(), ^{
-			NSLog(@"28614-*-* LCNotificationWifiNetWorkChange111111  %ld",[LCNetWorkHelper sharedInstance].emNetworkStatus);
-			NSLog(@"28614-*-* SSID  %@",wifiName);
+			LCNetWorkHelper *h = [LCNetWorkHelper sharedInstance];
+			os_log(LCNetWorkHelperLog(), "LCNotificationWifi: status=%{public}ld ssid=%{public}@", (long)h.emNetworkStatus, wifiName);
 			//WIFI连接
 			if (wifiName.length > 0) {
-				[[LCNetWorkHelper sharedInstance] configureByStatus:AFNetworkReachabilityStatusReachableViaWiFi];
+				[h configureByStatus:AFNetworkReachabilityStatusReachableViaWiFi];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LCNotificationWifiNetWorkDidSwitch" object:wifiName];
             }
-            
 		});
-        lastWifiName = wifiName;
-        [LCNetWorkHelper sharedInstance].lc_lastWifiName = wifiName;
+		@synchronized ([LCNetWorkHelper class]) {
+			lastWifiName = wifiName;
+			[LCNetWorkHelper sharedInstance].lc_lastWifiName = wifiName;
+		}
 	});
 }
 
 - (NSString *)lc_lastWifiName {
-    if (_lc_lastWifiName == nil || !_lc_lastWifiName.length) {
-        systemNetworkChanged();
+    @synchronized ([LCNetWorkHelper class]) {
+        if (_lc_lastWifiName && _lc_lastWifiName.length) {
+            return _lc_lastWifiName;
+        }
     }
-    return  _lc_lastWifiName;
+    NSString *ssid = [self fetchSSIDInfo];
+    if (ssid.length) {
+        NSString *out = nil;
+        @synchronized ([LCNetWorkHelper class]) {
+            out = [ssid copy];
+            _lc_lastWifiName = out;
+            lastWifiName = out;
+        }
+        return out;
+    }
+    [self fetchCurrentWiFiSSID:^(NSString * _Nullable ssidAsync) {
+        if (!ssidAsync.length) {
+            return;
+        }
+        dispatch_async(self.interfaceQueue, ^{
+            @synchronized ([LCNetWorkHelper class]) {
+                lastWifiName = [ssidAsync copy];
+                [LCNetWorkHelper sharedInstance].lc_lastWifiName = lastWifiName;
+            }
+        });
+    }];
+    systemNetworkChanged();
+    @synchronized ([LCNetWorkHelper class]) {
+        return _lc_lastWifiName;
+    }
+}
+
+- (NSDictionary<NSString *, id> *)currentWiFiInfoSync {
+    return LCCopyCurrentWiFiInfoSynchronousNEHotspotFirst();
 }
 
 - (NSString *)fetchSSIDInfo {
-    NSArray *ifs = (__bridge id)CNCopySupportedInterfaces();
-    NSLog(@"%s: Supported interfaces: %@", __func__, ifs);
-    id info = nil;
-    for (NSString *ifnam in ifs)
-    {
-        info = (__bridge id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-        if (info && [info count])
-        {
-            break;
-        }
-    }
-    NSString *ssid = [[info objectForKey:@"SSID"] copy];
-    
+    NSDictionary<NSString *, id> *info = [self currentWiFiInfoSync];
+    os_log(LCNetWorkHelperLog(), "fetchSSIDInfo: hasInfo=%d", (info != nil));
+    NSString *ssid = [info[@"SSID"] isKindOfClass:[NSString class]] ? [info[@"SSID"] copy] : nil;
     return ssid;
 }
 - (void)fetchCurrentWiFiSSID:(void (^)(NSString * __nullable ssid))callBack {
+    if (!callBack) {
+        return;
+    }
     if (@available(iOS 14.0, *)) {
+        __weak typeof(self) wself = self;
         [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
-            // 主线程回调
-            if (currentNetwork != nil) {
-                callBack(currentNetwork.SSID);
-            } else {
-                callBack(nil);
+            NSString *ssid = (currentNetwork.SSID.length) ? currentNetwork.SSID : nil;
+            if (ssid.length) {
+                dispatch_async(dispatch_get_main_queue(), ^{ callBack(ssid); });
+                return;
             }
+            __strong typeof(self) sself = wself;
+            if (!sself) {
+                dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
+                return;
+            }
+            dispatch_async(sself.interfaceQueue, ^{
+                NSDictionary<NSString *, id> *captive = LCCopyWiFiInfoCaptiveOnly();
+                NSString *fallback = [captive[@"SSID"] isKindOfClass:[NSString class]] ? captive[@"SSID"] : nil;
+                dispatch_async(dispatch_get_main_queue(), ^{ callBack(fallback); });
+            });
         }];
     } else {
-        dispatch_async(self.interfaceQueue, ^{
-            NSArray *ifs = (__bridge id)CNCopySupportedInterfaces();
-            NSLog(@"%s: Supported interfaces: %@", __func__, ifs);
-            id info = nil;
-            for (NSString *ifnam in ifs) {
-                info = (__bridge id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-                if (info && [info count]) {
-                    break;
-                }
+        __weak typeof(self) wself = self;
+        __strong typeof(self) sself0 = wself;
+        if (!sself0) {
+            dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
+            return;
+        }
+        dispatch_async(sself0.interfaceQueue, ^{
+            __strong typeof(self) sself = wself;
+            if (!sself) {
+                dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
+                return;
             }
-            NSString *ssid = [[info objectForKey:@"SSID"] copy];
+            NSDictionary<NSString *, id> *captive = LCCopyWiFiInfoCaptiveOnly();
+            NSString *ssid = [captive[@"SSID"] isKindOfClass:[NSString class]] ? [captive[@"SSID"] copy] : nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 callBack(ssid);
             });
