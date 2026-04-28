@@ -9,14 +9,13 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <LCBaseModule/NSString+Imou.h>
 #import <LCBaseModule/LCUserManager.h>
-#import <SystemConfiguration/CaptiveNetwork.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <NetworkExtension/NEHotspotNetwork.h>
 #import <AFNetworking/AFNetworking.h>
 #import <os/log.h>
 
-// iOS 14+ 上优先用 NEHotspotNetwork（异步 API），iOS 26 起 CaptiveNetwork 常返回空，仅作兼容兜底。
+// WiFi 信息统一通过 NEHotspotNetwork.fetchCurrentWithCompletionHandler 获取。
 static NSTimeInterval const kLCNetWorkHelperHotspotFetchTimeout = 0.8;
 
 static os_log_t LCNetWorkHelperLog(void) {
@@ -28,23 +27,8 @@ static os_log_t LCNetWorkHelperLog(void) {
     return log;
 }
 
-static NSDictionary<NSString *, id> *LCCopyWiFiInfoCaptiveOnly(void) {
-    NSArray<NSString *> *ifs = CFBridgingRelease(CNCopySupportedInterfaces());
-    for (NSString *ifnam in ifs) {
-        NSDictionary *info = CFBridgingRelease(CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam));
-        if (info && info.count) {
-            return info;
-        }
-    }
-    return nil;
-}
-
-/// 同步：先 NEHotspot 异步 + 等待，无结果再走 CaptiveNetwork。
-/// 主线程上不能使用「等待 + 可能在主队列回调的 NE 接口」组合，否则有死锁风险，此时仅走 CaptiveNetwork。
+/// 同步：NEHotspot 异步 + 短暂等待，供同步调用方复用。
 static NSDictionary<NSString *, id> *LCCopyCurrentWiFiInfoSynchronousNEHotspotFirst(void) {
-    if ([NSThread isMainThread]) {
-        return LCCopyWiFiInfoCaptiveOnly();
-    }
     __block NSDictionary<NSString *, id> *result = nil;
     if (@available(iOS 14.0, *)) {
         dispatch_semaphore_t sem = dispatch_semaphore_create(0);
@@ -68,7 +52,7 @@ static NSDictionary<NSString *, id> *LCCopyCurrentWiFiInfoSynchronousNEHotspotFi
     if (result.count) {
         return result;
     }
-    return LCCopyWiFiInfoCaptiveOnly();
+    return nil;
 }
 
 @interface LCNetWorkHelper()
@@ -331,43 +315,12 @@ void systemNetworkChanged() {
         return;
     }
     if (@available(iOS 14.0, *)) {
-        __weak typeof(self) wself = self;
         [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
             NSString *ssid = (currentNetwork.SSID.length) ? currentNetwork.SSID : nil;
-            if (ssid.length) {
-                dispatch_async(dispatch_get_main_queue(), ^{ callBack(ssid); });
-                return;
-            }
-            __strong typeof(self) sself = wself;
-            if (!sself) {
-                dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
-                return;
-            }
-            dispatch_async(sself.interfaceQueue, ^{
-                NSDictionary<NSString *, id> *captive = LCCopyWiFiInfoCaptiveOnly();
-                NSString *fallback = [captive[@"SSID"] isKindOfClass:[NSString class]] ? captive[@"SSID"] : nil;
-                dispatch_async(dispatch_get_main_queue(), ^{ callBack(fallback); });
-            });
+            dispatch_async(dispatch_get_main_queue(), ^{ callBack(ssid); });
         }];
     } else {
-        __weak typeof(self) wself = self;
-        __strong typeof(self) sself0 = wself;
-        if (!sself0) {
-            dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
-            return;
-        }
-        dispatch_async(sself0.interfaceQueue, ^{
-            __strong typeof(self) sself = wself;
-            if (!sself) {
-                dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
-                return;
-            }
-            NSDictionary<NSString *, id> *captive = LCCopyWiFiInfoCaptiveOnly();
-            NSString *ssid = [captive[@"SSID"] isKindOfClass:[NSString class]] ? [captive[@"SSID"] copy] : nil;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                callBack(ssid);
-            });
-        });
+        dispatch_async(dispatch_get_main_queue(), ^{ callBack(nil); });
     }
 }
 

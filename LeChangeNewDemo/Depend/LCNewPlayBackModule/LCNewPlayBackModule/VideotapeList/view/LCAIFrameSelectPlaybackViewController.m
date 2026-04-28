@@ -84,7 +84,7 @@ static const CGFloat kFSL = 56.0f;
 - (nullable NSArray<NSString *> *)fs_pswListByMergingBasePsk:(NSString *)basePsk extraFromArray:(nullable NSArray<NSString *> *)extra;
 - (BOOL)fs_isDecryptErrorCode:(NSInteger)errorCode;
 - (BOOL)fs_tryHandleDecryptFailureWithErrorCode:(NSInteger)errorCode;
-- (void)fs_showPskAlertForPasswordMismatch:(BOOL)isPasswordError;
+- (void)fs_showPskAlertForPasswordMismatch:(BOOL)isPasswordError errorCode:(NSInteger)errorCode;
 @end
 
 @implementation LCAIFrameSelectPlaybackViewController
@@ -943,11 +943,11 @@ static const CGFloat kFSL = 56.0f;
         [self play];
         return YES;
     }
-    [self fs_showPskAlertForPasswordMismatch:(errorCode == STATE_HLS_KEY_MISMATCH)];
+    [self fs_showPskAlertForPasswordMismatch:(errorCode == STATE_HLS_KEY_MISMATCH) errorCode:errorCode];
     return YES;
 }
 
-- (void)fs_showPskAlertForPasswordMismatch:(BOOL)isPasswordError {
+- (void)fs_showPskAlertForPasswordMismatch:(BOOL)isPasswordError errorCode:(NSInteger)errorCode {
     if (self.fsPskAlert != nil) {
         return;
     }
@@ -981,6 +981,8 @@ static const CGFloat kFSL = 56.0f;
                                                   handler:^(__unused UIAlertAction * _Nonnull action) {
         __strong typeof(weakSelf) selfRef = weakSelf;
         if (selfRef) {
+            NSString *err = [NSString stringWithFormat:@"{errCode: %ld}", (long)errorCode];
+            [selfRef fs_applyBizScene:LCAICloudQuickLookBizSceneRetry message:err];
             selfRef.fsPskAlert = nil;
         }
     }];

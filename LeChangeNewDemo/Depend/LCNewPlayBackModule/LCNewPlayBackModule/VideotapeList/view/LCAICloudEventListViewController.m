@@ -108,7 +108,7 @@ static const CGFloat kQuickLookSpeedButtonMinWidthLandscape = 56.0;
 - (void)ql_saveCloudDownloadToAlbumWithPath:(NSString *)path index:(NSInteger)index;
 - (BOOL)ql_isDecryptErrorCode:(NSInteger)errorCode;
 - (BOOL)ql_tryHandleDecryptFailureWithErrorCode:(NSInteger)errorCode;
-- (void)ql_showPskAlertForPasswordMismatch:(BOOL)isPasswordError;
+- (void)ql_showPskAlertForPasswordMismatch:(BOOL)isPasswordError errorCode:(NSInteger)errorCode;
 - (nullable NSArray<NSString *> *)ql_pswListByMergingBasePsk:(NSString *)basePsk extraFromQuickLook:(nullable NSArray<NSString *> *)extra;
 /// 与 `LCNewVideotapePlayerPersenter+Control` 的 `getPlayWindowsSpeed` 档位一致（1/2/4/8/16/32）
 - (CGFloat)ql_condensedRecordSourceSpeed;
@@ -483,8 +483,8 @@ static const NSInteger kQLChannelTabIndicatorTag = 91001;
     [self.recordPlugin stopRecordStream:NO];
     [self applyQuickLookBizScene:LCAICloudQuickLookBizSceneNone];
     self.persenter.quickLookHasLoaded = NO;
-    [self.loadingView startAnimating];
-    [self.persenter fetchCondensedListForCurrentDate];
+    self.persenter.quickLookBitmapChannelId = [cid copy];
+    [self.persenter fetchCondensedRecordBitmap];
 }
 
 
@@ -601,11 +601,11 @@ static const NSInteger kQLChannelTabIndicatorTag = 91001;
         }
         return NO;
     }
-    [self ql_showPskAlertForPasswordMismatch:(errorCode == STATE_HLS_KEY_MISMATCH)];
+    [self ql_showPskAlertForPasswordMismatch:(errorCode == STATE_HLS_KEY_MISMATCH) errorCode:errorCode];
     return YES;
 }
 
-- (void)ql_showPskAlertForPasswordMismatch:(BOOL)isPasswordError {
+- (void)ql_showPskAlertForPasswordMismatch:(BOOL)isPasswordError errorCode:(NSInteger)errorCode {
     if (self.qlPskAlert != nil) {
         return;
     }
@@ -642,6 +642,8 @@ static const NSInteger kQLChannelTabIndicatorTag = 91001;
                                                          handler:^(__unused UIAlertAction * _Nonnull action) {
         __strong typeof(weakSelf) selfRef = weakSelf;
         if (selfRef) {
+            selfRef.quickLookLastPlayError = [NSString stringWithFormat:@"{errCode: %ld}", (long)errorCode];
+            [selfRef applyQuickLookBizScene:LCAICloudQuickLookBizSceneRetry];
             selfRef.qlPskAlert = nil;
         }
     }];

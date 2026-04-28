@@ -57,7 +57,8 @@ static const NSInteger kLCAICloudQuickLookCalendarDayCount = 30;
     self.quickLookLoadFailed = NO;
     NSString *beginDay = self.dayItems.firstObject.dateString;
     NSString *endDay = self.dayItems.lastObject.dateString;
-    NSString *cidForBitmap = self.quickLookBitmapChannelId.length ? self.quickLookBitmapChannelId : self.selectedChannelId;
+    NSString *cidForBitmap = self.selectedChannelId.length ? self.selectedChannelId : @"0";
+    self.quickLookBitmapChannelId = [cidForBitmap copy];
     __weak typeof(self) weakSelf = self;
     [LCCondensedRecordInterface queryCondensedRecordBitmapWithToken:[LCApplicationDataManager token]
                                                             deviceId:dev.deviceId

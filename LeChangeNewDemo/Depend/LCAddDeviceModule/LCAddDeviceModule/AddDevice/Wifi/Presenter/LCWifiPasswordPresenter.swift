@@ -52,30 +52,22 @@ class LCWifiPasswordPresenter: NSObject, LCWifiPasswordPresenterProtocol {
 			// 可能还没有创建
 			return
 		}
-		
-		//iOS13兼容：iOS13以上需要判断 BSSID是否为系统默认的
-		if #available(iOS 13.0, *) {
-			if LCMobileInfo.sharedInstance()?.wifibssid == "00:00:00:00:00:00" {
-				self.container?.nextButton.lc_enable = false
-				self.container?.wifiNameLabel.text = ""
-				self.container?.passwordInputView.textField.text = ""
-				return
-			}
-		}
-		
+
 		if LCNetWorkHelper.sharedInstance().emNetworkStatus == AFNetworkReachabilityStatus.reachableViaWiFi.rawValue {
-			self.container?.nextButton.lc_enable = true
-			self.container?.wifiNameLabel.text = LCMobileInfo.sharedInstance().wifissid ?? ""
-			
-			//【*】直接从保存的密码取：如果长度大于0，选中check，并填充密码
-			if let password = LCUserManager.shareInstance().ssidPwd(by: self.container?.wifiNameLabel.text), password.count > 0 {
-				self.container?.checkButton.isSelected = true
-				self.container?.passwordInputView.textField.text = password
-			} else {
-				self.container?.checkButton.isSelected = false
-				self.container?.passwordInputView.textField.text = nil
-			}
-			
+            LCNetWorkHelper.sharedInstance().fetchCurrentWiFiSSID { [weak self] currentSSID in
+                guard let self = self else { return }
+                let wifiName = currentSSID ?? ""
+                self.container?.wifiNameLabel.text = wifiName
+                self.container?.nextButton.lc_enable = wifiName.count > 0
+                //【*】直接从保存的密码取：如果长度大于0，选中check，并填充密码
+                if let password = LCUserManager.shareInstance().ssidPwd(by: wifiName), password.count > 0 {
+                    self.container?.checkButton.isSelected = true
+                    self.container?.passwordInputView.textField.text = password
+                } else {
+                    self.container?.checkButton.isSelected = false
+                    self.container?.passwordInputView.textField.text = nil
+                }
+            }
 		} else {
 			self.container?.nextButton.lc_enable = false
 			self.container?.wifiNameLabel.text = ""
