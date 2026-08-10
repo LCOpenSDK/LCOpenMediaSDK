@@ -637,11 +637,10 @@
         }
     };
 
-    __weak typeof(LCAICloudStorageBannerView) *weakBanner = aiBanner;
+    __weak UIView *weakWrapper = wrapper;
     [videoHistoryView.KVOController observe:[LCNewDeviceVideoManager shareInstance] keyPath:@"isOpenCloudStage" options:NSKeyValueObservingOptionNew block:^(id _Nullable observer, id _Nonnull object, NSDictionary<NSString *, id> *_Nonnull change) {
         BOOL hide = [change[@"new"] boolValue];
-        weakHistoryView.hidden = hide;
-        weakBanner.hidden = hide;
+        weakWrapper.hidden = hide;
     }];
 
     return wrapper;
@@ -1125,6 +1124,11 @@
         //对讲连接成功建立
         [LCNewDeviceVideoManager shareInstance].isOpenAudioTalk = YES;
         [LCProgressHUD showMsg:@"device_mid_open_talk_success".lcMedia_T];
+        //国标设备开启对讲成功后同步伴音状态并播放伴音
+        if ([[LCNewDeviceVideoManager shareInstance].currentDevice.accessType isEqualToString:@"GB28181"]) {
+            [LCNewDeviceVideoManager shareInstance].isSoundOn = YES;
+            [self.livePlugin playAudioWithIsCallback:YES];
+        }
     });
 }
 
@@ -1137,6 +1141,14 @@
 {
     //停止对讲
     NSLog(@"onTalkStoped");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //对讲关闭后根据伴音按钮状态同步伴音
+        if ([LCNewDeviceVideoManager shareInstance].isSoundOn) {
+            [self.livePlugin playAudioWithIsCallback:YES];
+        } else {
+            [self.livePlugin stopAudioWithIsCallback:YES];
+        }
+    });
 }
 - (void)onTalkFailure:(LCOpenTalkSource *)source talkError:(NSString *)error type:(int)type {
     //对讲失败

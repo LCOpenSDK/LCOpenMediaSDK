@@ -9,6 +9,7 @@
 #import <LCNetworkModule/LCApplicationDataManager.h>
 #import <LCMediaBaseModule/NSString+MediaBaseModule.h>
 #import <LCBaseModule/LCProgressHUD.h>
+#import <LCBaseModule/LCDateFormatter.h>
 //#import "LCUIKit.h"
 
 static LCNewDeviceVideotapePlayManager *manager = nil;
@@ -20,6 +21,9 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
 @property (nonatomic, assign) NSInteger recordReceive;
 
 @property (assign, nonatomic) BOOL existSubWindow;
+
+/// 国标设备下载看门狗：距上次回调 3s 仍无数据则主动 finishDownload
+@property (nonatomic, strong, nullable) dispatch_block_t gbDownloadFinishBlock;
 
 @end
 
@@ -124,6 +128,33 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
     return self.currentDevice.multiFlag == YES;
 }
 
+- (BOOL)isGbDevice {
+    return [self.currentDevice.accessType isEqualToString:@"GB28181"];
+}
+
+- (void)gbRecordDayStartTime:(NSTimeInterval *)dayStart endTime:(NSTimeInterval *)dayEnd {
+    LCLocalVideotapeInfo *localInfo = self.localVideotapeInfo;
+    NSDate *recordDate = localInfo.beginDate;
+    if (!recordDate) {
+        // 使用 LCDateFormatter，避免系统 12 小时制导致 beginTime 解析失败
+        NSDateFormatter *dateFormatter = [[LCDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        recordDate = [dateFormatter dateFromString:localInfo.beginTime];
+    }
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:recordDate];
+    components.hour = 0;
+    components.minute = 0;
+    components.second = 0;
+    NSDate *startDate = [calendar dateFromComponents:components];
+    components.hour = 23;
+    components.minute = 59;
+    components.second = 59;
+    NSDate *endDate = [calendar dateFromComponents:components];
+    *dayStart = [startDate timeIntervalSince1970];
+    *dayEnd = [endDate timeIntervalSince1970];
+}
+
 - (LCDeviceInfo *)currentDevice {
     return [LCNewDeviceVideoManager shareInstance].currentDevice;
 }
@@ -180,7 +211,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 mainDownloadRecord.deviceId = self.currentDevice.deviceId;
                 mainDownloadRecord.psk = self.currentPsk;
                 mainDownloadRecord.productId = self.currentDevice.productId;
-                mainDownloadRecord.playToken = self.currentDevice.playToken;
+                mainDownloadRecord.playToken = self.currentDevice.playTokenV2;
                 mainDownloadRecord.useTLS = [self currentDevice].tlsEnable;
                 mainDownloadRecord.channelId = [mainInfo.channelId intValue];
                 mainDownloadRecord.recordRegionId = self.cloudVideotapeInfo.recordRegionId;
@@ -203,7 +234,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 subDownloadRecord.deviceId = self.currentDevice.deviceId;
                 subDownloadRecord.psk = self.currentPsk;
                 subDownloadRecord.productId = self.currentDevice.productId;
-                subDownloadRecord.playToken = self.currentDevice.playToken;
+                subDownloadRecord.playToken = self.currentDevice.playTokenV2;
                 subDownloadRecord.useTLS = [self currentDevice].tlsEnable;
                 subDownloadRecord.channelId = [subInfo.channelId intValue];
                 subDownloadRecord.recordRegionId = self.subCloudVideotapeInfo.recordRegionId;
@@ -235,7 +266,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 mainDownloadRecord.deviceId = self.currentDevice.deviceId;
                 mainDownloadRecord.psk = self.currentPsk;
                 mainDownloadRecord.productId = self.currentDevice.productId;
-                mainDownloadRecord.playToken = self.currentDevice.playToken;
+                mainDownloadRecord.playToken = self.currentDevice.playTokenV2;
                 mainDownloadRecord.useTLS = [self currentDevice].tlsEnable;
                 mainDownloadRecord.channelId = [mainInfo.channelId intValue];
                 mainDownloadRecord.recordRegionId = self.cloudVideotapeInfo.recordRegionId;
@@ -258,7 +289,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 subDownloadRecord.deviceId = self.currentDevice.deviceId;
                 subDownloadRecord.psk = self.currentPsk;
                 subDownloadRecord.productId = self.currentDevice.productId;
-                subDownloadRecord.playToken = self.currentDevice.playToken;
+                subDownloadRecord.playToken = self.currentDevice.playTokenV2;
                 subDownloadRecord.useTLS = [self currentDevice].tlsEnable;
                 subDownloadRecord.channelId = [subInfo.channelId intValue];
                 subDownloadRecord.recordRegionId = self.subCloudVideotapeInfo.recordRegionId;
@@ -280,7 +311,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 mainDownloadRecord.deviceId = self.currentDevice.deviceId;
                 mainDownloadRecord.psk = self.currentPsk;
                 mainDownloadRecord.productId = self.currentDevice.productId;
-                mainDownloadRecord.playToken = self.currentDevice.playToken;
+                mainDownloadRecord.playToken = self.currentDevice.playTokenV2;
                 mainDownloadRecord.useTLS = [self currentDevice].tlsEnable;
                 mainDownloadRecord.channelId = [mainInfo.channelId intValue];
                 mainDownloadRecord.recordRegionId = self.cloudVideotapeInfo.recordRegionId;
@@ -295,12 +326,11 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
             }
     }else {
         //开始下载设备录像
-        if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti) {
-            // 按照时间下载
-            NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
-            tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSTimeInterval beginTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginTime] timeIntervalSince1970];
-            NSTimeInterval endTime = [[tDataFormatter dateFromString:[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endTime] timeIntervalSince1970];
+        BOOL isGbDevice = [[LCNewDeviceVideotapePlayManager shareInstance] isGbDevice];
+        if ([LCNewDeviceVideotapePlayManager shareInstance].isMulti || isGbDevice || [LCNewDeviceVideotapePlayManager shareInstance].currentDevice.productId.length > 0) {
+            // 按照时间下载（使用 beginDate/endDate，避免系统 12 小时制解析失败）
+            NSTimeInterval beginTime = [[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.beginDate timeIntervalSince1970];
+            NSTimeInterval endTime = [[LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate timeIntervalSince1970];
             LCNewVideotapeDownloadInfo *mainInfo = [self getDeviceVideotapeDownloadInfo:self.localVideotapeInfo];
             [self.downloadQueue setObject:mainInfo forKey:[NSString stringWithFormat:@"%ld", (long)mainInfo.index]];
             LCOpenSDK_DownloadByUTCTimeParam *downloadUTCTime = [[LCOpenSDK_DownloadByUTCTimeParam alloc] init];
@@ -310,9 +340,9 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
             downloadUTCTime.deviceId = self.currentDevice.deviceId;
             downloadUTCTime.psk = self.currentPsk;
             downloadUTCTime.productId = self.currentDevice.productId;
-            downloadUTCTime.playToken = self.currentDevice.playToken;
+            downloadUTCTime.playToken = self.currentDevice.playTokenV2;
             downloadUTCTime.useTLS = [self currentDevice].tlsEnable;
-            downloadUTCTime.channelId = 0;
+            downloadUTCTime.channelId = self.isMulti ? 0 : [mainInfo.channelId integerValue];
             downloadUTCTime.beginTime = beginTime;
             downloadUTCTime.endTime = endTime;
             NSInteger result = [[LCOpenSDK_Download shareMyInstance] startDownloadDeviceRecordByUtcTime:downloadUTCTime];
@@ -320,25 +350,27 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
                 NSLog(@"下载设备录像返回码：%ld %@",(long)result, downloadUTCTime.description);
             }
             
-            LCNewVideotapeDownloadInfo *subInfo = [self getDeviceVideotapeDownloadInfo:self.localVideotapeInfo];
-            subInfo.channelId = @"1";
-            subInfo.index = subInfo.index+1;
-            [self.downloadQueue setObject:subInfo forKey:[NSString stringWithFormat:@"%ld", (long)subInfo.index]];
-            LCOpenSDK_DownloadByUTCTimeParam *subDownloadUTCTime = [[LCOpenSDK_DownloadByUTCTimeParam alloc] init];
-            subDownloadUTCTime.index = subInfo.index;
-            subDownloadUTCTime.savePath = subInfo.localPath;
-            subDownloadUTCTime.accessToken = [LCApplicationDataManager token];
-            subDownloadUTCTime.deviceId = self.currentDevice.deviceId;
-            subDownloadUTCTime.psk = self.currentPsk;
-            subDownloadUTCTime.productId = self.currentDevice.productId;
-            subDownloadUTCTime.playToken = self.currentDevice.playToken;
-            subDownloadUTCTime.useTLS = [self currentDevice].tlsEnable;
-            subDownloadUTCTime.channelId = 1;
-            subDownloadUTCTime.beginTime = beginTime;
-            subDownloadUTCTime.endTime = endTime;
-            result = [[LCOpenSDK_Download shareMyInstance] startDownloadDeviceRecordByUtcTime:subDownloadUTCTime];
-            if (result != 0) {
-                NSLog(@"下载设备录像返回码：%ld %@",(long)result, subDownloadUTCTime.description);
+            if (self.isMulti) {
+                LCNewVideotapeDownloadInfo *subInfo = [self getDeviceVideotapeDownloadInfo:self.localVideotapeInfo];
+                subInfo.channelId = @"1";
+                subInfo.index = subInfo.index+1;
+                [self.downloadQueue setObject:subInfo forKey:[NSString stringWithFormat:@"%ld", (long)subInfo.index]];
+                LCOpenSDK_DownloadByUTCTimeParam *subDownloadUTCTime = [[LCOpenSDK_DownloadByUTCTimeParam alloc] init];
+                subDownloadUTCTime.index = subInfo.index;
+                subDownloadUTCTime.savePath = subInfo.localPath;
+                subDownloadUTCTime.accessToken = [LCApplicationDataManager token];
+                subDownloadUTCTime.deviceId = self.currentDevice.deviceId;
+                subDownloadUTCTime.psk = self.currentPsk;
+                subDownloadUTCTime.productId = self.currentDevice.productId;
+                subDownloadUTCTime.playToken = self.currentDevice.playTokenV2;
+                subDownloadUTCTime.useTLS = [self currentDevice].tlsEnable;
+                subDownloadUTCTime.channelId = 1;
+                subDownloadUTCTime.beginTime = beginTime;
+                subDownloadUTCTime.endTime = endTime;
+                result = [[LCOpenSDK_Download shareMyInstance] startDownloadDeviceRecordByUtcTime:subDownloadUTCTime];
+                if (result != 0) {
+                    NSLog(@"下载设备录像返回码：%ld %@",(long)result, subDownloadUTCTime.description);
+                }
             }
         } else {
             // 按照ID下载
@@ -351,7 +383,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
             downloadRecordId.deviceId = self.currentDevice.deviceId;
             downloadRecordId.psk = self.currentPsk;
             downloadRecordId.productId = self.currentDevice.productId;
-            downloadRecordId.playToken = self.currentDevice.playToken;
+            downloadRecordId.playToken = self.currentDevice.playTokenV2;
             downloadRecordId.useTLS = [self currentDevice].tlsEnable;
             downloadRecordId.channelId = [mainInfo.channelId integerValue];
             downloadRecordId.fileId = mainInfo.recordId;
@@ -387,8 +419,19 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
         info.recieve += recieve;
     }
     if (status != -1) {
+        LCVideotapeDownloadState prevStatus = info.donwloadStatus;
         info.donwloadStatus = status;
-        if (status == LCVideotapeDownloadStatusEnd) {
+        // 下载进入终止状态时取消国标看门狗，避免结束后误触发 finishDownload
+        if (status == LCVideotapeDownloadStatusFail ||
+            status == LCVideotapeDownloadStatusEnd ||
+            status == LCVideotapeDownloadStatusCancle ||
+            status == LCVideotapeDownloadStatusSuspend ||
+            status == LCVideotapeDownloadStatusTimeout ||
+            status == LCVideotapeDownloadStatusKeyError ||
+            status == LCVideotapeDownloadStatusPasswordError) {
+            [self cancelGbDownloadFinishTimer];
+        }
+        if (status == LCVideotapeDownloadStatusEnd && prevStatus != LCVideotapeDownloadStatusEnd) {
             [[LCOpenSDK_Download shareMyInstance] stopDownload:info.index];
             //下载正常结束时，保存到相册
             [self _saveToAlbumWithPath:info.localPath index:index];
@@ -436,6 +479,7 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
 }
 
 - (void)cancleDownloadAll {
+    [self cancelGbDownloadFinishTimer];
     for (LCNewVideotapeDownloadInfo *info in self.downloadQueue.allValues) {
         info.donwloadStatus = LCVideotapeDownloadStatusCancle;
         [[LCOpenSDK_Download shareMyInstance] stopDownload:info.index];
@@ -489,11 +533,39 @@ static LCNewDeviceVideotapePlayManager *manager = nil;
 - (void)onDownloadReceiveData:(NSInteger)index datalen:(NSInteger)datalen {
     NSLog(@"REVIEVE_DOWN===data: %ld  index:%ld", (long)datalen, (long)index);
     self.recordReceive += datalen;
+    // 国标设备：距上次回调 3s 后仍收不到数据，主动调用 finishDownload 完成下载
+    if (self.isGbDevice) {
+        [self resetGbDownloadFinishTimer:index];
+    }
     //每隔0.5加载数据，避免过快加载导致UI卡顿
     if (self.recordTime == nil || [[NSDate date] timeIntervalSinceDate:self.recordTime] >= 0.5) {
         self.recordTime = [NSDate date];
         [self updateDownload:index Recieve:self.recordReceive Status:-1];
         self.recordReceive = 0;
+    }
+}
+
+/// 重置国标设备下载看门狗：每次收到回调都重新计时，3s 内无新回调则主动完成下载
+- (void)resetGbDownloadFinishTimer:(NSInteger)index {
+    [self cancelGbDownloadFinishTimer];
+    __weak typeof(self) weakSelf = self;
+    self.gbDownloadFinishBlock = dispatch_block_create(0, ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) return;
+        NSLog(@"国标设备 3s 未收到下载数据，主动完成下载 index:%ld", (long)index);
+        strongSelf.gbDownloadFinishBlock = nil;
+        [[LCOpenSDK_Download shareMyInstance] finishDownload:index];
+        // 主动结束后走下载完成流程，刷新按钮状态
+        [strongSelf updateDownload:index Recieve:-1 Status:LCVideotapeDownloadStatusEnd];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), self.gbDownloadFinishBlock);
+}
+
+/// 取消国标设备下载看门狗
+- (void)cancelGbDownloadFinishTimer {
+    if (self.gbDownloadFinishBlock) {
+        dispatch_block_cancel(self.gbDownloadFinishBlock);
+        self.gbDownloadFinishBlock = nil;
     }
 }
 

@@ -67,6 +67,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)liveVideoPlayerOnAssistFrameInfo:(NSDictionary*)jsonDic;
 
+/// 分辨率变化回调
+- (void)liveVideoPlayer:(LCLiveVideoPlayer *)videoPlayer resolutionChangedWidth:(NSInteger)width height:(NSInteger)height;
+
 @end
 
 @interface LCLiveVideoPlayer : LCBaseVideoPlayer

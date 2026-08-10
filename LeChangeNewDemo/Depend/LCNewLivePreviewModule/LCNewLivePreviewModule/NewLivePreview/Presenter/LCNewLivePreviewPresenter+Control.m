@@ -98,7 +98,7 @@
     param.pid = [LCNewDeviceVideoManager shareInstance].currentDevice.productId;
     param.did = [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId;
     param.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
-    param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
+    param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2;
     param.accessToken = [LCApplicationDataManager token];
     param.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
     param.isAssistFrame = YES;
@@ -113,8 +113,8 @@
     }
     __block NSString *tokenKey = @"";
     do {
-        [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey) {
-            tokenKey = playTokenKey;
+        [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey, NSString * _Nonnull playTokenKeyV2) {
+            tokenKey = playTokenKeyV2;
         } failure:^(NSString * _Nonnull errorCode) {
             //
         }];
@@ -127,7 +127,7 @@
         subParam.pid = [LCNewDeviceVideoManager shareInstance].currentDevice.productId;
         subParam.did = [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId;
         subParam.cid = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId integerValue];
-        subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
+        subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2;
         subParam.accessToken = [LCApplicationDataManager token];
         subParam.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
         subParam.isAssistFrame = YES;
@@ -245,7 +245,7 @@
     param.pid = [LCNewDeviceVideoManager shareInstance].currentDevice.productId;
     param.did = [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId;
     param.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId integerValue];
-    param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
+    param.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2;
     param.accessToken = [LCApplicationDataManager token];
     param.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
     param.isAssistFrame = YES;
@@ -259,8 +259,8 @@
     }
     __block NSString *tokenKey = @"";
     do {
-        [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey) {
-            tokenKey = playTokenKey;
+        [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey, NSString * _Nonnull playTokenKeyV2) {
+            tokenKey = playTokenKeyV2;
         } failure:^(NSString * _Nonnull errorCode) {
             //
         }];
@@ -273,7 +273,7 @@
         subParam.pid = [LCNewDeviceVideoManager shareInstance].currentDevice.productId;
         subParam.did = [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId;
         subParam.cid = [[LCNewDeviceVideoManager shareInstance].subChannelInfo.channelId integerValue];
-        subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
+        subParam.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2;
         subParam.accessToken = [LCApplicationDataManager token];
         subParam.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
         subParam.isAssistFrame = YES;
@@ -319,15 +319,15 @@
         talkSource.pid = [LCNewDeviceVideoManager shareInstance].currentDevice.productId;
         talkSource.did = [LCNewDeviceVideoManager shareInstance].currentDevice.deviceId;
         talkSource.cid = [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.ability containsString:@"AudioTalkV1"] ? [[LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelId intValue] : -1;
-        talkSource.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playToken;
+        talkSource.playToken = [LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2;
         talkSource.accessToken = LCApplicationDataManager.token;
         talkSource.psk = [LCNewDeviceVideoManager shareInstance].currentPsk;
         talkSource.talkType = @"talk";
         
         __block NSString *tokenKey = @"";
         do {
-            [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey) {
-                tokenKey = playTokenKey;
+            [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString * _Nonnull playTokenKey, NSString * _Nonnull playTokenKeyV2) {
+                tokenKey = playTokenKeyV2;
             } failure:^(NSString * _Nonnull errorCode) {
                 //
             }];

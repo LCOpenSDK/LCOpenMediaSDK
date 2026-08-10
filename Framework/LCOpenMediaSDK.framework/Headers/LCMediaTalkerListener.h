@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef __LCMedia_LCMedia_TalkerListener_h__

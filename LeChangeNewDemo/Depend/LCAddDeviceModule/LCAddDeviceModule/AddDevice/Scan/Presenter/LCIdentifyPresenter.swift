@@ -72,7 +72,7 @@ class LCIdentifyPresenter: NSObject, LCSheetViewDelegate {
         //如果http或者https开头的
         
         
-        let regex = "[0-9a-zA-Z]{10,32}"
+        let regex = "[0-9a-zA-Z]{10,50}"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         let isPure = predicate.evaluate(with: qrCode.deviceSN)
         //如果SN为空，直接返回

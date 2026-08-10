@@ -77,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)cloudVideoPlayerOnAssistFrameInfo:(NSDictionary*)jsonDic;
 
+/// 分辨率变化回调
+- (void)cloudVideoPlayer:(LCCloudVideoPlayer *)videoPlayer resolutionChangedWidth:(NSInteger)width height:(NSInteger)height;
+
 @end
 
 @interface LCCloudVideoPlayer : LCBaseVideoPlayer

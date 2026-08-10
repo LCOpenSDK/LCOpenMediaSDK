@@ -732,6 +732,7 @@ static const CGFloat kFSL = 56.0f;
     [self.bs setTitle:T[(NSUInteger)(self.stp % 6)] forState:UIControlStateNormal];
 
     if (land) {
+        // 与竖屏统一使用 `lc_frameselect_tb_*` 图套；横屏为白线稿 + template（与快看 dock 同视觉策略），避免与竖屏用两套图标导致状态/图形不一致
         self.dk.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         self.bs.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         [self fs_applyLandscapeToolbarTemplateImage:(playing ? [LCAIFrameSelectPlaybackToolbarImages pauseImage] : [LCAIFrameSelectPlaybackToolbarImages playImage]) button:self.bp];
@@ -1003,7 +1004,7 @@ static const CGFloat kFSL = 56.0f;
     }
     NSInteger playCid = [self fs_resolvedPlaybackChannelIdInteger];
     __weak typeof(self) w = self;
-    [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString *key) {
+    [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString *key, NSString *keyV2) {
         __strong typeof(w) s = w;
         if (!s) {
             return;
@@ -1014,9 +1015,10 @@ static const CGFloat kFSL = 56.0f;
         so.did = d.deviceId;
         so.cid = playCid;
         so.psk = effectivePsk;
-        so.playToken = d.playToken;
+        so.pswArray = [s fs_pswListByMergingBasePsk:effectivePsk extraFromArray:s.frameSelectPswArray];
+        so.playToken = d.playTokenV2;
         so.accessToken = [LCApplicationDataManager token];
-        so.playTokenKey = key;
+        so.playTokenKey = keyV2;
         so.recordRegionId = s.cloudRecord.recordRegionId ?: @"";
         so.timeout = 3 * 60;
         so.recordType = s.cloudRecord.type;
@@ -1040,7 +1042,7 @@ static const CGFloat kFSL = 56.0f;
     }
     NSString *ch = [self fs_resolvedPlaybackChannelIdString];
     __weak typeof(self) w = self;
-    [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString *key) {
+    [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString *key, NSString *keyV2) {
         __strong typeof(w) s = w;
         if (!s) {
             return;
@@ -1052,9 +1054,9 @@ static const CGFloat kFSL = 56.0f;
         NSString *effectivePsk = s.frameSelectPagePlayPsw.length > 0 ? s.frameSelectPagePlayPsw : (d.deviceId ?: @"");
         so.psk = effectivePsk;
         so.pswArray = [s fs_pswListByMergingBasePsk:effectivePsk extraFromArray:s.frameSelectPswArray];
-        so.playToken = d.playToken;
+        so.playToken = d.playTokenV2;
         so.accessToken = [LCApplicationDataManager token];
-        so.playTokenKey = key;
+        so.playTokenKey = keyV2;
         NSString *rg = s.cloudRecord.recordRegionId.length ? s.cloudRecord.recordRegionId : @"";
         so.recordRegionId = rg.length ? rg : @"";
         so.recordPath = s.cloudRecord.recordPath ?: @"";
@@ -1181,12 +1183,15 @@ static const CGFloat kFSL = 56.0f;
     NSString *pth = [dir stringByAppendingPathComponent:[NSString stringWithFormat:@"%f_dl.mp4", [NSDate date].timeIntervalSince1970]];
     self.didx = self.didx + 1;
     if (self.cloudRecord.cloudPlayMethod == 0) {
+        // 与 `LCNewDeviceVideotapePlayManager` 云录像（LCNewPlayBackCloud）下载一致：非多目 `startDownload:`，多目 `startDownloadCloudRecord:` 且无 condensed 扩展
         [self fs_executeDownloadMethod0NormalCloudWithSavePath:pth];
     } else {
+        // method == 1：与 `LCAICloudEventListViewController` 的 `ql_onTapDownload` 一致
         [self fs_executeDownloadMethod1LikeQuickLookWithSavePath:pth];
     }
 }
 
+/// 与 `LCNewDeviceVideotapePlayManager` `-startDeviceDownload` 中 `LCNewPlayBackCloud` 分支一致；通道与列表选中及 `playCloudLikeVideotapePlayer` 一致
 - (void)fs_executeDownloadMethod0NormalCloudWithSavePath:(NSString *)pth {
     LCDeviceInfo *d = [LCNewDeviceVideoManager shareInstance].currentDevice;
     if (!d) {
@@ -1197,20 +1202,32 @@ static const CGFloat kFSL = 56.0f;
     BOOL multi = (d.multiFlag == YES);
     [[LCOpenSDK_Download shareMyInstance] setListener:self];
     NSInteger c = 0;
-    LCOpenSDK_DownloadByRecordIdParam *pa = [LCOpenSDK_DownloadByRecordIdParam new];
-    pa.index = self.didx;
-    pa.savePath = pth;
-    pa.accessToken = [LCApplicationDataManager token];
-    pa.deviceId = d.deviceId;
-    pa.psk = psk;
-    pa.productId = d.productId;
-    pa.playToken = d.playToken;
-    pa.useTLS = d.tlsEnable;
-    pa.channelId = channelId;
-    pa.recordRegionId = self.cloudRecord.recordRegionId ?: @"";
-    pa.cloudType = self.cloudRecord.type;
-    pa.speed = 1.0f;
-    c = [[LCOpenSDK_Download shareMyInstance] startDownloadCloudRecord:pa];
+    if (multi) {
+        LCOpenSDK_DownloadByRecordIdParam *pa = [LCOpenSDK_DownloadByRecordIdParam new];
+        pa.index = self.didx;
+        pa.savePath = pth;
+        pa.accessToken = [LCApplicationDataManager token];
+        pa.deviceId = d.deviceId;
+        pa.psk = psk;
+        pa.productId = d.productId;
+        pa.playToken = d.playTokenV2;
+        pa.useTLS = d.tlsEnable;
+        pa.channelId = channelId;
+        pa.recordRegionId = self.cloudRecord.recordRegionId ?: @"";
+        pa.cloudType = self.cloudRecord.type;
+        pa.speed = 1.0f;
+        c = [[LCOpenSDK_Download shareMyInstance] startDownloadCloudRecord:pa];
+    } else {
+        c = [[LCOpenSDK_Download shareMyInstance] startDownload:self.didx
+                                                       filepath:pth
+                                                          token:[LCApplicationDataManager token]
+                                                          devID:d.deviceId
+                                                      channelID:channelId
+                                                            psk:psk
+                                                 recordRegionId:self.cloudRecord.recordRegionId ?: @""
+                                                           Type:(NSInteger)self.cloudRecord.type
+                                                         useTls:d.tlsEnable];
+    }
     if (c != 0) {
         self.dBusy = NO;
         [self refreshFrameSelectPlayerToolbar];

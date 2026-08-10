@@ -112,6 +112,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)isMulti;
 
+/// 国标设备：平台 accessType == "GB28181"
+- (BOOL)isGbDevice;
+
+/// 国标设备录像当天起止时间 00:00:00 - 23:59:59
+- (void)gbRecordDayStartTime:(NSTimeInterval *)dayStart endTime:(NSTimeInterval *)dayEnd;
+
 /// 固定通道id
 - (NSString *)fixedCameraID;
 

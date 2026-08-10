@@ -3,11 +3,12 @@
 //  
 
 #import "LCCloudVideotapeInfo.h"
+#import <LCBaseModule/LCDateFormatter.h>
 
 @implementation LCLocalVideotapeInfo
 
 -(NSString *)durationTime{
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate * startTime = [dataFormatter dateFromString:self.beginTime];
     NSDate * endTime = [dataFormatter dateFromString:self.endTime];
@@ -19,7 +20,7 @@
 }
 
 -(NSDate *)beginDate{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[LCDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -27,7 +28,7 @@
 }
 
 - (NSDate *)endDate{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[LCDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -77,7 +78,7 @@
 }
 
 -(NSString *)durationTime{
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate * startTime = [dataFormatter dateFromString:self.beginTime];
     NSDate * endTime = [dataFormatter dateFromString:self.endTime];
@@ -89,7 +90,7 @@
 }
 
 -(NSDate *)beginDate{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[LCDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -97,7 +98,7 @@
 }
 
 - (NSDate *)endDate{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[LCDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

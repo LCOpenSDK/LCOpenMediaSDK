@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef LCMedia_LCMedia_Utils_h
@@ -84,8 +84,6 @@ typedef NS_ENUM(NSInteger, E_LOG_LEVEL)
  */
 + (NSString*)queryUpgradeProcess:(NSString*)deviceSN userName:(NSString*)userName password:(NSString*)passWord;
 
-+ (NSString*)getAHConfigPath;
-
 + (NSString *)getVersion;
 
 /**
@@ -125,6 +123,12 @@ typedef NS_ENUM(NSInteger, E_LOG_LEVEL)
  * @return 初始化ID字符串
  */
 + (NSString*)getInitId;
+
+/// HLS/RTSP PSK 拼接后缀（供 Swift 等对外调用；实现转发至 `LCMediaUtilsInside`）。
++ (NSString *)lc_pskConcatSuffixForHLS;
+
+/// 海外 RTSP PSK 派生（keySeed → 最多 16 字符；经 DiffImpl 加解密实现）。
++ (NSString *)transformRtspPsk:(NSString *)keySeed;
 
 @end
 

@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorRtspKeepAliveTimeout                 = RTSP_ERROR_CODE + 19,   //408001
     LCVideoPlayErrorRtspWaitMessageTimeout               = RTSP_ERROR_CODE + 20,   //408002
     LCVideoPlayErrorRtspSockTimeout                      = RTSP_ERROR_CODE + 21,   //504008
-    LCVideoPlayErrorRtspAhDecryptFail                    = RTSP_ERROR_CODE + 22,   //120000, 安恒解密失败
+    LCVideoPlayErrorRtspLegacyDecryptFail                = RTSP_ERROR_CODE + 22,   //120000, 底层历史解密失败码(兼容保留)
     LCVideoPlayErrorRtspStreamModifyError                = RTSP_ERROR_CODE + 23,   //602019, 码流加解密失败
     LCVideoPlayErrorRtspMultiplayerLimit                 = RTSP_ERROR_CODE + 24,   //503040, 多终端登录限流
     LCVideoPlayErrorRtspUnknown                          = RTSP_ERROR_CODE + 999,   //rtsp未知错误(媒体组件层定义)
@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorDhhttpKeyError                       = DHHTTP_ERROR_CODE + 21,   //1000005, 客户端密钥和服务端密钥不一致
     LCVideoPlayErrorDhhttpReqTimeoutRetry                = DHHTTP_ERROR_CODE + 22,   //408100
     LCVideoPlayErrorDhhttpSockTimeout                    = DHHTTP_ERROR_CODE + 23,   //504015
-    LCVideoPlayErrorDhhttpAhDecryptFail                  = DHHTTP_ERROR_CODE + 24,   //130000, 安恒解密失败
+    LCVideoPlayErrorDhhttpLegacyDecryptFail              = DHHTTP_ERROR_CODE + 24,   //130000, 底层历史解密失败码(兼容保留)
     LCVideoPlayErrorDhhttpStreamModifyError              = DHHTTP_ERROR_CODE + 25,   //602017, 码流加解密失败
     LCVideoPlayErrorDhhttpLiveFinished                   = DHHTTP_ERROR_CODE + 26,   //live结束消息
     LCVideoPlayErrorDhhttpMultiplayerLimit               = DHHTTP_ERROR_CODE + 27,   //多终端登录限流(废弃,播放库不会回调)
@@ -174,6 +174,8 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorHlsExtractFailed                     = HLS_ERROR_CODE + 10,   //13, 抽帧失败需要app设置播放速度为1
     LCVideoPlayErrorHlsDeviceKeyError                    = HLS_ERROR_CODE + 11,   //14, 设备密码错误
     LCVideoPlayErrorHlsEncryptKeyError                   = HLS_ERROR_CODE + 12,   //15, 码流密钥错误
+    LCVideoPlayErrorHlsStopDownload                      = HLS_ERROR_CODE + 13,   //16, 停止下载（不代表拉流错误）
+    LCVideoPlayErrorHlsClientLimitReached                = HLS_ERROR_CODE + 14,   //100, 达到并发拉流客户端路数(5路)限制
     LCVideoPlayErrorHlsUnknown                           = HLS_ERROR_CODE + 999,  //HLS未知错误(媒体组件层定义)
     
     //NETSDK错误类型
@@ -217,7 +219,7 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorRestNotSupport                        = REST_ERROR_CODE_10000 + 12, //11002, 请求的方法不支持
     LCVideoPlayErrorRestContentTypeIllegal                = REST_ERROR_CODE_10000 + 13, //11003, 请求Content-Type非法
     LCVideoPlayErrorRestContentLengthNoExist              = REST_ERROR_CODE_10000 + 14, //11005, 请求Content-Length不存在
-    LCVideoPlayErrorRestContentMd5Error                   = REST_ERROR_CODE_10000 + 15, //11006, 请求Content-MD5错误
+    LCVideoPlayErrorRestContentDigestError                = REST_ERROR_CODE_10000 + 15, //11006, 请求Content-MD5错误
     LCVideoPlayErrorRestNotSupportClient                  = REST_ERROR_CODE_10000 + 16, //11007, 非法客户端接入
     LCVideoPlayErrorRestProtocolInvalid                   = REST_ERROR_CODE_10000 + 17, //11008, 协议版本无效
     LCVideoPlayErrorRestXPcsClientUaError                 = REST_ERROR_CODE_10000 + 18, //11009, 请求客户端信息（x-pcs-client-ua）错误
@@ -346,6 +348,11 @@ typedef NS_ENUM(NSInteger, LCVideoPlayError)
     LCVideoPlayErrorHTTPError = HTTP_ERROR_CODE //标准HTTP错误
 };
 
+/// 兼容旧枚举名（安恒加密已移除，请使用 LCVideoPlayErrorRtspLegacyDecryptFail）
+#define LCVideoPlayErrorRtspAhDecryptFail LCVideoPlayErrorRtspLegacyDecryptFail
+/// 兼容旧枚举名（安恒加密已移除，请使用 LCVideoPlayErrorDhhttpLegacyDecryptFail）
+#define LCVideoPlayErrorDhhttpAhDecryptFail LCVideoPlayErrorDhhttpLegacyDecryptFail
+
 #pragma mark - 获取登录句柄失败错误码
 typedef NS_ENUM(NSInteger, LCMediaLoginError)
 {
@@ -424,7 +431,7 @@ typedef NS_ENUM(NSInteger, LCVideoEncryptMode) {
     LCVideoEncryptModeNone = 0,  //不加密
     LCVideoEncryptModeCustom = 1,    //自定义加密(0x95)
     LCVideoEncryptModeTCM = 3,       //三码合一加密(0xb5)
-    LCVideoEncryptModeAH = 4         //安恒加密(0xb5)
+    LCVideoEncryptModeC5 = 5         //0xC5加密
 };
 
 #pragma mark - 对讲定义
@@ -548,6 +555,13 @@ typedef NS_ENUM(NSInteger, LCMediaPlayNoiseAbility) {
 typedef NS_ENUM(NSInteger, LCOpenMediaRecordType) {
     LCOpenMediaRecordTypeSD = 0, //SD卡录像
     LCOpenMediaRecordTypeNVR = 1 //NVR录像
+};
+
+//图片下载图片类型定义
+typedef NS_ENUM(NSInteger, LCDevImageType) {
+    LCDevImageTypeCustom = 0, //普通封面图
+    LCDevImageTypeFace,  //人脸图
+    LCDevImageTypePerson //人形图
 };
 
 

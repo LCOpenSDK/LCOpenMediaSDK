@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LCOpenMediaSDK"
-  spec.version      = "5.2.0"
+  spec.version      = "5.3.0"
   spec.summary      = "乐橙云开放平台SDK"
   spec.description  = "乐橙云开放平台SDK,开发者可以用SDK开发APP"
   spec.homepage     = "https://github.com/LCOpenSDK/LCOpenSDK"

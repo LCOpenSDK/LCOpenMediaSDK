@@ -510,6 +510,14 @@ SWIFT_PROTOCOL("_TtP14LCOpenMediaSDK23LCOpenMediaLiveDelegate_")
 - (void)onNetStatus:(NSInteger)networkStatus;
 /// 辅助帧回调
 - (void)onAssistFrameInfoWithJsonDic:(NSDictionary<NSString *, id> * _Nonnull)jsonDic;
+/// 分辨率变化回调
+/// \param width 新分辨率宽
+///
+/// \param height 新分辨率高
+///
+/// \param videoItem 播放基础参数
+///
+- (void)onResolutionChangedWithWidth:(NSInteger)width height:(NSInteger)height videoItem:(LCBaseVideoItem * _Nonnull)videoItem;
 - (void)onSoundChanged:(BOOL)isAudioOpen;
 - (NSString * _Nonnull)configFilePathWithCid:(NSInteger)cid fileType:(enum LCFilePathType)fileType SWIFT_WARN_UNUSED_RESULT;
 - (void)onSnapPicFail;
@@ -1108,6 +1116,16 @@ SWIFT_PROTOCOL("_TtP14LCOpenMediaSDK22LCRecordPluginDelegate_")
 /// \param jsonDic 辅助信息
 ///
 - (void)onAssistFrameInfoWithJsonDic:(NSDictionary<NSString *, id> * _Nonnull)jsonDic;
+@optional
+/// 分辨率变化回调
+/// \param width 新分辨率宽
+///
+/// \param height 新分辨率高
+///
+/// \param videoItem 播放基础参数
+///
+- (void)onResolutionChangedWithWidth:(NSInteger)width height:(NSInteger)height videoItem:(LCBaseVideoItem * _Nonnull)videoItem;
+@required
 /// 音频开关状态回调
 /// \param isAudioOpen 伴音状态
 ///

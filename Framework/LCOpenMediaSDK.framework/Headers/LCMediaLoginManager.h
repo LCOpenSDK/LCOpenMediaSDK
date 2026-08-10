@@ -72,23 +72,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)initMediaService:(LCMediaComponentsMode)mediaMode;
 
-/**
- * 初始化安恒加密服务
- * @param deviceIdentity   终端设备唯一标识
- * @param svrAddr                   安恒密盾服务地址
- * @note: 此接口为同步接口，在用户账号下有设备开通了安恒加密套餐时才需要调用
- */
-- (void)initAHService:(NSString*)deviceIdentity SvrAddr:(NSString*)svrAddr;
-
-
 /// 配置支持的功能
 /// @param functionSupport 支持的功能
 - (void)configFunctionSupport:(LCMediaFunctionSupport)functionSupport;
-
-/**
-* 获取安恒服务初始化状态
-*/
-- (NSInteger)getAHServiceState;
 
 /**
  *  rest获取登陆组件和统计组件服务器信息并初始化
@@ -363,6 +349,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// metal灰度
 /// @param enable true:iOS15以上走metal渲染; false:使用openGL
 - (void)configMetalEnabled:(BOOL)enable;
+
+/// 配置 clientUA 信息。实现依赖 commonSDK 新库提供接口，当前版本调用不产生效果。
+/// @param clientUA clientUA 经 base64 编码后的字符串
+- (void)configClientUA:(NSString *)clientUA;
 
 @end
 

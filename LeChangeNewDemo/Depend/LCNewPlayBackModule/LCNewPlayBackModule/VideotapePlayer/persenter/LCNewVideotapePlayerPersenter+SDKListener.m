@@ -118,6 +118,7 @@
     // play
     weakSelf(self);
     dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself stopGbPlayerTimeWatch];
         if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
             [weakself onRecording]; //关闭已开启的
         }
@@ -146,19 +147,7 @@
 - (void)onPlayFinished:(LCBaseVideoItem * _Nonnull)videoItem {
     weakSelf(self);
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([LCNewDeviceVideotapePlayManager shareInstance].isOpenRecoding) {
-            [weakself onRecording];
-        }
-        [weakself.recordPlugin stopRecordStream:YES];
-        [LCNewDeviceVideotapePlayManager shareInstance].playStatus = STATE_RTSP_FILE_PLAY_OVER;
-        [LCNewDeviceVideotapePlayManager shareInstance].isPlay = NO;
-        [LCNewDeviceVideotapePlayManager shareInstance].pausePlay = YES;
-        //最后结束时刻精准到最后一秒
-        if ([[LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest timeIntervalSinceDate:[LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate] < 0) {
-            [LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest = [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo ? [LCNewDeviceVideotapePlayManager shareInstance].cloudVideotapeInfo.endDate : [LCNewDeviceVideotapePlayManager shareInstance].localVideotapeInfo.endDate;
-        }
-        [weakself hideVideoLoadImage];
-        [weakself showPlayBtn];
+        [weakself finishPlaybackAsPlayOver];
     });
 }
 
@@ -202,18 +191,20 @@
 
 - (void)onPlayerTime:(NSTimeInterval)playTime videoItem:(LCBaseVideoItem * _Nonnull)videoItem { 
     weakSelf(self);
-    if (self.sssdate >= playTime) {
-        NSLog(@"播放时间:%f  当前时间:%ld", playTime, self.sssdate);
-        return;
-    }
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSInteger ooo = playTime - weakself.sssdate;
-        NSLog(@"异常跳针NOR:%ld", ooo);
-        if (ooo > 1 && (self.sssdate != 0)) {
-            NSLog(@"异常跳针前次：%ld，本次：%f", self.sssdate, playTime);
+        if (weakself.sssdate < playTime) {
+            NSInteger ooo = playTime - weakself.sssdate;
+            NSLog(@"异常跳针NOR:%ld", ooo);
+            if (ooo > 1 && (weakself.sssdate != 0)) {
+                NSLog(@"异常跳针前次：%ld，本次：%f", weakself.sssdate, playTime);
+            }
+            weakself.sssdate = playTime;
+            [LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest = [NSDate dateWithTimeIntervalSince1970:playTime];
+        } else {
+            NSLog(@"播放时间:%f  当前时间:%ld", playTime, weakself.sssdate);
         }
-        weakself.sssdate = playTime;
-        [LCNewDeviceVideotapePlayManager shareInstance].currentPlayOffest = [NSDate dateWithTimeIntervalSince1970:playTime];
+        // 国标本地录像：SDK 可能不回调 onPlayFinished，按进度到终点或 3 秒无回调结束播放
+        [weakself handleGbLocalPlaybackProgress:playTime];
     });
 }
 

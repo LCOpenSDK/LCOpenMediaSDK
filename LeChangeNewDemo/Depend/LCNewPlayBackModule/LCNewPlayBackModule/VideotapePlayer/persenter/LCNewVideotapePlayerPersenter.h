@@ -58,6 +58,9 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) long  sssdate;
 
+/// 国标本地录像：onPlayerTime 超时检测（3 秒无回调则视为播放结束）
+@property (strong, nonatomic, nullable) NSTimer *gbPlayerTimeWatchTimer;
+
 /// 重播按钮
 @property (strong, nonatomic) LCButton *bigPlayBtn;
 

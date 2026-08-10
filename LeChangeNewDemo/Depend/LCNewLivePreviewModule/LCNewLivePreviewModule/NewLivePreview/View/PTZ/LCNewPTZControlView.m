@@ -42,10 +42,10 @@
     [self addSubview:_panel];
     __weak typeof(self) weakself = self;
     [_panel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(weakself).multipliedBy(0.4);
-        make.width.mas_equalTo(weakself.panel.mas_height);
-        make.top.mas_equalTo(weakself).offset(120);
+        make.width.mas_equalTo(weakself).multipliedBy(0.6);
+        make.height.mas_equalTo(weakself.panel.mas_width);
         make.centerX.mas_equalTo(weakself.mas_centerX);
+        make.centerY.mas_equalTo(weakself.mas_centerY);
     }];
    
 }

@@ -35,6 +35,8 @@ import LCOpenMediaSDK
     
     var pageIndex = 1
     let pageSize = 10
+    /// 上一页平台返回的原始设备数量（未过滤），用于判断是否还有下一页
+    var lastPageRawCount = 0
 
     deinit {
         NSLog(" 💔💔💔 %@ dealloced 💔💔💔", NSStringFromClass(self.classForCoder))
@@ -64,19 +66,23 @@ import LCOpenMediaSDK
         }
         
         self.isRefreshing = true
+        self.pageIndex = 1
         LCDeviceManagerInterface.queryDeviceDetailPage(pageIndex, pageSize: pageSize) {[weak self] devices in
-            self?.openDevices.removeAll()
+            guard let self = self else { return }
+            self.openDevices.removeAll()
+            let ds = (devices as? [LCDeviceInfo]) ?? []
+            // 分页条件用平台原始返回数量判断
+            self.lastPageRawCount = ds.count
             //只显示NVR与通道数大于等于1
-            if let ds = devices as? [LCDeviceInfo] {
-                let temp = ds.filter { device in
-                    return (device.channels.count == 0 && device.catalog.uppercased() != "NVR") ? false : true
-                }
-                self?.openDevices.append(contentsOf: temp)
-                self?.listContainer?.deviceListView.reloadData()
+            let temp = ds.filter { device in
+                return (device.channels.count == 0 && device.catalog.uppercased() != "NVR") ? false : true
             }
+            self.openDevices.append(contentsOf: temp)
+            self.listContainer?.deviceListView.reloadData()
             LCProgressHUD.hideAllHuds(nil)
-            self?.listContainer?.deviceListView.mj_header?.endRefreshing()
-            self?.isRefreshing = false
+            self.listContainer?.deviceListView.mj_header?.endRefreshing()
+            self.listContainer?.deviceListView.mj_footer?.resetNoMoreData()
+            self.isRefreshing = false
         } failure: {[weak self] error in
             LCProgressHUD.hideAllHuds(nil)
             self?.listContainer?.deviceListView.mj_header?.endRefreshing()
@@ -91,30 +97,37 @@ import LCOpenMediaSDK
             return
         }
         
-        self.isRefreshing = true
+        // 用平台上一页原始返回数量判断是否还有下一页，不用展示列表数量
+        if self.lastPageRawCount < self.pageSize {
+            self.listContainer?.deviceListView.mj_footer?.endRefreshingWithNoMoreData()
+            return
+        }
         
-        if self.openDevices.count > 0 && self.openDevices.count % pageSize == 0 {
-            LCDeviceManagerInterface.queryDeviceDetailPage(self.openDevices.count / pageSize + 1, pageSize: pageSize) { [weak self] devices in
-                //只显示NVR与通道数大于等于1
-                if let ds = devices as? [LCDeviceInfo] {
-                    let temp = ds.filter { device in
-                        return (device.channels.count == 0 && device.catalog.uppercased() != "NVR") ? false : true
-                    }
-                    self?.openDevices.append(contentsOf: temp)
-                    self?.listContainer?.deviceListView.reloadData()
-                }
-                LCProgressHUD.hideAllHuds(nil)
-                self?.listContainer?.deviceListView.mj_footer?.endRefreshing()
-                self?.isRefreshing = false
-            } failure: {[weak self] error in
-                LCProgressHUD.hideAllHuds(nil)
-                self?.listContainer?.deviceListView.mj_footer?.endRefreshing()
-                self?.isRefreshing = false
-                LCProgressHUD.showMsg(error.errorMessage)
+        self.isRefreshing = true
+        let nextPage = self.pageIndex + 1
+        LCDeviceManagerInterface.queryDeviceDetailPage(nextPage, pageSize: pageSize) { [weak self] devices in
+            guard let self = self else { return }
+            let ds = (devices as? [LCDeviceInfo]) ?? []
+            self.lastPageRawCount = ds.count
+            self.pageIndex = nextPage
+            //只显示NVR与通道数大于等于1
+            let temp = ds.filter { device in
+                return (device.channels.count == 0 && device.catalog.uppercased() != "NVR") ? false : true
             }
-        } else {
-            self.listContainer?.deviceListView.mj_footer?.endRefreshing()
+            self.openDevices.append(contentsOf: temp)
+            self.listContainer?.deviceListView.reloadData()
+            LCProgressHUD.hideAllHuds(nil)
+            if self.lastPageRawCount < self.pageSize {
+                self.listContainer?.deviceListView.mj_footer?.endRefreshingWithNoMoreData()
+            } else {
+                self.listContainer?.deviceListView.mj_footer?.endRefreshing()
+            }
             self.isRefreshing = false
+        } failure: {[weak self] error in
+            LCProgressHUD.hideAllHuds(nil)
+            self?.listContainer?.deviceListView.mj_footer?.endRefreshing()
+            self?.isRefreshing = false
+            LCProgressHUD.showMsg(error.errorMessage)
         }
     }
     
@@ -138,7 +151,7 @@ import LCOpenMediaSDK
         self.openDevices.forEach {[weak self] device in
             if self?.p2pDevices.contains(device.deviceId) == false && device.status == "online" {
                 let info = LCOpenSDK_P2PDeviceInfo()
-                info.playToken = device.playToken
+                info.playToken = device.playTokenV2
                 info.did = device.deviceId
                 jsonArray.append(info)
                 self?.p2pDevices.insert(device.deviceId)
@@ -154,7 +167,7 @@ import LCOpenMediaSDK
         var datas = Array<Dictionary<String, String>>()
         self.openDevices.forEach {[weak self] device in
             if self?.mtsKeepDevices.contains(device.deviceId) == false && device.status == "online" {
-                datas.append(["playtoken":device.playToken, "deviceId":device.deviceId, "productId":device.productId])
+                datas.append(["playtoken":device.playTokenV2, "deviceId":device.deviceId, "productId":device.productId])
                 self?.mtsKeepDevices.insert(device.deviceId)
             }
         }

@@ -30,7 +30,7 @@
 - (void)configCloudVideotape {
     LCCloudVideotapeInfo *info = (LCCloudVideotapeInfo *)self.model;
     NSString *pid = info.productId != nil ? info.productId : @"";
-    [self.picImgview lcMedia_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") deviceId:info.deviceId productId:pid playtoken:[LCNewDeviceVideoManager shareInstance].currentDevice.playToken key:info.deviceId];
+    [self.picImgview lcMedia_setImageWithURL:info.thumbUrl placeholderImage:LC_IMAGENAMED(@"common_video_defaultpic_video") deviceId:info.deviceId productId:pid playtoken:[LCNewDeviceVideoManager shareInstance].currentDevice.playTokenV2 key:info.deviceId];
     self.startTimeLab.text = [[info.beginTime componentsSeparatedByString:@" "] objectAtIndex:1];
     self.durationTimeLab.text = [info durationTime];
 }

@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/12/2.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef __LCMedia_LCMedia_DEFINE_H__
@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, E_ENCRYPT_MODE)
     ENCRYPT_MODE_NONE = 0,           //不加密
     ENCRYPT_MODE_CUSTOMED_X95 = 1,   //自定义密钥或默认sn加密(0x95)
     ENCRYPT_MODE_TCM_XB5 = 3,        //三码合一加密(0xb5)
-    ENCRYPT_MODE_AH_XB5 = 4,         //安恒加密(0xb5)
+    ENCRYPT_MODE_C5_XC5 = 5,         //0xC5加密
 };
 
 #pragma mark - 视频转换类型
@@ -148,9 +148,9 @@ typedef NS_ENUM(NSInteger, E_DECRYPT_RESULT)
 #pragma mark - 秘钥计算规则版本
 typedef NS_ENUM(NSInteger, E_RULE_VERSION)
 {
-    RULE_EASY4IP = 0,       //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))+"EASY4IP"), 取前16位
-    RULE_LECHANGE,          //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))), 取前16位
-    RULE_DAHUAPASS,         //Base64(MD5_UPPER("HS:"+MD5_UPPER(keyseed))), 取前16位
+    RULE_IMS = 0,       //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))+固定拼接后缀), 取前16位；后缀同 LCMediaUtilsInside 解密值
+    RULE_LC,          //Base64(MD5_LOWER("HS:"+MD5_LOWER(keyseed))), 取前16位
+    RULE_IMSPASS,         //Base64(MD5_UPPER("HS:"+MD5_UPPER(keyseed))), 取前16位
 };
 
 #pragma mark -  onPlayerResult回调type参数定义
@@ -193,7 +193,7 @@ typedef NS_ENUM(NSInteger, OC_RTSP_STATE)
     OC_STATE_RTSP_KEEP_ALIVE_TIMEOUT       =    408001,
     OC_STATE_RTSP_WAIT_MESSAGE_TIMEOUT     =    408002,
     OC_STATE_RTST_SOCK_TIMEOUT             =    504008,
-    OC_STATE_RTST_AH_DECRYPT_FAIL          =    120000,   //安恒解密失败
+    OC_STATE_RTST_AH_DECRYPT_FAIL          =    120000,   //解密失败(兼容保留)
     OC_STATE_RTSP_STREAM_MODIFY_ERROR      =    602019,   //码流加解密失败
     
 };
@@ -225,7 +225,7 @@ typedef NS_ENUM(NSInteger, OC_DHHTTP_STATE)
     OC_STATE_DHHTTP_REQ_TIMEOUT_RETRY     =    408100,
     OC_STATE_DHHTTP_SOCK_TIMEOUT        =    504015,
     OC_STATE_DHHTTP_DEVICE_UPGRADING      = 550037,   //设备升级中
-    OC_STATE_DHHTTP_AH_DECRYPT_FAIL          =    130000,  //安恒解密失败
+    OC_STATE_DHHTTP_AH_DECRYPT_FAIL          =    130000,  //解密失败(兼容保留)
     OC_STATE_DHHTTP_STREAM_MODIFY_ERROR      =    602017,   //码流加解密失败
     OC_STATE_DHHTTP_LIVE_FINISH              =    16390,    //live结束消息
     OC_STATE_DHHTTP_LIVE_COUNT_DOWN          =    16392,    //休眠倒计时通知消息code
@@ -257,6 +257,8 @@ typedef NS_ENUM(NSInteger, OC_HLS_STATE)
 	OC_STATE_HLS_EXTRACT_FAILED = 13,   //抽帧失败需要app设置播放速度为1
     OC_STATE_HLS_DEVICE_KEY_ERROR = 14, //设备密码错误
     OC_STATE_HLS_ENCRYPT_KEY_ERROR = 15, //码流密钥错误
+    OC_STATE_HLS_STOP_DOWNLOAD = 16,     //停止下载（不代表失败，具体以 commonSDK 解释为准）
+    OC_STATE_HLS_CLIENT_LIMIT_REACHED = 100 //达到并发拉流客户端路数(5路)限制
 };
 
 #pragma mark -  when type == OC_RESULT_PROTO_TYPE_SIP, code enum

@@ -3,13 +3,14 @@
 //  LCSDK
 //
 //  Created by 朱枫 on 2020/9/18.
-//  Copyright © 2020 www.dahuatech.com. All rights reserved.
+//  Copyright © 2020. All rights reserved.
 //
 
 #ifndef LCMedia_StreamParam_h
 #define LCMedia_StreamParam_h
 
 #import <Foundation/Foundation.h>
+#import "LCDevPlayInfo.h"
 
 @class LCMediaServerParameter;
 @class LCMediaVideoSampleConfigParam;
@@ -21,7 +22,7 @@
 @property (nonatomic, copy) NSString *devicePid;  /* 设备pid */
 @property (nonatomic, copy) NSString *did; /* 设备序列号 */
 @property (nonatomic) NSInteger encryptMode_1;   /* 主加密模式 */
-@property (nonatomic) NSInteger encryptMode_2;   /* 次加密模式 */
+@property (nonatomic) NSInteger encryptMode_2 API_DEPRECATED("安恒加密已移除，请仅使用 encryptMode_1", ios(2.0, API_TO_BE_DEPRECATED));   /* 次加密模式(已废弃) */
 @property(nonatomic, assign) BOOL isQuic;    /* 是否支持Quic协议 */
 /// 混流参数
 @property(nonatomic, assign)BOOL isMixStream; //是否混流
@@ -47,6 +48,9 @@
 
 /// 文件类型，1为视频，2为图片, 3为图片JPEG流（封装dhav头尾）
 @property (nonatomic, assign) NSInteger fileType;
+
+/// 跨通道录像播放每段录像信息
+@property (nonatomic, strong, nullable) NSArray<LCDevPlayInfo *> *devPlayInfos;
 
 @end
 

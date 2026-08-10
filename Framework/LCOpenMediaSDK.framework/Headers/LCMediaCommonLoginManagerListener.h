@@ -1,9 +1,9 @@
 //
-//  Easy4ipSDK_LoginManagerListener.h
-//  Easy4ipSDK
+//  MediaSDK_LoginManagerListener.h
+//  MediaSDK
 //
 //  Created by yang_pengwei on 2017/10/30.
-//  Copyright © 2017年 www.dahuatech.com. All rights reserved.
+//  Copyright © 2017. All rights reserved.
 //
 
 #ifndef __LCMedia_LCMedia_LoginManagerListener_H__

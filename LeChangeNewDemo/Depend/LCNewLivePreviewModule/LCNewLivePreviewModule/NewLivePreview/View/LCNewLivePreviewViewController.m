@@ -18,6 +18,11 @@
 #import <LCMediaBaseModule/NSString+MediaBaseModule.h>
 #import "LCNewLivePreviewPresenter+VideotapeList.h"
 
+/// 导航标题左右预留给返回/右侧按钮的宽度
+static const CGFloat kLCNavTitleHorizontalInset = 120.0;
+/// 长标题最小缩放比例
+static const CGFloat kLCNavTitleMinScale = 0.7;
+static const CGFloat kLCNavTitleHeight = 44.0;
 
 @interface LCNewLivePreviewViewController ()
 
@@ -37,6 +42,9 @@
 @property (nonatomic, strong) LCNewLandscapeControlView *landscapeControlView;
 
 @property (nonatomic, strong) UIView *videoHistoryView;
+
+/// 自定义导航标题文案（长 SN 场景）
+@property (nonatomic, copy) NSString *lc_navTitleText;
 
 @end
 
@@ -75,7 +83,7 @@
     if ([LCNewDeviceVideoManager shareInstance].currentDevice.channelNum > 0 &&   ![[LCNewDeviceVideoManager shareInstance] isMulti]) {
         titleStr = [LCNewDeviceVideoManager shareInstance].mainChannelInfo.channelName;
     }
-    self.title = titleStr;
+    [self lc_setupNavigationTitle:titleStr];
     [self.landscapeControlView refreshTitle:titleStr];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -116,6 +124,7 @@
     
     if (self.persenter.displayStyle == LCPlayWindowDisplayStyleUpDownScreen) {
         [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor blackColor] titleColor:[UIColor whiteColor]];
+        [self lc_refreshNavigationTitleView];
     }
 }
 
@@ -148,6 +157,17 @@
     } else {
         self.navigationController.navigationBar.hidden = NO;
         [self configPortraitScreenUI];
+    }
+    // 云台开启时，随横竖屏切换显示对应云台，隐藏另一朝向云台
+    if ([LCNewDeviceVideoManager shareInstance].isOpenCloudStage) {
+        BOOL isLandscape = size.width > size.height;
+        if (!isLandscape) {
+            [self.view bringSubviewToFront:self.ptzControlView];
+        }
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> _Nonnull context) {
+            self.landscapePtzControlView.alpha = isLandscape ? 1.0 : 0;
+            self.ptzControlView.alpha = isLandscape ? 0 : 1.0;
+        } completion:nil];
     }
 }
 
@@ -328,11 +348,15 @@
 }
 
 - (void)showPtz {
-    //横屏云台
-    //竖屏云台
+    // 仅展示当前朝向对应的云台：竖屏展示竖屏云台，横屏展示横屏云台，避免多余云台按钮
+    BOOL isLandscape = CGRectGetWidth(self.view.bounds) > CGRectGetHeight(self.view.bounds);
+    // 竖屏云台需置顶，避免被后添加的每日快看/录像列表图层遮挡
+    if (!isLandscape) {
+        [self.view bringSubviewToFront:self.ptzControlView];
+    }
     [UIView animateWithDuration:0.2 animations:^{
-        self.landscapePtzControlView.alpha = 1.0;
-        self.ptzControlView.alpha = 1.0;
+        self.landscapePtzControlView.alpha = isLandscape ? 1.0 : 0;
+        self.ptzControlView.alpha = isLandscape ? 0 : 1.0;
     }];
 }
 
@@ -374,6 +398,7 @@
     self.landscapeControlView.hidden = NO;
     self.view.backgroundColor = [UIColor lccolor_c8];
     [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
+    [self lc_refreshNavigationTitleView];
     self.upDownControlView.hidden = YES;
     weakSelf(self);
     LCOpenMediaLivePlugin * player =  self.persenter.livePlugin;
@@ -416,12 +441,14 @@
 - (void)configPortraitScreenUI {
     [self setupNavigationBarIsBlack:NO];
     self.persenter.displayStyle = LCPlayWindowDisplayStylePictureInScreen;
-    self.videoHistoryView.hidden = NO;
+    // 云台开启时保持录像列表隐藏，避免竖屏云台被压在每日快看/录像列表图层之下
+    self.videoHistoryView.hidden = [LCNewDeviceVideoManager shareInstance].isOpenCloudStage;
     self.bottomControlView.hidden = NO;
     self.middleControlView.hidden = NO;
     self.landscapeControlView.hidden = YES;
     self.view.backgroundColor = [UIColor lccolor_c8];
     [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor whiteColor] titleColor:[UIColor blackColor]];
+    [self lc_refreshNavigationTitleView];
     self.upDownControlView.hidden = YES;
     
     LCOpenMediaLivePlugin * player =  self.persenter.livePlugin;
@@ -477,6 +504,7 @@
     self.upDownControlView.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setBarBackgroundColorWithColor:[UIColor blackColor] titleColor:[UIColor whiteColor]];
+    [self lc_refreshNavigationTitleView];
     self.landscapeControlView.hidden = YES;
     self.videoHistoryView.hidden = YES;
     self.view.backgroundColor = [UIColor blackColor];
@@ -539,6 +567,38 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    [self lc_refreshNavigationTitleView];
+}
+
+/// 国标等长序列号作标题时限宽并中间截断，避免导航栏显示异常
+- (void)lc_setupNavigationTitle:(NSString *)title {
+    self.lc_navTitleText = title ?: @"";
+    self.title = self.lc_navTitleText;
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.minimumScaleFactor = kLCNavTitleMinScale;
+    self.navigationItem.titleView = titleLabel;
+    [self lc_refreshNavigationTitleView];
+}
+
+/// 同步标题颜色（随黑/白导航栏）与可用宽度（随布局/旋转）
+- (void)lc_refreshNavigationTitleView {
+    UILabel *titleLabel = (UILabel *)self.navigationItem.titleView;
+    if (![titleLabel isKindOfClass:[UILabel class]]) {
+        return;
+    }
+    titleLabel.text = self.lc_navTitleText;
+    BOOL darkBar = (self.persenter.displayStyle == LCPlayWindowDisplayStyleUpDownScreen);
+    titleLabel.textColor = darkBar ? [UIColor whiteColor] : [UIColor blackColor];
+    CGFloat containerWidth = CGRectGetWidth(self.view.bounds);
+    if (containerWidth <= 0) {
+        containerWidth = CGRectGetWidth(UIScreen.mainScreen.bounds);
+    }
+    CGFloat maxWidth = MAX(containerWidth - kLCNavTitleHorizontalInset, 80.0);
+    titleLabel.bounds = CGRectMake(0, 0, maxWidth, kLCNavTitleHeight);
 }
 
 - (void)dealloc {

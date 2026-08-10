@@ -46,14 +46,18 @@ class LCMessageNavBar: UIView {
             make.size.equalTo(CGSize(width: 32.0, height: 32.0))
         }
         
-        titleLbl.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
         editBtn.snp.makeConstraints { make in
             make.trailing.equalTo(-10.0)
             make.centerY.equalToSuperview()
             make.size.equalTo(CGSize(width: 32.0, height: 32.0))
+        }
+        
+        // 国标等长序列号：限制在左右按钮之间，中间截断避免撑破导航栏
+        titleLbl.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(leftBackBtn.snp.trailing).offset(8.0)
+            make.trailing.lessThanOrEqualTo(editBtn.snp.leading).offset(-8.0)
         }
     }
     
@@ -79,6 +83,9 @@ class LCMessageNavBar: UIView {
         label.textColor = UIColor.lc_color(withHexString: "#2c2c2c")
         label.font = UIFont.boldSystemFont(ofSize: 16.0)
         label.textAlignment = .center
+        label.lineBreakMode = .byTruncatingMiddle
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
         return label
     }()
     

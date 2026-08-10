@@ -11,6 +11,12 @@
 #import <Masonry/Masonry.h>
 #import <KVOController/KVOController.h>
 
+/// 长序列号标题最小缩放比例
+static const CGFloat kLCLandscapeTitleMinScale = 0.7;
+/// 标题相对返回按钮/右边距的间距
+static const CGFloat kLCLandscapeTitleSidePadding = 8.0;
+static const CGFloat kLCLandscapeTitleTrailingPadding = 20.0;
+
 @interface LCNewLandscapeControlView ()
 
 @property (strong,nonatomic) UIView * topView;
@@ -110,14 +116,20 @@
         [weakself.delegate naviBackClick:btn];
     };
     
-    //序列号显示
+    //序列号显示（国标等长 SN：限宽 + 中间截断，避免撑破顶栏）
     self.titleLab = [UILabel new];
     self.titleLab.text = [self.delegate currentTitle];
     self.titleLab.textColor = [UIColor lc_colorWithHexString:@"#FFFFFF"];
+    self.titleLab.textAlignment = NSTextAlignmentCenter;
+    self.titleLab.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    self.titleLab.adjustsFontSizeToFitWidth = YES;
+    self.titleLab.minimumScaleFactor = kLCLandscapeTitleMinScale;
     [topView addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(topView.mas_centerY);
         make.centerX.mas_equalTo(topView.mas_centerX);
+        make.leading.mas_greaterThanOrEqualTo(portrait.mas_trailing).offset(kLCLandscapeTitleSidePadding);
+        make.trailing.mas_lessThanOrEqualTo(topView.mas_trailing).offset(-kLCLandscapeTitleTrailingPadding);
     }];
     
     //底部视图

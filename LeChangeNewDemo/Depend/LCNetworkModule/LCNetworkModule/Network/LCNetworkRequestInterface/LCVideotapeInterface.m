@@ -6,13 +6,15 @@
 #import "LCNetworkRequestManager.h"
 #import "TextDefine.h"
 #import <LCBaseModule/LCError.h>
+#import <LCBaseModule/LCDateFormatter.h>
 
 @implementation LCVideotapeInterface
 
 +(void)queryCloudRecordsForDevice:(NSString *)deviceId productId:(nullable NSString *)productId channelId:(NSString *)channelId day:(NSDate *)day From:(int)start To:(int)end success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure{
     //起始条数
     NSString * query = [NSString stringWithFormat:@"%d-%d",start,end];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    // 使用 LCDateFormatter，避免系统 12 小时制导致 API 时间串变成 AM/PM
+    LCDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:day]];
@@ -23,7 +25,7 @@
         endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:day]];
     }else{
         //否则搜索时间为当前时间
-        NSDateFormatter * dataFormatterEnd = [[NSDateFormatter alloc] init];
+        LCDateFormatter * dataFormatterEnd = [[LCDateFormatter alloc] init];
         dataFormatterEnd.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         endStr = [dataFormatterEnd stringFromDate:day];
     }
@@ -48,7 +50,7 @@
 +(void)queryLocalRecordsForDevice:(NSString *)deviceId productId:(nullable NSString *)productId channelId:(NSString *)channelId day:(NSDate *)day From:(int)start To:(int)end success:(void (^)(NSMutableArray<LCLocalVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure{
     //起始条数
     NSString * query = [NSString stringWithFormat:@"%d-%d",start,end];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    LCDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:day]];
@@ -84,7 +86,8 @@
 }
 + (void)getCloudRecordsForDevice:(NSString *)deviceId productId:(NSString *)productId channelId:(NSString *)channelId beginTime:(NSTimeInterval)beginTime endTime:(NSTimeInterval)endTime Count:(long)count isMultiple:(BOOL)isMultiple cloudType:(NSString *)cloudType success:(void (^)(NSMutableArray<LCCloudVideotapeInfo *> * _Nonnull))success failure:(void (^)(LCError * _Nonnull))failure {
     //起始条数
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    // 使用 LCDateFormatter，避免系统 12 小时制导致 beginTime/endTime 格式不符合接口
+    LCDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     //开始时间
     NSString * startStr = [dataFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:beginTime]];

@@ -71,8 +71,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString*)queryUpgradeProcess:(NSString*)deviceSN userName:(NSString*)userName password:(NSString*)passWord;
 
-+ (NSString*)getAHConfigPath;
-
 + (NSString *)getVersion;
 
 /**

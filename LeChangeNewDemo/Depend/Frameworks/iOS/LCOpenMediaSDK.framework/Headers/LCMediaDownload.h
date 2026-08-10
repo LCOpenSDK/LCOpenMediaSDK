@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 #ifndef LCMedia_LCMedia_DownLoad_h
 #define LCMedia_LCMedia_DownLoad_h
@@ -19,6 +19,8 @@
 #import "LCDownloadCloudImageInfo.h"
 #import "LCMediaServerParameter.h"
 #import "LCRecordThumbsDownloadInfo.h"
+#import "LCImageFileDownloadInfo.h"
+#import "LCRecordThumbsFileDownloadInfo.h"
 
 @class LCRecorderDeviceDownloadInfo;
 
@@ -58,7 +60,7 @@
  *  @param recordId    录像ID
  *  @param recordType  云存储录像类型(参考E_CLOUD_RECORD_TYPE)
  *  @param filepath    下载文件保存路径
- *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK         秘钥(明文MD5, 32位小写)
  *  @param Username    用户名
  *  @param PSW         密码
@@ -78,7 +80,7 @@
  *  @param recordId    录像ID
  *  @param recordType  云存储录像类型(参考E_CLOUD_RECORD_TYPE)
  *  @param filepath    下载文件保存路径
- *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK         秘钥(明文MD5, 32位小写)
  *  @param Username    用户名
  *  @param PSW         密码
@@ -98,7 +100,7 @@
  *  @param recordId    录像ID
  *  @param recordType  云存储录像类型(参考E_CLOUD_RECORD_TYPE)
  *  @param filepath    下载文件保存路径
- *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt   加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK         秘钥(明文MD5, 32位小写)
  *  @param Username    用户名
  *  @param PSW         密码
@@ -248,39 +250,14 @@
 /// - Parameter cloudImageInfo: 云图参数信息,详见LCDownloadCloudImageInfo
 -(NSInteger)startDownloadCloudImages:(LCDownloadCloudImageInfo *)cloudImageInfo;
 
-/// 下载卡录像封面图(废弃接口,新增需求不支持使用,后续配套业务层一起移除)
-/// - Parameters:
-///   - index: 任务编号
-///   - startTime: 录像开始时间
-///   - endTime: 录像结束时间
-///   - userName: 设备账户名
-///   - passWord: 设备密码
-///   - deviceSn: 设备序列号
-///   - encryptMode: 加密模式
-///   - encryptKey: 解密密钥
-///   - isTls: 是否使用TLS
-///   - serverParam: serverParam
--(NSInteger)downloadDeviceRecordThumbs:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime channelId:(NSInteger)channelId devicePid:(NSString *)devicePid userName:(NSString *)userName passWord:(NSString *)passWord deviceSn:(NSString *)deviceSn encryptMode:(NSInteger)encryptMode encryptKey:(NSString *)encryptKey isTls:(BOOL)isTls serverParam:(LCMediaServerParameter*)serverParam;
-
 
 /// 按时间下载图片新接口
 /// - Parameter downloadInfo: 下载参数类
 -(NSInteger)downloadDeviceRecordImageByTime:(LCRecordThumbsDownloadInfo *)downloadInfo;
 
 /// 通过文件下载
-/// - Parameters:
-///   - index: index description
-///   - fileId: 文件标识
-///   - channelId: 通道id
-///   - devicePid: 设备产品id
-///   - userName: 设备账户名
-///   - passWord: 设备密码
-///   - deviceSn: 设备序列号
-///   - encryptMode: 加密模式
-///   - encryptKey: 解密密钥
-///   - isTls: 是否使用TLS
-///   - serverParam: serverParam description
--(NSInteger)downloadImage:(NSInteger)index fileId:(NSString *)fileId channelId:(NSInteger)channelId devicePid:(NSString *)devicePid userName:(NSString *)userName passWord:(NSString *)passWord deviceSn:(NSString *)deviceSn encryptMode:(NSInteger)encryptMode encryptKey:(NSString *)encryptKey isTls:(BOOL)isTls serverParam:(LCMediaServerParameter*)serverParam;
+/// - Parameter downloadInfo: 下载参数类
+-(NSInteger)downloadImageByFileId:(LCRecordThumbsFileDownloadInfo *)downloadInfo;
 
 
 
@@ -291,6 +268,10 @@
 /// 获取剩余免费下载时长接口如下：在收到16403错误时调用;返回值为剩余可免费下载时长
 /// - Parameter index: 下载索引
 -(int)getQuotaExceedTime:(NSInteger)index;
+
+/// 通过图片id批量下载图片
+/// - Parameter downloadInfo: 下载参数类
+-(NSInteger)startDownloadImageByImageIds:(LCImageFileDownloadInfo *)downloadInfo;
 
 @end
 

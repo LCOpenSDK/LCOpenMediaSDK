@@ -6,6 +6,7 @@
 //
 //#import <UIKit/UIKit.h>
 #import "LCMediaBaseVideoItem.h"
+#import "LCDevPlayInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,10 +52,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger mqttPort;
 
 //是否支持Quic协议
-@property(nonatomic, assign)BOOL isQuic;
+@property (nonatomic, assign)BOOL isQuic;
 
 /// 文件类型，1为视频，2为图片, 3为图片JPEG流（封装dhav头尾）
 @property (nonatomic, assign) NSInteger fileType;
+
+/// 跨通道录像播放每段录像信息(nil代表走非跨通道录像播放)
+@property (nonatomic, strong, nullable) NSArray<LCDevPlayInfo *> *devPlayInfos;
 
 @end
 

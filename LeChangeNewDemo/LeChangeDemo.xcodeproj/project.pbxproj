@@ -84,11 +84,11 @@
 		10912CA223B33DF90058403C /* account.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10912CA123B33DF90058403C /* account.xcassets */; };
 		10BFCE4B23CC0DCE00B49003 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BFCE4A23CC0DCE00B49003 /* QuartzCore.framework */; };
 		10D29E332407FF17008891CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D29E322407FF17008891CC /* CoreLocation.framework */; };
-		1519639D2FA05715006927DA /* LCOpenMediaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1519638A2FA05694006927DA /* LCOpenMediaSDK.framework */; };
-		1519639E2FA05715006927DA /* LCOpenMediaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1519638A2FA05694006927DA /* LCOpenMediaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1519639F2FA05717006927DA /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1519638B2FA05694006927DA /* LCOpenSDKDynamic.framework */; };
-		151963A02FA05717006927DA /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1519638B2FA05694006927DA /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15252F832F29B22E00D7AF8B /* LCAddDeviceChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15252F822F29B22E00D7AF8B /* LCAddDeviceChooseView.swift */; };
+		159A57563018937100657F38 /* LCOpenSDKDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159A57453018937100657F38 /* LCOpenSDKDynamic.framework */; };
+		159A57573018937100657F38 /* LCOpenSDKDynamic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 159A57453018937100657F38 /* LCOpenSDKDynamic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		159A57583018937200657F38 /* LCOpenMediaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159A57553018937100657F38 /* LCOpenMediaSDK.framework */; };
+		159A57593018937200657F38 /* LCOpenMediaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 159A57553018937100657F38 /* LCOpenMediaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F1F6473290FC2F900FF03FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F6475290FC2F900FF03FF /* InfoPlist.strings */; };
 		4EF54C2B2536F9CE002F960D /* LCBaseModuleBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EF54C2A2536F9CE002F960D /* LCBaseModuleBundle.bundle */; };
 		AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5737C04E6B040B6DEF489321 /* Pods_LeChangeDemo.framework */; };
@@ -216,17 +216,17 @@
 				03FC1A452B108F3C00B02794 /* ObjectMapper.framework in Embed Frameworks */,
 				03FC1A3D2B108F3100B02794 /* ZXingObjC.framework in Embed Frameworks */,
 				04C465C52CC63A01004E35AB /* LCNewLivePreviewModule.framework in Embed Frameworks */,
-				151963A02FA05717006927DA /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 				03FC1A392B108F2000B02794 /* GTMBase64.framework in Embed Frameworks */,
 				03FC1A3F2B108F3300B02794 /* SnapKit.framework in Embed Frameworks */,
 				03FC1A472B108F4200B02794 /* MJRefresh.framework in Embed Frameworks */,
 				03FC1A4D2B108F4C00B02794 /* Masonry.framework in Embed Frameworks */,
 				03FC1A412B108F3500B02794 /* SDWebImage.framework in Embed Frameworks */,
 				03FC1A372B108F1900B02794 /* AFNetworking.framework in Embed Frameworks */,
-				1519639E2FA05715006927DA /* LCOpenMediaSDK.framework in Embed Frameworks */,
 				03FC1A4B2B108F4900B02794 /* MBProgressHUD.framework in Embed Frameworks */,
+				159A57593018937200657F38 /* LCOpenMediaSDK.framework in Embed Frameworks */,
 				03FC1A432B108F3800B02794 /* SAMKeychain.framework in Embed Frameworks */,
 				03FC1A492B108F4600B02794 /* MJExtension.framework in Embed Frameworks */,
+				159A57573018937100657F38 /* LCOpenSDKDynamic.framework in Embed Frameworks */,
 				03FC1A3B2B108F2100B02794 /* KVOController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -326,9 +326,9 @@
 		10D29E322407FF17008891CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10F36D6123B5D2C40010D966 /* LCToolKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCToolKit.h; sourceTree = "<group>"; };
 		1317C10F9FF76B4FE615F1D9 /* libPods-LeChangeDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeChangeDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1519638A2FA05694006927DA /* LCOpenMediaSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenMediaSDK.framework; path = Depend/Frameworks/iOS/LCOpenMediaSDK.framework; sourceTree = "<group>"; };
-		1519638B2FA05694006927DA /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
 		15252F822F29B22E00D7AF8B /* LCAddDeviceChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCAddDeviceChooseView.swift; sourceTree = "<group>"; };
+		159A57453018937100657F38 /* LCOpenSDKDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenSDKDynamic.framework; path = Depend/Frameworks/iOS/LCOpenSDKDynamic.framework; sourceTree = "<group>"; };
+		159A57553018937100657F38 /* LCOpenMediaSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCOpenMediaSDK.framework; path = Depend/Frameworks/iOS/LCOpenMediaSDK.framework; sourceTree = "<group>"; };
 		3F1F6474290FC2F900FF03FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F1F6476290FC2FB00FF03FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		4EF54C2A2536F9CE002F960D /* LCBaseModuleBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LCBaseModuleBundle.bundle; path = Depend/Frameworks/iOS/LCBaseModuleBundle.bundle; sourceTree = SOURCE_ROOT; };
@@ -354,9 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03FC1A402B108F3500B02794 /* SDWebImage.framework in Frameworks */,
-				1519639D2FA05715006927DA /* LCOpenMediaSDK.framework in Frameworks */,
+				159A57583018937200657F38 /* LCOpenMediaSDK.framework in Frameworks */,
 				03FC1A362B108F1900B02794 /* AFNetworking.framework in Frameworks */,
-				1519639F2FA05717006927DA /* LCOpenSDKDynamic.framework in Frameworks */,
 				04092B0928F53E29006D861D /* LCMessageModule.framework in Frameworks */,
 				03ABE03F28F5630A00BCE307 /* LCDeviceDetailModule.framework in Frameworks */,
 				03FC1A3C2B108F3100B02794 /* ZXingObjC.framework in Frameworks */,
@@ -393,6 +392,7 @@
 				03FC1A382B108F1F00B02794 /* GTMBase64.framework in Frameworks */,
 				AEBD3F9D21E1A7B8DFC83EF9 /* Pods_LeChangeDemo.framework in Frameworks */,
 				0419D4A02509D3BA00CE4528 /* LCAddDeviceModule.framework in Frameworks */,
+				159A57563018937100657F38 /* LCOpenSDKDynamic.framework in Frameworks */,
 				03FC1A3E2B108F3300B02794 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,8 +728,8 @@
 		6B1B0DB9F323E0756FBD8C96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1519638A2FA05694006927DA /* LCOpenMediaSDK.framework */,
-				1519638B2FA05694006927DA /* LCOpenSDKDynamic.framework */,
+				159A57553018937100657F38 /* LCOpenMediaSDK.framework */,
+				159A57453018937100657F38 /* LCOpenSDKDynamic.framework */,
 				03FC1A202B108C7600B02794 /* AFNetworking.framework */,
 				03FC1A242B108C7700B02794 /* GTMBase64.framework */,
 				03FC1A232B108C7700B02794 /* KVOController.framework */,

@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by lei on 2021/9/13.
-//  Copyright © 2021 www.dahuatech.com. All rights reserved.
+//  Copyright © 2021. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -106,12 +106,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 实时预览
 /**
- *  乐橙设备实时预览
+ *  终端设备实时预览
  *
  *  @param deviceSN   设备序列号
  *  @param channelId  通道号
  *  @param streamType 码流类型(参考E_STREAM_TYPE枚举)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥
  *  @param isForceMts 是否强制走mts
  *  @param isOpt      是否开启优化拉流,需要设备同时支持(0:RTSP 1:RTSV1)
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 设备录像
 /**
- *  按时间回放乐橙设备SD卡录像
+ *  按时间回放终端设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
@@ -177,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param beginTime 开始时间(UTC时间戳)
  *  @param endTime   结束时间(UTC时间戳)
  *  @param offsetTime 起始播放时间(单位秒)
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param isForceMts  是否强制走mts
  *  @param isOpt      是否开启优化拉流,需要设备同时支持(0:RTSP 1:RTSV1)
@@ -190,14 +190,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger) playDevRecordStreamByTime:(LCMediaDevStreamByTimeParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType beginTime:(NSInteger)beginTime endTime:(NSInteger)endTime offsetTime:(NSInteger)offsetTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(CGFloat)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey isQuic:(BOOL)isQuic;
 
 /**
- *  按文件名回放乐橙设备SD卡录像
+ *  按文件名回放终端设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
  *  @param fileId    文件名
  *  @param offsetTime 起始播放时间(单位秒)
  *  @param endTime    起始播放时间(单位秒)
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param isForceMts  是否强制走mts
  *  @param isOpt      是否开启优化拉流,需要设备同时支持(0:RTSP 1:RTSV1)
@@ -290,7 +290,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param hlsType    hls类型(参考E_HLS_TYPE)
  *  @param startTime  起始播放时间(单位秒)
  *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥(明文MD5, 32位小写)
  *
  *  @return 0表示成功 非0表示失败

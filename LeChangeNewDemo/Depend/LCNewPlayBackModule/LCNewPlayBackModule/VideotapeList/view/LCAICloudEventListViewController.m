@@ -522,7 +522,7 @@ static const NSInteger kQLChannelTabIndicatorTag = 91001;
     LCDeviceInfo *dev = [LCNewDeviceVideoManager shareInstance].currentDevice;
     [LCNewDeviceVideotapePlayManager shareInstance].isSoundOn = self.quickLookSoundOn;
     weakSelf(self);
-    [[LCOpenMediaApiManager shareInstance] getPlayTokenKey:[LCApplicationDataManager token] success:^(NSString *tokenKey) {
+    [[LCOpenMediaApiManager shareInstance] getPlayTokenKeyV2:[LCApplicationDataManager token] success:^(NSString *tokenKey, NSString *tokenKeyV2) {
         LCOpenCloudSource *src = [LCOpenCloudSource new];
         src.pid = dev.productId;
         src.did = dev.deviceId;
@@ -530,9 +530,9 @@ static const NSInteger kQLChannelTabIndicatorTag = 91001;
         NSString *effectivePsk = weakself.quickLookPagePlayPsw.length > 0 ? weakself.quickLookPagePlayPsw : (dev.deviceId ?: @"");
         src.psk = effectivePsk;
         src.pswArray = [weakself ql_pswListByMergingBasePsk:effectivePsk extraFromQuickLook:weakself.quickLookPswArray];
-        src.playToken = dev.playToken;
+        src.playToken = dev.playTokenV2;
         src.accessToken = [LCApplicationDataManager token];
-        src.playTokenKey = tokenKey;
+        src.playTokenKey = tokenKeyV2;
         src.recordRegionId = record.recordRegionId;
         src.recordPath = record.recordPath ?: @"";
         src.region = record.region;

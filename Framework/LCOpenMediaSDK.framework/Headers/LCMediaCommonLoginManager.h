@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef __LCMedia_LCMedia_LOGINMANAGER_H__
@@ -28,19 +28,6 @@
  * @note: 此接口为无阻塞同步接口，需保证在主线程调用，时机需在启动后立即调用
  */
 - (void)initNetWorkComponent;
-
-/**
- * 初始化安恒加密服务
- * @param deviceIdentity   终端设备唯一标识
- * @param svrAddr                   安恒密盾服务地址
- * @note: 此接口为同步接口，在用户账号下有设备开通了安恒加密套餐时才需要调用
- */
-- (void)initAHService:(NSString*)deviceIdentity SvrAddr:(NSString*)svrAddr;
-
-/**
-* 获取安恒服务初始化状态
-*/
-- (NSInteger)getAHServiceState;
 
 /**
  *  rest获取登陆组件和统计组件服务器信息并初始化
@@ -117,7 +104,7 @@
  *
  *  @param devicesJsonStr 设备信息字符串(Json格式)
  *         eg:[{"Sn":string, "Type":UINT,"Port":UINT,"User":string, "Pwd":string, "DevP2PInfo":string},{},...]
- *         其中，Type: (0:大华P2P设备 1:乐橙设备)
+ *         其中，Type: (0:vendor P2P 设备 1:base 平台设备)
  *         其中，DevP2PInfo: 没有时为""空字符串， 有信息时为"{"p2pVer":string, "p2pSalt":string}"或"{}"json格式字符串
  *
  *  @return YES/NO 成功/失败
@@ -128,7 +115,7 @@
  *
  *  @param devicesJsonStr 设备信息字符串(Json格式)
  *         eg:[{"Sn":string, "Type":UINT,"Port":UINT,"User":string, "Pwd":string},{},...]
- *         Type:(0:大华P2P设备 1:乐橙设备)
+ *         Type:(0:vendor P2P 设备 1:base 平台设备)
  *
  *  @return YES/NO 成功/失败
  */
@@ -168,11 +155,11 @@
 - (BOOL)reConnectAll;
 
 /**
- *  获取大华P2P设备NetSdk登陆句柄
+ *  获取 vendor P2P 设备 NetSdk 登陆句柄
  *
  *  @param deviceJsonStr 设备信息字符串(Json格式)
  *         eg:[{"Sn":string,"Pid":string,"Type":UINT,"Port":UINT,"User":string, "Pwd":string},{},...]
- *         Type:(0:大华P2P设备 1:乐橙设备)
+ *         Type:(0:vendor P2P 设备 1:base 平台设备)
  *  @param timeout  接口超时时间(单位:毫秒)
  *
  *  @return 非nil/nil 成功/失败
@@ -188,7 +175,7 @@
  *
  *  @param deviceJsonStr 设备信息字符串(Json格式)
  *         eg:{"Sn":string, "Type":UINT,"Port":UINT,"User":string, "Pwd":string}
- *         Type:(0:大华P2P设备 1:乐橙设备)
+ *         Type:(0:vendor P2P 设备 1:base 平台设备)
  *  @param timeout  接口超时时间(单位:毫秒)
  *
  *  @return 非0/0 成功/失败

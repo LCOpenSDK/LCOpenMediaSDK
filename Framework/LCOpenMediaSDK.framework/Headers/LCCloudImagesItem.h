@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign)NSInteger timeout;  // 超时时间(单位秒)
 
-@property(nonatomic, assign)NSInteger encryptMode;  //加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+@property(nonatomic, assign)NSInteger encryptMode;  //加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
 
 @property(nonatomic, copy)NSString *psk;  //秘钥(明文MD5, 32位小写)
 

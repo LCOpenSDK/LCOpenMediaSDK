@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger fileDuration;
 
 /// 绑定设备信息
-@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice; //绑定设备信息
+@property(nonatomic, strong, nullable)LCBindDeviceInfo *bindDevice;
 
 @end
 

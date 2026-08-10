@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 2017/7/21.
-//  Copyright © 2017年 www.dahuatech.com. All rights reserved.
+//  Copyright © 2017. All rights reserved.
 //
 
 #ifndef LCSDK_LCSDK_Crypter_h

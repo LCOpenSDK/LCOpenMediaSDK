@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef LCMedia_DownloadListener_h
@@ -36,10 +36,13 @@
 - (void) onDownloadGetPasswordBackSuccess:(NSString *)deviceId productId:(NSString * __nullable)productId password:(NSString *)password;
 
 @optional
-/// 下载卡录像封面回调
+/// 下载封面图回调
 /// @param index 下载索引号
-/// @param data 回调数据
-/// @param info 回调信息
+/// @param data 图片数据
+/// @param info json格式的图片信息：{"frameTime":"20240129T120807", "frameID":"XXX", "frameType":123}
+/// frameTime - 帧时间
+/// frameID - 图片ID
+/// frameType - 图片类型
 - (void) onRecvImageFrame:(NSInteger)index Data:(NSData*)data Info:(NSString*)info;
 
 @end

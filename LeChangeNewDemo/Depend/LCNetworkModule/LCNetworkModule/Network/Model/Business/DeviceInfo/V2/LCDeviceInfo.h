@@ -88,6 +88,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///  播放token
 @property (strong, nonatomic) NSString *playToken;
+///  播放token V2（升级加密方式，拉流/对讲优先使用）
+@property (strong, nonatomic) NSString *playTokenV2;
 
 @property (strong, nonatomic) NSString *p2pPort;
 

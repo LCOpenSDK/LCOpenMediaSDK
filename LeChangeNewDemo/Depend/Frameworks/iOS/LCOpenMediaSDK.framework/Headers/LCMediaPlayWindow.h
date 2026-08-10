@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 
 #ifndef LCMediaPlayWindow_h
@@ -94,12 +94,12 @@
 
 #pragma mark - 实时预览
 /**
- *  乐橙设备实时预览
+ *  终端设备实时预览
  *
  *  @param deviceSN   设备序列号
  *  @param channelId  通道号
  *  @param streamType 码流类型(参考E_STREAM_TYPE枚举)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥
  *  @param Username   用户名
  *  @param PSW        密码
@@ -150,7 +150,7 @@
 
 #pragma mark - 设备录像
 /**
- *  按时间回放乐橙设备SD卡录像
+ *  按时间回放终端设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
@@ -158,7 +158,7 @@
  *  @param beginTime 开始时间(UTC时间戳)
  *  @param endTime   结束时间(UTC时间戳)
  *  @param offsetTime 起始播放时间(单位秒)
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param Username   用户名
  *  @param PSW        密码
@@ -176,7 +176,7 @@
 - (NSInteger) playDevRecordStreamByTime:(LCMediaDevStreamByTimeParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType beginTime:(NSInteger)beginTime endTime:(NSInteger)endTime offsetTime:(NSInteger)offsetTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(NSInteger)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey;
 
 /**
- *  按时间回放乐橙设备SD卡录像
+ *  按时间回放终端设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
@@ -184,7 +184,7 @@
  *  @param beginTime 开始时间(utc公历时间)
  *  @param endTime   结束时间(utc公历时间)
  *  @param offsetTime 起始播放时间(单位秒)
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param Username   用户名
  *  @param PSW        密码
@@ -200,14 +200,14 @@
 - (NSInteger) playDevRecordStreamByTimeV2:(LCMediaDevStreamByTimeParam*)param DeviceSN:(NSString*)deviceSN channelId:(NSInteger)channelId streamType:(E_STREAM_TYPE)streamType beginTime:(NSString*)beginTime endTime:(NSString*)endTime offsetTime:(NSInteger)offsetTime PSK:(NSString*)PSK Username:(NSString*) strUserName PSW:(NSString*) strPassWord isForceMts:(BOOL) isForceMts isOpt:(NSInteger) isOpt isTls:(BOOL)isTls isThrowP2PAuthErr:(BOOL)isThrowP2PAuthErr Speed:(NSInteger)speed ServerParam:(LCMediaServerParameter*) serverParam wssekey:(NSString *)wssekey;
 
 /**
- *  按文件名回放乐橙设备SD卡录像
+ *  按文件名回放终端设备SD卡录像
  *
  *  @param deviceSN  设备序列号
  *  @param channelId 通道号
  *  @param fileId    文件名
  *  @param offsetTime 起始播放时间(单位秒)
  *  @param endTime    起始播放时间(单位秒)
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param Username   用户名
  *  @param PSW         密码
@@ -252,7 +252,7 @@
  *  @param hlsType    hls类型(参考E_HLS_TYPE)
  *  @param startTime  起始播放时间(单位秒)
  *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥(明文MD5, 32位小写)
  *  @param Speed      播放速度
  *  @param Username   用户名
@@ -275,7 +275,7 @@
  *  @param hlsType    hls类型(参考E_HLS_TYPE)
  *  @param startTime  起始播放时间(单位秒)
  *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥(明文MD5, 32位小写)
  *  @param Speed      播放速度
  *  @param Username   用户名
@@ -297,7 +297,7 @@
  *  @param hlsType    hls类型(参考E_HLS_TYPE)
  *  @param startTime  起始播放时间(单位秒)
  *  @param timeout    超时时间(单位秒)
- *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt  加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK        秘钥(明文MD5, 32位小写)
  *  @param Speed      播放速度
  *  @param Username   用户名

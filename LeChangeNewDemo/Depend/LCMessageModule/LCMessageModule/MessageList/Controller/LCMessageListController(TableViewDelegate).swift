@@ -18,7 +18,7 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LCMessageListCell.cellID(), for: indexPath) as! LCMessageListCell
         if indexPath.row < self.presenter.showMessageInfos.count {
             let messageInfo = self.presenter.showMessageInfos[indexPath.row]
-            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId, playtoken: presenter.deviceInfo.playToken)
+            let messageItem = LCMessageItem(messageInfo, deviceId: presenter.deviceInfo.deviceId, productId: presenter.deviceInfo.productId, playtoken: presenter.deviceInfo.playTokenV2)
             cell.updateData(messageItem)
         }
         return cell
@@ -41,7 +41,7 @@ extension LCMessageListController:UITableViewDelegate, UITableViewDataSource {
         if  (key.count < 0 || key == "") {
             key = presenter.deviceInfo.deviceId
         }
-        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: key, playtoken:presenter.deviceInfo.playToken, containView: self.view)
+        LCMessagePictureShowView.show(picUrl, productId: presenter.deviceInfo.productId, deviceId: presenter.deviceInfo.deviceId, secretKey: key, playtoken:presenter.deviceInfo.playTokenV2, containView: self.view)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

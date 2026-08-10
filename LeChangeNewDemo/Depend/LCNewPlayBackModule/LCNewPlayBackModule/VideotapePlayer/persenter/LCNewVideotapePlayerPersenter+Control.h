@@ -56,6 +56,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置播放速度
 -(void)loadPlaySpeed;
 
+/// 国标本地录像：根据 onPlayerTime 检测是否到达结束时间，并刷新 3 秒超时定时器
+- (void)handleGbLocalPlaybackProgress:(NSTimeInterval)playTime;
+
+/// 国标本地录像：停止 onPlayerTime 超时检测
+- (void)stopGbPlayerTimeWatch;
+
+/// 将播放标记为结束（停止拉流、更新按钮为暂停/停止态），与 onPlayFinished 一致
+- (void)finishPlaybackAsPlayOver;
+
 @end
 
 NS_ASSUME_NONNULL_END

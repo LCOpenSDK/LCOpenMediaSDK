@@ -20,6 +20,15 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
     [self addGestureRecognizer:tap];
+    // 序列号可能较长（如国标 deviceId），右侧单行展示不下时换行显示（参考设备详情版本行的双行方案）
+    self.subtitleLab.numberOfLines = 0;
+    self.subtitleLab.lineBreakMode = NSLineBreakByCharWrapping;
+    self.subtitleLab.preferredMaxLayoutWidth = 180;
+    // 固定高度容纳双行，宽度上限 180 超出即换行；trailing 已由 xib 固定贴右侧，centerY 居中
+    NSLayoutConstraint *maxWidth = [NSLayoutConstraint constraintWithItem:self.subtitleLab attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:180];
+    NSLayoutConstraint *fixHeight = [NSLayoutConstraint constraintWithItem:self.subtitleLab attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:45];
+    maxWidth.active = YES;
+    fixHeight.active = YES;
 }
 
 -(void)tapClick:(UITapGestureRecognizer *)tap{

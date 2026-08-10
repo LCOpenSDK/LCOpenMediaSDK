@@ -9,6 +9,7 @@
 #import "LCMediaProcessorProtocol.h"
 #import "LCMediaNetProtocol.h"
 #import "LCOCPlayerManagerProtocol.h"
+#import "LCMediaEncryptionProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)id<LCMediaNetProtocol> netPtl;
 
 @property(nonatomic, weak)id<LCOCPlayerManagerProtocol> ocPlayerManagerPtl;
+
+@property(nonatomic, weak)id<LCMediaEncryptionProtocol> encryptionPtl;
 
 + (instancetype)shareInstance;
 

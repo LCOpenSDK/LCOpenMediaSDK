@@ -7,6 +7,7 @@
 #import <LCNetworkModule/LCVideotapeInterface.h>
 #import <LCMediaBaseModule/NSString+MediaBaseModule.h>
 #import <LCBaseModule/LCBaseModule.h>
+#import <LCBaseModule/LCDateFormatter.h>
 
 @implementation LCNewLivePreviewPresenter (VideotapeList)
 
@@ -15,14 +16,15 @@
 
     [self.historyView startAnimation];
     NSDate *currentDate = [NSDate date];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    // 使用 LCDateFormatter，避免系统 12 小时制导致查询时间串异常
+    LCDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:currentDate]];
     //结束时间
     NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:currentDate]];
     
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    LCDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
     NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
@@ -44,14 +46,14 @@
 
     [self.historyView startAnimation];
     NSDate *currentDate = [NSDate date];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    LCDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:currentDate]];
     //结束时间
     NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:currentDate]];
     
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    LCDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
     NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];

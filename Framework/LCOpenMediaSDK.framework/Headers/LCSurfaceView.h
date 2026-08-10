@@ -3,7 +3,7 @@
 //  LCIphoneAdhocIP
 //
 //  Created by lei on 2021/1/11.
-//  Copyright © 2021 dahua. All rights reserved.
+//  Copyright © 2021. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

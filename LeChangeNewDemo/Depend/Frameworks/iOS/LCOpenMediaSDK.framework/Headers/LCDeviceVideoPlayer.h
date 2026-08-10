@@ -80,6 +80,11 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 - (void)deviceVideoPlayerOnAssistFrameInfo:(NSDictionary*)jsonDic;
+//跨通道片段播放每段片段信息回调
+- (void)deviceVideoPlayerOnPlayInfo:(NSString * __nullable)jsonStr videoItem:(LCBaseVideoItem *)videoItem;
+
+/// 分辨率变化回调
+- (void)deviceVideoPlayer:(LCDeviceVideoPlayer *)videoPlayer resolutionChangedWidth:(NSInteger)width height:(NSInteger)height;
 
 @end
 

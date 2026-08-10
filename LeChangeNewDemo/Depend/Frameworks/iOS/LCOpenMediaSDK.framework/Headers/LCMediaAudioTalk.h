@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/5/16.
-//  Copyright (c) 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright (c) 2016. All rights reserved.
 //
 
 #ifndef LCMedia_LCMedia_AudioTalk_h
@@ -46,7 +46,7 @@
  *  开始对讲
  *
  *  @param deviceSn  设备序列号
- *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)
+ *  @param isEncrypt 加密方式 0: 不加密  1: 原加密方式  3: 升级加密方式(AES256+0xB5)  5: 0xC5加密
  *  @param PSK       秘钥
  *  @param strUserName   用户名
  *  @param strPassWord        密码

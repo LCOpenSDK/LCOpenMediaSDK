@@ -36,6 +36,7 @@ import _SwiftConcurrencyShims
   #endif
   @objc func onEZoomChanged(_ scale: CoreFoundation.CGFloat, with videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onAssistFrameInfo(jsonDic: [Swift.String : Any])
+  @objc optional func onResolutionChanged(width: Swift.Int, height: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc func onSoundChanged(_ isAudioOpen: Swift.Bool)
   @objc func configFilePath(cid: Swift.Int, fileType: LCOpenMediaSDK.LCFilePathType) -> Swift.String
   @objc func onSnapPicFail()
@@ -249,6 +250,7 @@ extension LCOpenMediaSDK.LCOpenMediaLivePlugin {
   @objc optional func onPtzAngleChanged(rotationDirection: Swift.Int, horizontalAngle: CoreFoundation.CGFloat, verticalAngle: CoreFoundation.CGFloat)
   @objc optional func onNetStatus(_ networkStatus: Swift.Int)
   @objc optional func onAssistFrameInfo(jsonDic: [Swift.String : Any])
+  @objc optional func onResolutionChanged(width: Swift.Int, height: Swift.Int, videoItem: LCOpenMediaSDK.LCBaseVideoItem)
   @objc optional func onSoundChanged(_ isAudioOpen: Swift.Bool)
   @objc optional func configFilePath(cid: Swift.Int, fileType: LCOpenMediaSDK.LCFilePathType) -> Swift.String
   @objc optional func onSnapPicFail()

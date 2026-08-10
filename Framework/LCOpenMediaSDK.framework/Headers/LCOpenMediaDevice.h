@@ -3,7 +3,7 @@
 //  LCOpenMedia
 //
 //  Created by bzy on 5/2/17.
-//  Copyright © 2017 lechange. All rights reserved.
+//  Copyright © 2017. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 
 @interface LCOpenMediaDevice : NSObject
 
-// 设备接入平台编号：-1-未知平台  0-只支持p2p（netsdk老设备） 1-(海外非pass)接入easy4ip老接入平台 2-海外paas设备接入平台 3-国内非pass设备，4-国内pass设备
+// 设备接入平台编号：-1-未知平台  0-只支持p2p（netsdk老设备） 1-(海外非pass)接入旧接入平台 2-海外paas设备接入平台 3-国内非pass设备，4-国内pass设备
 @property (nonatomic, assign) int platform;
 // 设备登录名
 @property (nonatomic, copy)   NSString  *devLoginName;

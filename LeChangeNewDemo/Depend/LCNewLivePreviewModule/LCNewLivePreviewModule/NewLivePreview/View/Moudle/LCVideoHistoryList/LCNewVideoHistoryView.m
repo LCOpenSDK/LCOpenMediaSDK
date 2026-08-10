@@ -164,10 +164,10 @@
         if ([item isKindOfClass:[LCCloudVideotapeInfo class]]) {
             LCCloudVideotapeInfo * info = (LCCloudVideotapeInfo *)item;
             NSString *pid = info.productId != nil ? info.productId : @"";
-            [cell loadVideotapImage:info.thumbUrl deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playToken key:self.manager.currentPsk];
+            [cell loadVideotapImage:info.thumbUrl deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playTokenV2 key:self.manager.currentPsk];
         }else{
             NSString *pid = self.manager.currentDevice.productId != nil ? self.manager.currentDevice.productId : @"";
-            [cell loadVideotapImage:@"" deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playToken key:self.manager.currentPsk];
+            [cell loadVideotapImage:@"" deviceId:self.manager.currentDevice.deviceId productId:pid playtoken:self.manager.currentDevice.playTokenV2 key:self.manager.currentPsk];
         }
     }
    

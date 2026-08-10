@@ -280,14 +280,14 @@ import LCOpenMediaSDK
         source.did = LCNewDeviceVideoManager.shareInstance().currentDevice.deviceId
         source.cid = (LCNewDeviceVideoManager.shareInstance().mainChannelInfo.ability as NSString).contains("AudioTalkV1") ? LCNewDeviceVideoManager.shareInstance().mainChannelInfo.channelId.intValue() : -1
         source.pid = LCNewDeviceVideoManager.shareInstance().currentDevice.productId
-        source.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playToken
+        source.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playTokenV2
         source.accessToken = LCApplicationDataManager.token()
         source.psk =      LCNewDeviceVideoManager.shareInstance().currentPsk
         source.talkType = isCall == true ? "call" : "talk"
         
         repeat {
-            LCOpenMediaApiManager.shareInstance().getPlayTokenKey(LCApplicationDataManager.token()) { playTokenkey in
-                source.playTokenKey = playTokenkey
+            LCOpenMediaApiManager.shareInstance().getPlayTokenKeyV2(LCApplicationDataManager.token()) { _, playTokenKeyV2 in
+                source.playTokenKey = playTokenKeyV2
             } failure: { errorCode in
             }
 
@@ -336,7 +336,7 @@ import LCOpenMediaSDK
         let playItem = LCOpenLiveSource()
         playItem.pid = LCNewDeviceVideoManager.shareInstance().currentDevice.productId
         playItem.did = LCNewDeviceVideoManager.shareInstance().currentDevice.deviceId
-        playItem.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playToken;
+        playItem.playToken = LCNewDeviceVideoManager.shareInstance().currentDevice.playTokenV2;
         playItem.accessToken = LCApplicationDataManager.token()
         playItem.psk = LCNewDeviceVideoManager.shareInstance().currentPsk
         if LCNewDeviceVideoManager.shareInstance().mainChannelInfo.resolutions.count > 0  && LCNewDeviceVideoManager.shareInstance().currentDevice.catalog.uppercased() != "NVR"{
@@ -351,8 +351,8 @@ import LCOpenMediaSDK
         playItem.noiseLevel = LCMediaPlayNoiseAbility._4 //降噪等级
         playItem.forceMts = true
         repeat {
-            LCOpenMediaApiManager.shareInstance().getPlayTokenKey(LCApplicationDataManager.token()) { playTokenkey in
-                playItem.playTokenKey = playTokenkey
+            LCOpenMediaApiManager.shareInstance().getPlayTokenKeyV2(LCApplicationDataManager.token()) { _, playTokenKeyV2 in
+                playItem.playTokenKey = playTokenKeyV2
             } failure: { errorCode in
             }
 

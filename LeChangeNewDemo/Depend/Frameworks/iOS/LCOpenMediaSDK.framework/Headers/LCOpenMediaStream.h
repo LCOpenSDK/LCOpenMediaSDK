@@ -3,7 +3,7 @@
 //  LCOpenMediaSDK
 //
 //  Created by bzy on 5/3/17.
-//  Copyright © 2017 lechange. All rights reserved.
+//  Copyright © 2017. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

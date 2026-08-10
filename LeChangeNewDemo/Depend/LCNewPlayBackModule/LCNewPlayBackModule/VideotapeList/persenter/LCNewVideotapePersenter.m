@@ -13,6 +13,7 @@
 #import <LCMediaBaseModule/NSString+MediaBaseModule.h>
 #import <LCBaseModule/UIScrollView+Tips.h>
 #import <LCBaseModule/LCError.h>
+#import <LCBaseModule/LCDateFormatter.h>
 #import <MJRefresh/MJRefresh.h>
 #import <LCBaseModule/NSDate+LeChange.h>
 #import <KVOController/KVOController.h>
@@ -57,14 +58,14 @@
     [self.cloudVideoArray removeAllObjects];
     [self.groupCloudVideos removeAllObjects];
     [self didChangeValueForKey:@"cloudVideoArray"];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
     //结束时间
     NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
     
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
     NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
@@ -104,14 +105,14 @@
     [self.cloudPictureArray removeAllObjects];
     [self.groupCloudPics removeAllObjects];
     [self didChangeValueForKey:@"cloudVideoArray"];
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
     //结束时间
     NSString * endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:self.currentDate]];
     
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval beginTime = [[tDataFormatter dateFromString:startStr] timeIntervalSince1970];
     NSTimeInterval endTime = [[tDataFormatter dateFromString:endStr] timeIntervalSince1970];
@@ -179,7 +180,7 @@
         self.currentDate = date;
     }
 
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
@@ -193,7 +194,7 @@
             }
         }
     }
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval endTime = 0.0;
     if (lastCloudEndStr != nil) {
@@ -234,7 +235,7 @@
         self.currentDate = date;
     }
 
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:self.currentDate]];
@@ -248,7 +249,7 @@
             }
         }
     }
-    NSDateFormatter * tDataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * tDataFormatter = [[LCDateFormatter alloc] init];
     tDataFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSTimeInterval endTime = 0.0;
     if (lastCloudEndStr != nil) {
@@ -289,14 +290,14 @@
         self.currentDate = date;
     }
     
-    NSDateFormatter * dataFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatter = [[LCDateFormatter alloc] init];
     dataFormatter.dateFormat = @"yyyy-MM-dd";
     
     //开始时间
     NSString * startStr = [NSString stringWithFormat:@"%@ 00:00:00",[dataFormatter stringFromDate:date]];
     //1 首先查询列表中是否有数据，有将列表中的结束时间作为下次查询的开始时间
     if(weakself.localVideoArray.count!=0){
-        NSDateFormatter * tempDateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter * tempDateFormatter = [[LCDateFormatter alloc] init];
         tempDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         NSDate* tempDate = [tempDateFormatter dateFromString:weakself.localVideoArray.lastObject.endTime];
         
@@ -309,11 +310,11 @@
         endStr = [NSString stringWithFormat:@"%@ 23:59:59",[dataFormatter stringFromDate:date]];
     }else{
         //否则搜索时间为当前时间
-        NSDateFormatter * dataFormatterEnd = [[NSDateFormatter alloc] init];
+        NSDateFormatter * dataFormatterEnd = [[LCDateFormatter alloc] init];
         dataFormatterEnd.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         endStr = [dataFormatterEnd stringFromDate:date];
     }
-    NSDateFormatter * dataFormatterEnd = [[NSDateFormatter alloc] init];
+    NSDateFormatter * dataFormatterEnd = [[LCDateFormatter alloc] init];
     dataFormatterEnd.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *startDate = [dataFormatterEnd dateFromString:startStr];
     NSDate *endDate = [dataFormatterEnd dateFromString:endStr];

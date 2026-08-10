@@ -3,7 +3,7 @@
 //  LCSDK
 //
 //  Created by zhou_yuepeng on 16/9/5.
-//  Copyright © 2016年 com.lechange.lcsdk. All rights reserved.
+//  Copyright © 2016. All rights reserved.
 //
 #ifndef LCMedia_LCMedia_EventListener_h
 #define LCMedia_LCMedia_EventListener_h
@@ -115,6 +115,23 @@
  * 辅助帧json字符串回调
  */
 - (void)onAssistFrameInfo:(NSDictionary*)jsonDic;
+
+/**
+     * 播放通用格式json信息回调
+     * @param context 上下文
+     * @param jsonStr 业务 JSON 字符串
+     * @note jsonStr format:
+     * {
+     *     "type": PlayInfoType_FileInfo,       // 类型：PlayInfoType_FileInfo （int型枚举值：0）: 录像文件信息
+     *     "data": {
+     *       "sn": "xxx",               // 设备序列号 [string]
+     *       "channel": 0,              // 通道号 [int] 0/1/2..
+     *       "start_time": "yyyyMMddHHmmss",     // 开始时间 [string] yyyyMMddHHmmss
+     *       "end_time": "yyyyMMddHHmmss"      // 结束时间 [string]yyyyMMddHHmmss
+     *     }
+     * }
+     */
+- (void)onPlayInfo:(NSString*)context JsonStr:(NSString*)jsonStr;
 @end
 
 #endif //LCMedia_LCMedia_EventListener_h
